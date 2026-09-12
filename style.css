@@ -1,0 +1,41 @@
+/*  Banner login    */
+.banner_login{
+
+    box-sizing: border-box;
+
+    width: 230px;
+    padding: 24px;
+    border-radius: 15px;
+
+    background-color: rgb(41, 147, 241);
+    
+    
+
+
+
+
+}
+
+
+
+
+/*    login tela     */
+
+.login{
+    display:flex;
+    flex-direction: column;
+    gap: 15px;
+    border-radius: 15px;
+
+}
+
+.login input{
+    display:block;
+    flex-direction: column;
+    gap: 15px;
+    border-radius: 15px;
+
+    
+}
+
+
