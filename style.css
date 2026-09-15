@@ -1,13 +1,25 @@
+body{
+    background-color: brown;
+
+
+}
+
+
+
+
+
 /*  Banner login    */
 .banner_login{
-
+    
+    
     box-sizing: border-box;
 
     width: 230px;
+    height: 150%;
     padding: 24px;
     border-radius: 15px;
 
-    background-color: rgb(41, 147, 241);
+    background-color: rgb(242, 147, 5);
     
     
 
@@ -33,9 +45,16 @@
     display:block;
     flex-direction: column;
     gap: 15px;
-    border-radius: 15px;
+    border-radius: 5px;
 
-    
+
 }
 
+/* Tela inicial   */
+
+.banner_inicial{
+    background-color: orange;
+
+
+}
 
