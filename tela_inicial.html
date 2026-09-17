@@ -4,27 +4,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tela inicial</title>
-    <link rel="stylesheet" href="telaini.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <title>Time certo</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <main>
-        <section id="banner">
 
-            <div class="banner_inicial">
-                <h1>Bem vindos ao Agreste digital</h1>
+    <div class="dashboard">
 
-                <div class="barra-pesquisa">
-                    <input type="text" id="pesquisa" placeholder="Pesquisar produtos...">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </div>
 
-                <div class="recorte">
-                    <button onclick="window.location='roupas.html'">Roupas</button>
-                    <button onclick="window.location='bermudas.html'">Bermudas</button>
-                    <button onclick="window.location='promocoes.html'">Promoções</button>
+
+
+        <aside>
+
+            <div class="aba_menu">
+
+                <div class="menu-lateral">
+                    <h1>Logo</h1>
+
+                    <section id="botoes">
+
+                        <nav>
+                            <a href="">Dashboard</a>
+                            <a href="">Pedidos</a>
+                            <a href="">Produção</a>
+                            <a href="">Logística</a>
+                            <a href="">Relatórios</a>
+
+                        </nav>
+
+                    </section>
 
 
 
@@ -32,65 +41,89 @@
 
             </div>
 
-        </section>
+        </aside>
 
-        <section id="conteudo">
-            <div class="banner-img">
-                
-                <h1>BANNER IMG</h1>
+        <main>
+            <!-- Parte principal  -->
 
-            </div>
+            <header class="cabecalho">
 
-            <section id="produtos">
-
-                <div class="produto">
-
-                    <div>
-                        <h2>produto1</h2>
-                        <p>Descrição</p>
-                        <button>Comprar</button>
-                    </div>
-
-                    <div>
-                        <h2>produto1</h2>
-                        <p>Descrição</p>
-                        <button>Comprar</button>
+                <h2>Dashboard</h2>
+                <div class="usuario">
+                    <span>Usuário</span>
+                    <div class="foto">
                     </div>
                 </div>
 
+            </header>
 
+            <!--CARDS-->
 
+            <section id="cards">
+                <div class="card">
+                    <p>Produto Recebidos</p>
+                    <strong>25</strong>
+                </div>
 
+                <div class="card">
+                    <p>Prontos</p>
+                    <strong>8</strong>
+                </div>
 
+                <div class="card">
+                    <p>Em produção</p>
+                    <strong>12</strong>
+                </div>
 
+                <div class="card">
+                    <p>Atrasados</p>
+                    <strong>2</strong>
+                </div>
 
+                <div class="card">
+                    <p>Estoque baixo</p>
+                    <strong>4</strong>
+                </div>
 
             </section>
 
+            <!--Áreas inferiores-->
+            <section id="info">
+                <h3>Dados</h3>
 
+            </section>
 
+            <section id="informacoes">
 
+                <!-- Back end-->
+                <div class="grafico">
+                    Grafico
+                </div>
 
+                <div class="pedidos">
+                    <h3>Ultimos Pedidos</h3>
 
+                    <!--Back end tabela-->
+                    <p>Pedido #00125</p>
+                    <p>Pedido #00126</p>
+                    <p>Pedido #00127</p>
+                </div>    
 
-
-        </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            </section>
+    </div>
 
     </main>
+    </div>
+
+
+
+
+
+
+
+
+
+
 
 </body>
 

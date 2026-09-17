@@ -1,60 +1,221 @@
-body{
-    background-color: brown;
-
-
-}
-
-
-
-
-
-/*  Banner login    */
-.banner_login{
-    
-    
+* {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
+}
 
-    width: 230px;
-    height: 150%;
-    padding: 24px;
-    border-radius: 15px;
 
-    background-color: rgb(242, 147, 5);
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1a0909;
+    margin: 0;
+    overflow-x: hidden;
+
+
     
+}
+
+
+/* ESTRUTURA */
+
+.dashboard {
+
+    display: grid;
+    grid-template-columns: 190px 1fr;
+    width: 90%;
+    max-width: 1350px;
+    min-height: 685px;
+    margin: 35px auto;
+    background-color: white;
+}
+
+
+/* MENU */
+
+.menu-lateral {
+    margin-right: 16px;
     
+    height: 800px;
 
-
-
-
-}
-
-
-
-
-/*    login tela     */
-
-.login{
-    display:flex;
-    flex-direction: column;
-    gap: 15px;
-    border-radius: 15px;
-
-}
-
-.login input{
-    display:block;
-    flex-direction: column;
-    gap: 15px;
-    border-radius: 5px;
-
-
-}
-
-/* Tela inicial   */
-
-.banner_inicial{
     background-color: orange;
-
-
+    padding: 40px 10px;
 }
 
+
+.menu-lateral h1 {
+
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 50px;
+}
+
+
+.menu-lateral nav {
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+.menu-lateral a {
+
+    color: white;
+    text-decoration: none;
+    padding: 16px;
+    text-align: center;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+
+.menu-lateral a:hover {
+
+    background-color: #1a0909;
+}
+
+
+.menu-lateral .ativo {
+
+    background-color: #1a0909;
+}
+
+
+/* CONTEÚDO */
+
+.usuario {
+
+    padding: 40px 10px;
+}
+
+
+/* CABEÇALHO */
+
+.cabecalho {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+
+.cabecalho h2 {
+
+    font-size: 32px;
+}
+
+
+.usuario {
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+}
+
+
+.foto {
+
+    width: 50px;
+    height: 50px;
+    background-color: #ddd;
+    border-radius: 50%;
+}
+
+
+/* CARDS */
+
+#cards {
+
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+    
+    margin-bottom: 25px;
+}
+
+
+.card {
+
+    width: 200px;
+    height: 200px;
+    border: 1px solid #555;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+}
+
+
+.card p {
+
+    font-size: 15px;
+}
+
+
+.card strong {
+
+    font-size: 28px;
+}
+
+
+/* PARTE DE BAIXO */
+
+#informacoes {
+
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+}
+
+
+.grafico,
+.pedidos {
+    display: grid;
+}
+
+
+.grafico h3,
+.pedidos h3 {
+
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 20px;
+}
+
+
+/* GRÁFICO */
+
+.pedidos {
+    width: 550px;
+    height: 300px;
+    margin-right: 24px;
+    margin-bottom: 30px;
+    border: 1px solid #555;
+    border-radius: 10px;
+    padding: 25px;
+}
+
+.grafico {
+    width: 550px;
+    height: 300px;
+    border: 1px solid #555;
+    border-radius: 10px;
+    padding: 25px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* PEDIDOS */
+
+.pedidos p {
+
+    border-bottom: 1px solid #ddd;
+    padding: 15px;
+}
