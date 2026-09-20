@@ -36,3 +36,17 @@
 </body>
 
 </html>
+
+
+
+
+<div class="barra-pesquisa">
+                <input type="text" id="pesquisa" placeholder="Pesquisar produtos...">
+                
+                <button>
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                </button>
+                
+            </div>    
