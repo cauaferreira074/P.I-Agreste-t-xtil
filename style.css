@@ -19,7 +19,10 @@ body {
 /* ESTRUTURA */
 
 .dashboard,
-.tela-pedidos{
+.tela-pedidos,
+.producao,
+.logistica,
+.relatorios{
 
     display: grid;
     grid-template-columns: 190px 1fr;
