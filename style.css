@@ -289,3 +289,166 @@ td {
 tr:hover {
     background: #f5f5f5;
 }
+
+
+/* tabela   */
+
+#painel{
+    
+    display: flex;
+    gap: 5px;
+    overflow: hidden;
+    transform: translateY(200px);
+    
+   
+
+
+
+
+}
+
+.coluna-cabecalho1
+{
+    
+    margin-bottom: 5px;
+    
+    border-radius: 20px;
+    color: #efeef3;
+    
+
+
+
+}
+
+
+/*  Recabidos    */
+.conteudo-painel1{
+    background: linear-gradient(to bottom, #979292, #bb9f9f);
+    width: 160px;
+    display: 1;
+    border: 3px solid #19181c;
+    text-align: center;
+    border-radius: 20px;
+    gap: 2px;
+
+
+      
+     
+}
+
+.conteudo-painel2{
+    background:linear-gradient(to bottom, #06cbd9, #98cfd3) ;
+    width: 160px;
+    display: 1;
+    border: 3px solid #19181c;
+    text-align: center;
+    border-radius: 20px;
+    gap: 2px;
+
+
+      
+     
+}
+
+.conteudo-painel3{
+    background: linear-gradient(to bottom, #dc88e1, #ab75ae);
+    width: 160px;
+    display: 1;
+    border: 3px solid #19181c;
+    text-align: center;
+    border-radius: 20px;
+    gap: 2px;
+
+
+      
+     
+}
+
+.conteudo-painel4{
+    background-color: #D97706;
+    width: 160px;
+    display: 1;
+    border: 3px solid #19181c;
+    text-align: center;
+    border-radius: 20px;
+    gap: 2px;
+
+
+      
+     
+}
+
+.conteudo-painel5{
+    background-color: #D97706;
+    width: 160px;
+    display: 1;
+    border: 3px solid #19181c;
+    text-align: center;
+    border-radius: 20px;
+    gap: 2px;
+
+
+      
+     
+}
+
+.conteudo-painel6{
+    background-color: #D97706;
+    width: 160px;
+    display: 1;
+    border: 3px solid #19181c;
+    text-align: center;
+    border-radius: 20px;
+    gap: 2px;
+
+
+      
+     
+}
+
+.conteudo-painel7{
+    background-color: #D97706;
+    width: 160px;
+    display: 1;
+    border: 3px solid #19181c;
+    text-align: center;
+    border-radius: 20px;
+    
+
+
+      
+     
+}
+
+
+
+      
+    
+
+ /*     Corte          */
+.coluna-corte{
+    display: 1;
+    border: 1px solid #000000;
+    
+
+
+}
+
+.pedido-id{
+    width: 120px;
+    justify-items: center;
+    margin-left: 16px;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 10px;
+   
+    color: rgb(53, 33, 33);
+    padding: 15px;
+    text-align: center;
+    box-shadow: #000000;
+}
+
+
+
+
+
