@@ -15,6 +15,13 @@ body {
     
 }
 
+.configuracoes{
+    transform: translateY(300px);
+
+
+
+}
+
 
 /* ESTRUTURA */
 
@@ -107,6 +114,12 @@ body {
 .cabecalho h2 {
 
     font-size: 32px;
+}
+
+.cabecalho p {
+    transform: translateX(-212%);
+    margin-top: 60px;
+   
 }
 
 
@@ -355,6 +368,7 @@ body {
     background: transparent;
     outline: none;
     font-size: 20px;
+    cursor: pointer;
 }
 
 
