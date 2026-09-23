@@ -140,11 +140,11 @@ body {
 }
 
 
-.card {
+.card1 {
 
     width: 200px;
     height: 200px;
-    border: 1px solid #555;
+    background-color: #8F8F8F;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -152,16 +152,88 @@ body {
     align-items: center;
     text-align: center;
     gap: 10px;
+    box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25)
+}
+
+.card2 {
+
+    width: 200px;
+    height: 200px;
+    background-color: #37FF00;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25)
+}
+
+.card3 {
+
+    width: 200px;
+    height: 200px;
+   background-color: #F5E938 ;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25)
+}
+
+.card4 {
+
+    width: 200px;
+    height: 200px;
+    background-color: #F8BC3B ;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25)
+}
+
+.card5 {
+
+    width: 200px;
+    height: 200px;
+    background-color: #ff0000;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25)
 }
 
 
-.card p {
+
+
+.card1 p,
+.card2 p,
+.card3 p,
+.card4 p,
+.card5 p {
 
     font-size: 15px;
+    color: #000000;
 }
 
 
-.card strong {
+.card1 strong,
+.card2 strong,
+.card3 strong,
+.card4 strong,
+.card5 strong {
 
     font-size: 28px;
 }
@@ -196,44 +268,46 @@ body {
 
 .pedidos {
     width: 550px;
-    height: 300px;
+    height: 380px;
     margin-right: 24px;
     margin-bottom: 30px;
-    border: 1px solid #555;
+    background-color: #11FDB2;
     border-radius: 10px;
     padding: 25px;
+    box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25)
 }
 
 .grafico {
     width: 550px;
-    height: 300px;
-    border: 1px solid #555;
+    height: 380px;
     border-radius: 10px;
     padding: 25px;
+    background-color: #AF9DFF ;
 
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25)
 }
 
 /* PEDIDOS */
 
 .pedidos p {
 
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #000000;
     padding: 15px;
 }
 
 
 
-/* TELA  DE PRODUTOS  */
+/* TELA  DE PEDIDOS */
 
 .p_pedidos input{
     width: 895px ;
     height: 40px;
     border-radius: 30px;
     padding: 11px 20px;
-    color: rgb(0, 0, 0);
+    color: rgb(4, 4, 4);
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
@@ -242,6 +316,51 @@ body {
 
 
 }
+/*  STATUS  */
+
+.rec{
+    background-color: #8f8f8fb1;
+    border-radius: 5px ;
+    
+
+
+}
+
+.cor{
+    background-color: #06cbd9a9 ;
+    border-radius: 5px ;
+
+
+}
+
+.pr{
+    background-color: #37ff0082;
+    border-radius: 5px ;
+
+
+}
+
+.cos{
+    background-color: #f9037e8b ;
+    border-radius: 5px ;
+
+
+
+}
+
+.status select{
+    appearance: none;
+    -webkit-appearance: none;
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 20px;
+}
+
+
+
+
+
 
 .novo{
     padding: 11px 20px;
@@ -296,9 +415,9 @@ tr:hover {
 #painel{
     
     display: flex;
-    gap: 5px;
+    gap: 20px;
     overflow: hidden;
-    transform: translateY(200px);
+   
     
    
 
@@ -309,27 +428,55 @@ tr:hover {
 
 .coluna-cabecalho1
 {
-    
-    margin-bottom: 5px;
-    
-    border-radius: 20px;
-    color: #efeef3;
-    
+    height: 80px;
+    margin-bottom: 20px;
+    border: 2px solid #0000003b;
+    border-radius: 10px;
+    color: #000000;
 
+}
 
+.coluna-cabecalho2
+{
+    height: 80px;
+    margin-bottom: 20px;
+    border: 2px solid #0000003b;
+    border-radius: 10px;
+    color: #000000;
+    
+}
 
+.coluna-cabecalho3
+{
+    height: 80px;
+    margin-bottom: 20px;
+    border: 2px solid #0000003b;
+    border-radius: 10px;
+    color: #000000;
+    
+}
+
+.coluna-cabecalho4
+{
+    height: 80px;
+    margin-bottom: 20px;
+    border: 2px solid #0000003b;
+    border-radius: 10px;
+    color: #000000;
+    
 }
 
 
 /*  Recabidos    */
 .conteudo-painel1{
-    background: linear-gradient(to bottom, #979292, #bb9f9f);
-    width: 160px;
+    background: linear-gradient(to bottom, #97929258, #bb9f9f52);
+    width: 270px;
+    height: 600px;
     display: 1;
-    border: 3px solid #19181c;
     text-align: center;
-    border-radius: 20px;
-    gap: 2px;
+    border-radius: 10px;
+    gap: 10px;
+    box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25)
 
 
       
@@ -338,12 +485,12 @@ tr:hover {
 
 .conteudo-painel2{
     background:linear-gradient(to bottom, #06cbd9, #98cfd3) ;
-    width: 160px;
+    width: 270px;
     display: 1;
-    border: 3px solid #19181c;
     text-align: center;
-    border-radius: 20px;
-    gap: 2px;
+    border-radius: 10px;
+    gap: 10px;
+    box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25)
 
 
       
@@ -352,12 +499,12 @@ tr:hover {
 
 .conteudo-painel3{
     background: linear-gradient(to bottom, #dc88e1, #ab75ae);
-    width: 160px;
+    width: 270px;
     display: 1;
-    border: 3px solid #19181c;
     text-align: center;
-    border-radius: 20px;
-    gap: 2px;
+    border-radius: 10px;
+    gap: 10px;
+    box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25)
 
 
       
@@ -365,65 +512,88 @@ tr:hover {
 }
 
 .conteudo-painel4{
-    background-color: #D97706;
-    width: 160px;
+    background: linear-gradient(to bottom, #e68eba, #9e5a77);
+    width: 270px;
     display: 1;
-    border: 3px solid #19181c;
     text-align: center;
-    border-radius: 20px;
-    gap: 2px;
+    border-radius: 10px;
+    gap: 10px;
+    box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25)
 
 
       
      
 }
 
-.conteudo-painel5{
-    background-color: #D97706;
-    width: 160px;
-    display: 1;
-    border: 3px solid #19181c;
+/*  vER MAIS    */ 
+
+.conteudo-painel1 a{
+    color: #000000 ;
+  text-decoration: none;
+    padding: 16px;
     text-align: center;
-    border-radius: 20px;
-    gap: 2px;
+    border-radius: 10px;
+    font-size: 20px;
+    display: inline-block;
 
-
-      
+    transition: all 0.25s ease;  
      
 }
 
-.conteudo-painel6{
-    background-color: #D97706;
-    width: 160px;
-    display: 1;
-    border: 3px solid #19181c;
+.conteudo-painel2 a{
+    color: #000000 ;
+ text-decoration: none;
+    padding: 16px;
     text-align: center;
-    border-radius: 20px;
-    gap: 2px;
+    border-radius: 10px;
+    font-size: 20px;
+    display: inline-block;
 
+    transition: all 0.25s ease;
+}
 
-      
+.conteudo-painel3 a{
+    color: #000000 ;
+    text-decoration: none;
+    padding: 16px;
+    text-align: center;
+    border-radius: 10px;
+    font-size: 20px;
+    display: inline-block;
+
+    transition: all 0.25s ease;
+  
+}
+
+.conteudo-painel4 a{
+    color: #000000;
+   text-decoration: none;
+    padding: 16px;
+    text-align: center;
+    border-radius: 10px;
+    font-size: 20px;
+    display: inline-block;
+
+   transition: all 0.25s ease;
      
 }
 
-.conteudo-painel7{
-    background-color: #D97706;
-    width: 160px;
-    display: 1;
-    border: 3px solid #19181c;
-    text-align: center;
-    border-radius: 20px;
+.conteudo-painel1 a:hover,
+.conteudo-painel2 a:hover,
+.conteudo-painel3 a:hover,
+.conteudo-painel4 a:hover{
+     transform: translateY(5px);
+
     
 
 
-      
-     
+
+
+
 }
 
 
 
-      
-    
 
  /*     Corte          */
 .coluna-corte{
@@ -435,19 +605,23 @@ tr:hover {
 }
 
 .pedido-id{
-    width: 120px;
+    width: 230px;
+    height: 100px;
     justify-items: center;
     margin-left: 16px;
     background-color: white;
-    border-radius: 10px;
-    margin-bottom: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
    
     color: rgb(53, 33, 33);
     padding: 15px;
     text-align: center;
-    box-shadow: #000000;
+    box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25)
 }
 
+
+
+  
 
 
 

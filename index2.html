@@ -22,7 +22,7 @@
 
                         <nav>
                             <a href="index.html">Dashboard</a>
-                            <a href="index2.html">Pedidos</a>
+                            <a href="index2.html" class="ativo">Pedidos</a>
                             <a href="index3.html">Produção</a>
                             <a href="index4.html">Logística</a>
                             <a href="index5.html">Relatórios</a>
@@ -54,14 +54,14 @@
 
             </header>
             <div class="p_pedidos">
-                <input type="text"  placeholder="   Procurar pedido...">
-                
+                <input type="text" placeholder="   Procurar pedido...">
 
-                    <button class="novo" onclick="">+ Novo pedido</button>
-                
+
+                <button class="novo" onclick="">+ Novo pedido</button>
+
 
             </div>
-                
+
 
             <section id="tabela">
 
@@ -85,31 +85,67 @@
                             <td>LojaA</td>
                             <td>500 Peças</td>
                             <td>20/09</td>
-                            <td>Em processo</td>
-                            <td>...</td>
+                            <td class="rec">Recebido</td>
+                            <td class="status">
+
+                                <select>
+                                    <option>Modificar</option>
+                                    <option>Recebido</option>
+                                    <option>Corte</option>
+                                    <option>Costura</option>
+                                    <option>Acabamento</option>
+                                    <option>Conferência</option>
+                                    <option>Pronto</option>
+                                    <option>Enviado</option>
+                                </select>
+                            </td>
 
 
                         </tr>
 
-                        <tr> 
+                        <tr>
                             <td>#00122</td>
                             <td>LojaB</td>
                             <td>300 Peças</td>
                             <td>30/09</td>
-                            <td>Corte</td>
-                            <td>...</td>               
+                            <td class="cor">Corte</td>
+                            <td class="status">
+
+                                <select>
+                                    <option>Modificar</option>
+                                    <option>Recebido</option>
+                                    <option>Corte</option>
+                                    <option>Costura</option>
+                                    <option>Acabamento</option>
+                                    <option>Conferência</option>
+                                    <option>Pronto</option>
+                                    <option>Enviado</option>
+                                </select>
+                            </td>
 
                         </tr>
 
 
-                        
+
                         <tr>
                             <td>#00123</td>
                             <td>LojaC</td>
                             <td>200 Peças</td>
                             <td>10/12</td>
-                            <td>Pronto</td>
-                            <td>...</td>        
+                            <td class="pr">Pronto</td>
+                            <td class="status">
+
+                                <select>
+                                    <option>Modificar</option>
+                                    <option>Recebido</option>
+                                    <option>Corte</option>
+                                    <option>Costura</option>
+                                    <option>Acabamento</option>
+                                    <option>Conferência</option>
+                                    <option>Pronto</option>
+                                    <option>Enviado</option>
+                                </select>
+                            </td>
 
 
 
@@ -120,9 +156,20 @@
                             <td>LojaD</td>
                             <td>700 Peças</td>
                             <td>18/09</td>
-                            <td>Costura</td>
-                            <td>...</td>
+                            <td class="cos">Costura</td>
+                          <td class="status">
 
+                                <select>
+                                    <option>Modificar</option>
+                                    <option>Recebido</option>
+                                    <option>Corte</option>
+                                    <option>Costura</option>
+                                    <option>Acabamento</option>
+                                    <option>Conferência</option>
+                                    <option>Pronto</option>
+                                    <option>Enviado</option>
+                                </select>
+                            </td>
 
 
                         </tr>
@@ -132,8 +179,20 @@
                             <td>LojaE</td>
                             <td>450 Peças</td>
                             <td>10/09</td>
-                            <td>Recebido</td>
-                            <td>...</td>
+                            <td class="rec">Recebido</td>
+                           <td class="status">
+
+                                <select>
+                                    <option>Modificar</option>
+                                    <option>Recebido</option>
+                                    <option>Corte</option>
+                                    <option>Costura</option>
+                                    <option>Acabamento</option>
+                                    <option>Conferência</option>
+                                    <option>Pronto</option>
+                                    <option>Enviado</option>
+                                </select>
+                            </td>
 
 
 
@@ -145,9 +204,21 @@
                             <td>LojaF</td>
                             <td>490 Peças</td>
                             <td>15/09</td>
-                            <td>Recebido</td>
-                            <td>...</td>
-                            
+                            <td class="rec">Recebido</td>
+                           <td class="status">
+
+                                <select>
+                                    <option>Modificar</option>
+                                    <option>Recebido</option>
+                                    <option>Corte</option>
+                                    <option>Costura</option>
+                                    <option>Acabamento</option>
+                                    <option>Conferência</option>
+                                    <option>Pronto</option>
+                                    <option>Enviado</option>
+                                </select>
+                            </td>
+
                         </tr>
 
 
@@ -160,14 +231,26 @@
                             <td>LojaF</td>
                             <td>690 Peças</td>
                             <td>25/09</td>
-                            <td>Costuras</td>
-                            <td>...</td>
+                            <td class="cos">Costura</td>
+                            <td class="status">
+
+                                <select>
+                                    <option>Modificar</option>
+                                    <option>Recebido</option>
+                                    <option>Corte</option>
+                                    <option>Costura</option>
+                                    <option>Acabamento</option>
+                                    <option>Conferência</option>
+                                    <option>Pronto</option>
+                                    <option>Enviado</option>
+                                </select>
+                            </td>
 
 
 
 
                         </tr>
-                        
+
                     </tbody>
 
                 </table>
