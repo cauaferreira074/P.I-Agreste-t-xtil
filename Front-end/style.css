@@ -6,16 +6,17 @@
 
 
 body {
+    max-height: 500%;
     font-family: Arial, sans-serif;
     background-color: #1a0909;
     margin: 0;
-    overflow-x: hidden;
-    
+    overflow-y: auto;
 
-    
+
+
 }
 
-.configuracoes{
+.configuracoes {
     transform: translateY(300px);
 
 
@@ -29,7 +30,7 @@ body {
 .tela-pedidos,
 .producao,
 .logistica,
-.relatorios{
+.relatorios {
 
     display: grid;
     grid-template-columns: 190px 1fr;
@@ -44,8 +45,8 @@ body {
 /* MENU */
 
 .menu-lateral {
-    margin-right: 16px;
-    
+    margin-right: 0px;
+
     height: 800px;
 
     background-color: #D97706;
@@ -103,23 +104,27 @@ body {
 /* CABEÇALHO */
 
 .cabecalho {
+    background: linear-gradient(to right, #dee9e9, #dde3e3);
 
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 30px;
+    margin-left: 0px;
 }
 
 
 .cabecalho h2 {
+    margin-left: 16px;
 
     font-size: 32px;
 }
 
 .cabecalho p {
+    margin-left: 16px;
     transform: translateX(-212%);
     margin-top: 60px;
-   
+
 }
 
 
@@ -148,7 +153,8 @@ body {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 15px;
-    
+    margin-left: 16px;
+
     margin-bottom: 25px;
 }
 
@@ -187,7 +193,7 @@ body {
 
     width: 200px;
     height: 200px;
-   background-color: #F5E938 ;
+    background-color: #F5E938;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -202,7 +208,7 @@ body {
 
     width: 200px;
     height: 200px;
-    background-color: #F8BC3B ;
+    background-color: #F8BC3B;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -255,6 +261,7 @@ body {
 /* PARTE DE BAIXO */
 
 #informacoes {
+    margin-left: 16px;
 
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -295,7 +302,7 @@ body {
     height: 380px;
     border-radius: 10px;
     padding: 25px;
-    background-color: #AF9DFF ;
+    background-color: #AF9DFF;
 
     display: flex;
     justify-content: center;
@@ -315,8 +322,8 @@ body {
 
 /* TELA  DE PEDIDOS */
 
-.p_pedidos input{
-    width: 895px ;
+.p_pedidos input {
+    width: 895px;
     height: 40px;
     border-radius: 30px;
     padding: 11px 20px;
@@ -329,39 +336,77 @@ body {
 
 
 }
+
 /*  STATUS  */
 
-.rec{
-    background-color: #8f8f8fb1;
-    border-radius: 5px ;
-    
+#formularioPedido {
+    display: none;
+    border: 1px solid;
+    position: absolute;
 
 
 }
 
-.cor{
-    background-color: #06cbd9a9 ;
-    border-radius: 5px ;
+.status-rece {
+    display: flex;
+    width: 110px;
+    height: 30px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to right, #8f8f8f49, #2f25251f);
+    border-radius: 15px;
+
+}
+
+.status-cor {
+    display: flex;
+    width: 110px;
+    height: 30px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to right, #06cbd9a9, #4ae6f1a9);
+    border-radius: 15px;
+
 
 
 }
 
-.pr{
-    background-color: #37ff0082;
-    border-radius: 5px ;
-
-
-}
-
-.cos{
-    background-color: #f9037e8b ;
-    border-radius: 5px ;
-
-
+.status-cos {
+    display: flex;
+    width: 110px;
+    height: 30px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to right, #f9037e8b, #fa72b65c);
+    border-radius: 15px;
 
 }
 
-.status select{
+.status-pronto {
+    display: flex;
+    width: 110px;
+    height: 30px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to right, #37ff0082, #81ee6382);
+    border-radius: 15px;
+
+}
+
+
+
+
+
+
+
+
+
+
+.status select {
     appearance: none;
     -webkit-appearance: none;
     border: none;
@@ -376,7 +421,7 @@ body {
 
 
 
-.novo{
+#novoPedido {
     padding: 11px 20px;
     border: none;
     border-radius: 10px;
@@ -389,13 +434,26 @@ body {
 
 }
 
-.novo:hover{
+#novoPedido:hover {
 
     border-color: rgba(255, 2, 2, 0.593);
     transform: translateY(-4px) scale(1.05);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
-    
+
 }
+
+#tabela {
+    height: 500px;
+    overflow-y: auto;
+    margin-top: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+#tabela table {
+    border-collapse: collapse;
+}
+
 
 
 table {
@@ -404,14 +462,20 @@ table {
     border-collapse: collapse;
     background: white;
     border-radius: 15px;
-    overflow: hidden;
+    max-height: 500px;
+    overflow-y: auto;
+
 }
+
 
 th {
     background: #D97706;
     color: white;
     padding: 15px;
     text-align: left;
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 td {
@@ -426,22 +490,83 @@ tr:hover {
 
 /* tabela   */
 
-#painel{
-    
+#painel {
+    margin-left: 16px;
+
     display: flex;
     gap: 20px;
     overflow: hidden;
-   
-    
-   
+
+
+
 
 
 
 
 }
 
-.coluna-cabecalho1
-{
+#formularioPedido {
+    width: 420px;
+    padding: 25px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    z-index: 20;
+}
+
+.campo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.campo label {
+    width: 120px;
+    font-weight: 600;
+}
+
+.campo input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+}
+
+.campo input:focus {
+    border-color: #D97706;
+}
+
+#fecharFormulario {
+    width: 100%;
+    padding: 11px;
+    margin-top: 10px;
+
+    border: 1px solid #ddd;
+    border-radius: 8px;
+
+    background: white;
+    color: #555;
+
+    cursor: pointer;
+}
+
+#fecharFormulario:hover {
+    background: #f5f5f5;
+}
+
+#registrarPedido {
+    width: 100%;
+    padding: 11px;
+    border: none;
+    border-radius: 8px;
+    background: #D97706;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.coluna-cabecalho1 {
     height: 80px;
     margin-bottom: 20px;
     border: 2px solid #0000003b;
@@ -450,39 +575,40 @@ tr:hover {
 
 }
 
-.coluna-cabecalho2
-{
-    height: 80px;
-    margin-bottom: 20px;
-    border: 2px solid #0000003b;
-    border-radius: 10px;
-    color: #000000;
-    
+#registrarPedido:hover {
+    background: #b45309;
 }
 
-.coluna-cabecalho3
-{
+.coluna-cabecalho2 {
     height: 80px;
     margin-bottom: 20px;
     border: 2px solid #0000003b;
     border-radius: 10px;
     color: #000000;
-    
+
 }
 
-.coluna-cabecalho4
-{
+.coluna-cabecalho3 {
     height: 80px;
     margin-bottom: 20px;
     border: 2px solid #0000003b;
     border-radius: 10px;
     color: #000000;
-    
+
+}
+
+.coluna-cabecalho4 {
+    height: 80px;
+    margin-bottom: 20px;
+    border: 2px solid #0000003b;
+    border-radius: 10px;
+    color: #000000;
+
 }
 
 
 /*  Recabidos    */
-.conteudo-painel1{
+.conteudo-painel1 {
     background: linear-gradient(to bottom, #97929258, #bb9f9f52);
     width: 270px;
     height: 600px;
@@ -491,27 +617,19 @@ tr:hover {
     border-radius: 10px;
     gap: 10px;
     box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25)
-
-
-      
-     
 }
 
-.conteudo-painel2{
-    background:linear-gradient(to bottom, #06cbd9, #98cfd3) ;
+.conteudo-painel2 {
+    background: linear-gradient(to bottom, #06cbd9, #98cfd3);
     width: 270px;
     display: 1;
     text-align: center;
     border-radius: 10px;
     gap: 10px;
     box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25)
-
-
-      
-     
 }
 
-.conteudo-painel3{
+.conteudo-painel3 {
     background: linear-gradient(to bottom, #dc88e1, #ab75ae);
     width: 270px;
     display: 1;
@@ -519,13 +637,9 @@ tr:hover {
     border-radius: 10px;
     gap: 10px;
     box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25)
-
-
-      
-     
 }
 
-.conteudo-painel4{
+.conteudo-painel4 {
     background: linear-gradient(to bottom, #e68eba, #9e5a77);
     width: 270px;
     display: 1;
@@ -533,41 +647,12 @@ tr:hover {
     border-radius: 10px;
     gap: 10px;
     box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25)
-
-
-      
-     
 }
 
-/*  vER MAIS    */ 
+/*  vER MAIS    */
 
-.conteudo-painel1 a{
-    color: #000000 ;
-  text-decoration: none;
-    padding: 16px;
-    text-align: center;
-    border-radius: 10px;
-    font-size: 20px;
-    display: inline-block;
-
-    transition: all 0.25s ease;  
-     
-}
-
-.conteudo-painel2 a{
-    color: #000000 ;
- text-decoration: none;
-    padding: 16px;
-    text-align: center;
-    border-radius: 10px;
-    font-size: 20px;
-    display: inline-block;
-
-    transition: all 0.25s ease;
-}
-
-.conteudo-painel3 a{
-    color: #000000 ;
+.conteudo-painel1 a {
+    color: #000000;
     text-decoration: none;
     padding: 16px;
     text-align: center;
@@ -576,29 +661,54 @@ tr:hover {
     display: inline-block;
 
     transition: all 0.25s ease;
-  
+
 }
 
-.conteudo-painel4 a{
+.conteudo-painel2 a {
     color: #000000;
-   text-decoration: none;
+    text-decoration: none;
     padding: 16px;
     text-align: center;
     border-radius: 10px;
     font-size: 20px;
     display: inline-block;
 
-   transition: all 0.25s ease;
-     
+    transition: all 0.25s ease;
+}
+
+.conteudo-painel3 a {
+    color: #000000;
+    text-decoration: none;
+    padding: 16px;
+    text-align: center;
+    border-radius: 10px;
+    font-size: 20px;
+    display: inline-block;
+
+    transition: all 0.25s ease;
+
+}
+
+.conteudo-painel4 a {
+    color: #000000;
+    text-decoration: none;
+    padding: 16px;
+    text-align: center;
+    border-radius: 10px;
+    font-size: 20px;
+    display: inline-block;
+
+    transition: all 0.25s ease;
+
 }
 
 .conteudo-painel1 a:hover,
 .conteudo-painel2 a:hover,
 .conteudo-painel3 a:hover,
-.conteudo-painel4 a:hover{
-     transform: translateY(5px);
+.conteudo-painel4 a:hover {
+    transform: translateY(5px);
 
-    
+
 
 
 
@@ -615,16 +725,16 @@ tr:hover {
 
 
 
- /*     Corte          */
-.coluna-corte{
+/*     Corte          */
+.coluna-corte {
     display: 1;
     border: 1px solid #000000;
-    
+
 
 
 }
 
-.pedido-id{
+.pedido-id {
     width: 230px;
     height: 100px;
     justify-items: center;
@@ -632,15 +742,15 @@ tr:hover {
     background-color: white;
     border-radius: 5px;
     margin-bottom: 20px;
-   
+
     color: rgb(53, 33, 33);
     padding: 15px;
     text-align: center;
     box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25)
 }
 
-.tabela-log{
-    width: 60%;
+.tabela-log {
+    width: 80%;
     height: 70%;
     margin: 30px auto;
     border-collapse: collapse;
@@ -666,11 +776,66 @@ tr:hover {
     background: #f5f5f5;
 }
 
+.acompanhamento {
+    display: none;
 
+    position: fixed;
+    right: 0;
+    top: 0;
 
+    width: 400px;
+    height: 100vh;
 
-  
+    background: white;
+    padding: 30px;
 
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.15);
+}
 
+.acompanhamento.aberto {
+    display: block;
+}
 
+.acompanhamento button {
+    border: none;
+    background: none;
+    font-size: 20px;
+    cursor: pointer;
+}
 
+.linha-tempo {
+    margin-top: 30px;
+}
+
+.etapa {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.ponto {
+    width: 25px;
+    height: 25px;
+
+    border-radius: 50%;
+
+    border: 2px solid #ccc;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+}
+
+.concluida .ponto {
+    background: green;
+    color: white;
+    border-color: green;
+}
+
+.atual .ponto {
+    background: orange;
+    color: white;
+    border-color: orange;
+}

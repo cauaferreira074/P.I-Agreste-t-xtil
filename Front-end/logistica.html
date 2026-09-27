@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <script src="agr.js"></script>
 </head>
 
 <body>
@@ -21,9 +22,9 @@
 
                         <nav>
                             <a href="index.html">Dashboard</a>
-                            <a href="pedidos.html" class="ativo">Pedidos</a>
+                            <a href="pedidos.html">Pedidos</a>
                             <a href="producao.html">Produção</a>
-                            <a href="logistica.html">Logística</a>
+                            <a href="logistica.html" class="ativo">Logística</a>
                             <a href="estoque.html">Estoque</a>
                             <a href="relatorio.html">Relatórios</a>
                             <a href="" class="configuracoes">Configurações</a>
@@ -57,78 +58,166 @@
 
 
 
-                <table class="tabela-log">
-                    <thead>
-                        <tr>
-                            <th>Pedido</th>
-                            <th>Cliente</th>
-                            <th>Status</th>
-                            <th>Previsão de entrega</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
+            <table class="tabela-log">
+                <thead>
+                    <tr>
+                        <th>Pedido</th>
+                        <th>Cliente</th>
+                        <th>Status</th>
+                        <th>Previsão de entrega</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
 
-                    <tbody>
-                        <tr>
-                            <td>#00125</td>
-                            <td>LojaA</td>
-                            <td>Separação</td>
-                            <td>22/09</td>
-                            <td>Modificar</td>
+                <tbody>
+                    <tr onclick="abrirAcompanhamento('LojaA, Separação')">
+                        <td>#00125</td>
+                        <td>LojaA</td>
+                        <td>Separação</td>
+                        <td>22/09</td>
+                        <td>Modificar</td>
 
-                        </tr>
+                    </tr>
 
-                        <tr>
-                            <td>#00126</td>
-                            <td>LojaB</td>
-                            <td>Enviado</td>
-                            <td>24/09</td>
-                            <td>Modificar</td>
+                    <tr onclick="abrirAcompanhamento('LojaB, Enviado')">
+                        <td>#00126</td>
+                        <td>LojaB</td>
+                        <td>Enviado</td>
+                        <td>24/09</td>
+                        <td>Modificar</td>
 
-                        </tr>
+                    </tr>
 
-                        </tr>
+                    </tr>
 
-                        <tr>
-                            <td>#00127</td>
-                            <td>LojaC</td>
-                            <td>Em transporte</td>
-                            <td>26/09</td>
-                            <td>Modificar</td>
+                    <tr onclick="abrirAcompanhamento('LojaC, Em transporte')">
+                        <td>#00127</td>
+                        <td>LojaC</td>
+                        <td>Em transporte</td>
+                        <td>26/09</td>
+                        <td>Modificar</td>
 
-                        </tr>
+                    </tr>
 
-                        <tr>
-                            <td>#00128</td>
-                            <td>LojaD</td>
-                            <td>Entregue</td>
-                            <td>28/09</td>
-                            <td>Modificar</td>
+                    <tr onclick="abrirAcompanhamento('LojaD, Entregue')">
+                        <td>#00128</td>
+                        <td>LojaD</td>
+                        <td>Entregue</td>
+                        <td>28/09</td>
+                        <td>Modificar</td>
 
-                        </tr>
+                    </tr>
 
-                        <tr>
-                            <td>#00129</td>
-                            <td>LojaE</td>
-                            <td>Pronto</td>
-                            <td>30/09</td>
-                            <td>Modificar</td>
+                    <tr onclick="abrirAcompanhamento('LojaE, Pronto')">
+                        <td>#00129</td>
+                        <td>LojaE</td>
+                        <td>Pronto</td>
+                        <td>30/09</td>
+                        <td>Modificar</td>
 
-                        </tr>
-
-
-
-                    </tbody>
-
-                </table>
+                    </tr>
 
 
 
+                </tbody>
+
+            </table>
+
+            <div id="acompanhamento" class="acompanhamento">
+
+                <button onclick="fecharAcompanhamento()">✕</button>
+
+                <h2 id="nome-loja">Loja A</h2>
+
+                <div class="linha-tempo">
+
+                    <div class="etapa concluida">
+                        <div class="ponto">✓</div>
+                        <div>
+                            <h3>Pedido pronto</h3>
+                            <p>Produção concluída</p>
+                        </div>
+                    </div>
+
+                    <div class="etapa concluida">
+                        <div class="ponto">✓</div>
+                        <div>
+                            <h3>Expedição</h3>
+                            <p>Pedido separado</p>
+                        </div>
+                    </div>
+
+                    <div class="etapa atual">
+                        <div class="ponto">●</div>
+                        <div>
+                            <h3>Em transporte</h3>
+                            <p>Pedido a caminho da loja</p>
+                        </div>
+                    </div>
+
+                    <div class="etapa">
+                        <div class="ponto"></div>
+                        <div>
+                            <h3>Entregue</h3>
+                            <p>Aguardando recebimento</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
 
 
 
 
-        </main>
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </section>
+
+
+
+
+
+
+
+    </main>
     </div>
 </body>
 
