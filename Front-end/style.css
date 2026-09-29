@@ -16,20 +16,15 @@ body {
     overflow: hidden;
 }
 
-.configuracoes {
-    transform: translateY(300px);
-
-
-
-}
-
+.tela-config,
+.tela-estoque,
 .dashboard,
 .tela-pedidos,
 .producao,
 .logistica,
 .relatorios {
     display: grid;
-    grid-template-columns: 190px 1fr;
+    grid-template-columns: 500px 1fr;
     width: 100%;
     height: 100vh;
     margin: 0;
@@ -40,9 +35,14 @@ body {
 /* MENU */
 
 .menu-lateral {
-    margin-right: 0px;
-
+    align-items: center;
     
+    margin-top: auto;
+    margin-right: 0px;
+    width: 100%;
+    overflow: hidden;
+
+
     height: 100vh;
 
     background-color: #D97706;
@@ -53,40 +53,59 @@ body {
 .menu-lateral h1 {
 
     text-align: center;
-    font-size: 32px;
+    font-size: 50px;
     margin-bottom: 50px;
 }
 
 
-.menu-lateral nav {
 
+
+
+.menu-lateral nav {
     display: flex;
+    height: 70%;
     flex-direction: column;
     gap: 10px;
 }
 
+.configuracoes{
+    display: block;
+
+}
 
 .menu-lateral a {
 
     color: white;
     text-decoration: none;
-    padding: 16px;
+    padding: 30px;
     text-align: center;
     border-radius: 10px;
-    font-size: 16px;
+    margin-bottom: 20px;
+    font-size: 30px;
 }
 
 
 .menu-lateral a:hover {
+    align-content: center;
+    text-align: center;
+    align-items: center;
 
     background-color: #1a0909;
 }
 
 
 .menu-lateral .ativo {
+    align-content: center;
+    margin-bottom: 20px;
+
+    height: 100px;
 
     background-color: #1a0909;
 }
+
+
+
+
 
 
 /* CONTEÚDO */
@@ -95,6 +114,7 @@ body {
 
     padding: 40px 10px;
 }
+
 
 
 /* CABEÇALHO */
@@ -148,7 +168,7 @@ body {
 
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 30px;
+    gap: 20px;
     padding: 30px;
 
 }
@@ -156,8 +176,8 @@ body {
 
 .card1 {
 
-    width: 200px;
-    height: 200px;
+    width: 310px;
+    height: 310px;
     background-color: #8F8F8F;
     border-radius: 10px;
     display: flex;
@@ -165,14 +185,15 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    gap: 10px;
-    box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25)
+    gap: 3px;
+    box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25);
+    aspect-ratio: 1 / 1;
 }
 
 .card2 {
 
-    width: 200px;
-    height: 200px;
+    width: 310px;
+    height: 310px;
     background-color: #37FF00;
     border-radius: 10px;
     display: flex;
@@ -180,14 +201,15 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    gap: 10px;
-    box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25)
+    gap: 3px;
+    box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25);
+    aspect-ratio: 1 / 1;
 }
 
 .card3 {
 
-    width: 200px;
-    height: 200px;
+    width: 310px;
+    height: 310px;
     background-color: #F5E938;
     border-radius: 10px;
     display: flex;
@@ -195,14 +217,15 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    gap: 10px;
-    box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25)
+    gap: 3px;
+    box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25);
+    aspect-ratio: 1 / 1;
 }
 
 .card4 {
 
-    width: 200px;
-    height: 200px;
+    width: 310px;
+    height: 310px;
     background-color: #F8BC3B;
     border-radius: 10px;
     display: flex;
@@ -210,14 +233,15 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    gap: 10px;
-    box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25)
+    gap: 3px;
+    box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25);
+    aspect-ratio: 1 / 1;
 }
 
 .card5 {
 
-    width: 200px;
-    height: 200px;
+    width: 310px;
+    height: 310px;
     background-color: #ff0000;
     border-radius: 10px;
     display: flex;
@@ -225,8 +249,10 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    gap: 10px;
-    box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25)
+    gap: 3px;
+    box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25);
+    aspect-ratio: 1 / 1;
+    margin-right: 150px;
 }
 
 
@@ -267,6 +293,12 @@ body {
 .grafico,
 .pedidos {
     display: grid;
+    width: 100%;
+    height: 400px;
+    margin: 0;
+    border-radius: 10px;
+    box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25);
+
 }
 
 
@@ -282,27 +314,28 @@ body {
 /* GRÁFICO */
 
 .pedidos {
-    width: 550px;
-    height: 380px;
-    margin-right: 24px;
+    width: 820px;
+    height: 600px;
+    margin-right: 200px;
     margin-bottom: 30px;
     background-color: #11FDB2;
     border-radius: 10px;
     padding: 25px;
-    box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25)
+    box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25);
 }
 
 .grafico {
-    width: 550px;
-    height: 380px;
+    width: 830px;
+    height: 600px;
     border-radius: 10px;
-    padding: 25px;
+    padding: 10px;
     background-color: #AF9DFF;
+    margin-left: 10px;
 
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25)
+    box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25);
 }
 
 /* PEDIDOS */
@@ -562,6 +595,7 @@ tr:hover {
 }
 
 .coluna-cabecalho1 {
+    width: 100%;
     height: 80px;
     margin-bottom: 20px;
     border: 2px solid #0000003b;
@@ -575,6 +609,7 @@ tr:hover {
 }
 
 .coluna-cabecalho2 {
+    width: 100%;
     height: 80px;
     margin-bottom: 20px;
     border: 2px solid #0000003b;
@@ -584,6 +619,7 @@ tr:hover {
 }
 
 .coluna-cabecalho3 {
+    width: 100%;
     height: 80px;
     margin-bottom: 20px;
     border: 2px solid #0000003b;
@@ -593,6 +629,7 @@ tr:hover {
 }
 
 .coluna-cabecalho4 {
+    width: 100%;
     height: 80px;
     margin-bottom: 20px;
     border: 2px solid #0000003b;
@@ -605,43 +642,53 @@ tr:hover {
 /*  Recabidos    */
 .conteudo-painel1 {
     background: linear-gradient(to bottom, #97929258, #bb9f9f52);
-    width: 270px;
-    height: 600px;
+    width: 410px;
+    height: 900px;
     display: 1;
+    align-self: center;
     text-align: center;
     border-radius: 10px;
     gap: 10px;
-    box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25)
+    justify-items: center;
+    box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25);
 }
 
 .conteudo-painel2 {
     background: linear-gradient(to bottom, #06cbd9, #98cfd3);
-    width: 270px;
+    width: 410px;
+    height: 900px;
     display: 1;
+    justify-items: center;
     text-align: center;
     border-radius: 10px;
     gap: 10px;
-    box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25)
+    box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25);
+
 }
 
 .conteudo-painel3 {
     background: linear-gradient(to bottom, #dc88e1, #ab75ae);
-    width: 270px;
-    display: 1;
+    width: 410px;
+    height: 900px;
     text-align: center;
+    justify-items: center;
+    display: 1;
     border-radius: 10px;
     gap: 10px;
-    box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25)
+    box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25);
 }
 
 .conteudo-painel4 {
     background: linear-gradient(to bottom, #e68eba, #9e5a77);
-    width: 270px;
-    display: 1;
+    width: 410px;
+    height: 900px;
     text-align: center;
+    justify-items: center;
+
+    display: 1;
     border-radius: 10px;
     gap: 10px;
-    box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25)
+    box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25);
 }
 
 /*  vER MAIS    */
@@ -688,7 +735,6 @@ tr:hover {
     color: #000000;
     text-decoration: none;
     padding: 16px;
-    text-align: center;
     border-radius: 10px;
     font-size: 20px;
     display: inline-block;
@@ -730,17 +776,17 @@ tr:hover {
 }
 
 .pedido-id {
-    width: 230px;
-    height: 100px;
-    justify-items: center;
-    margin-left: 16px;
+    display: flex;
+    width: 80%;
+    height: 20%;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 20px;
     background-color: white;
     border-radius: 5px;
-    margin-bottom: 20px;
-
     color: rgb(53, 33, 33);
     padding: 15px;
-    text-align: center;
+    align-items: center;
     box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25)
 }
 

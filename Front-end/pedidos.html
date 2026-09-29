@@ -7,7 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-   
+
 
 <body>
     <div class="tela-pedidos">
@@ -25,13 +25,18 @@
                             <a href="pedidos.html" class="ativo">Pedidos</a>
                             <a href="producao.html">Produção</a>
                             <a href="logistica.html">Logística</a>
-                             <a href="estoque.html">Estoque</a>
+                            <a href="estoque.html">Estoque</a>
                             <a href="relatorio.html">Relatórios</a>
-                            <a href="" class="configuracoes">Configurações</a>
-
                         </nav>
 
+                        <a href="configuracoes.html" class="configuracoes">Configurações</a>
+
                     </section>
+
+
+
+
+
 
 
 
@@ -56,7 +61,7 @@
                 </div>
 
             </header>
-            
+
             <div class="p_pedidos">
                 <input type="text" placeholder="Procurar pedido...">
 
@@ -71,32 +76,32 @@
                 <div class="campo">
 
                     <label>Número do pedido</label>
-                    <input type="number" id="numeroPedido" placeholder="Número do pedido" min="1", max="999">
+                    <input type="number" id="numeroPedido" placeholder="Número do pedido" min="1" , max="999">
 
                 </div>
 
                 <div class="campo">
                     <label>Cliente</label>
-                    <input type="text" id="nomeCliente" placeholder="Nome da loja"> 
+                    <input type="text" id="nomeCliente" placeholder="Nome da loja">
                 </div>
 
-                    
+
                 <div class="campo">
 
                     <label>Quantidade</label>
-                    <input type="text" id="quantidadeProduto" placeholder="Digite a quantidade do produto..."> 
+                    <input type="text" id="quantidadeProduto" placeholder="Digite a quantidade do produto...">
                 </div>
 
-                    <div class="campo">
+                <div class="campo">
 
-                        <label>prazo</label>
-                        <input type="date" id="prazoPedido" placeholder="Digite um prazo"> 
-                    </div>
-                
+                    <label>prazo</label>
+                    <input type="date" id="prazoPedido" placeholder="Digite um prazo">
+                </div>
+
                 <button id="registrarPedido">Registrar pedido</button>
                 <button id="fecharFormulario">Fechar</button>
-                
-                
+
+
 
 
 
@@ -134,9 +139,11 @@
                             <td>500 Peças</td>
                             <td>20/09</td>
 
-                                <td class="rec"><div class="status-rece"> Recebido   </div></td>
-                         
-                                
+                            <td class="rec">
+                                <div class="status-rece"> Recebido </div>
+                            </td>
+
+
                             <td class="status">
 
                                 <select>
@@ -159,7 +166,9 @@
                             <td>LojaB</td>
                             <td>300 Peças</td>
                             <td>30/09</td>
-                            <td class="cor"><div class="status-cor">Corte</div></td>
+                            <td class="cor">
+                                <div class="status-cor">Corte</div>
+                            </td>
                             <td class="status">
 
                                 <select>
@@ -183,8 +192,10 @@
                             <td>LojaC</td>
                             <td>200 Peças</td>
                             <td>10/12</td>
-                            <td class="pr"><div class="status-pronto">Pronto</div></td>
-                        
+                            <td class="pr">
+                                <div class="status-pronto">Pronto</div>
+                            </td>
+
                             <td class="status">
 
                                 <select>
@@ -208,7 +219,9 @@
                             <td>LojaD</td>
                             <td>700 Peças</td>
                             <td>18/09</td>
-                            <td class="cos"><div class="status-cos">Costura</td>
+                            <td class="cos">
+                                <div class="status-cos">Costura
+                            </td>
                             <td class="status">
 
                                 <select>
@@ -231,7 +244,9 @@
                             <td>LojaE</td>
                             <td>450 Peças</td>
                             <td>10/09</td>
-                            <td class="rec"><div class="status-rece">Recebido</div></td>
+                            <td class="rec">
+                                <div class="status-rece">Recebido</div>
+                            </td>
                             <td class="status">
 
                                 <select>
@@ -256,7 +271,9 @@
                             <td>LojaF</td>
                             <td>490 Peças</td>
                             <td>15/09</td>
-                            <td class="rec"><div class="status-rece">Recebido</div></td>
+                            <td class="rec">
+                                <div class="status-rece">Recebido</div>
+                            </td>
                             <td class="status">
 
                                 <select>
@@ -283,7 +300,9 @@
                             <td>LojaF</td>
                             <td>690 Peças</td>
                             <td>25/09</td>
-                            <td class="cos"><div class="status-cos">Costura</td>
+                            <td class="cos">
+                                <div class="status-cos">Costura
+                            </td>
                             <td class="status">
 
                                 <select>
@@ -309,7 +328,7 @@
 
 
 
-                </div>
+    </div>
 
 
 
@@ -336,16 +355,16 @@
 
 
 
-            </section>
+    </section>
 
-        </main>
+    </main>
 
 
 
 
     </div>
 
-     <script src="agr.js"></script>
+    <script src="agr.js"></script>
 </body>
 
 </html>
