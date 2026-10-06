@@ -14,6 +14,7 @@ body {
     font-family: Arial, sans-serif;
     background-color: #1a0909;
     overflow: hidden;
+    min-width: 100px;
 }
 
 .tela-config,
@@ -24,8 +25,8 @@ body {
 .logistica,
 .relatorios {
     display: grid;
-    grid-template-columns: 500px 1fr;
-    width: 100%;
+    grid-template-columns: 300px 1fr;
+    min-width: 100vh;
     height: 100vh;
     margin: 0;
     background-color: white;
@@ -176,8 +177,8 @@ body {
 
 .card1 {
 
-    width: 310px;
-    height: 310px;
+    width: 280px;
+    height: 280px;
     background-color: #8F8F8F;
     border-radius: 10px;
     display: flex;
@@ -192,8 +193,8 @@ body {
 
 .card2 {
 
-    width: 310px;
-    height: 310px;
+    width: 280px;
+    height: 280px;
     background-color: #37FF00;
     border-radius: 10px;
     display: flex;
@@ -208,8 +209,8 @@ body {
 
 .card3 {
 
-    width: 310px;
-    height: 310px;
+    width: 280px;
+    height: 280px;
     background-color: #F5E938;
     border-radius: 10px;
     display: flex;
@@ -224,8 +225,8 @@ body {
 
 .card4 {
 
-    width: 310px;
-    height: 310px;
+    width: 280px;
+    height: 280px;
     background-color: #F8BC3B;
     border-radius: 10px;
     display: flex;
@@ -240,8 +241,8 @@ body {
 
 .card5 {
 
-    width: 310px;
-    height: 310px;
+    width: 280px;
+    height: 280px;
     background-color: #ff0000;
     border-radius: 10px;
     display: flex;
@@ -249,10 +250,10 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    gap: 3px;
+    gap: 10px;
     box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25);
     aspect-ratio: 1 / 1;
-    margin-right: 150px;
+    margin-right: 5px;
 }
 
 
@@ -293,7 +294,7 @@ body {
 .grafico,
 .pedidos {
     display: grid;
-    width: 100%;
+    width: px;
     height: 400px;
     margin: 0;
     border-radius: 10px;
@@ -314,18 +315,20 @@ body {
 /* GRÁFICO */
 
 .pedidos {
-    width: 820px;
+    display: flex;
+    flex-direction: column;
+    width: 900px;
     height: 600px;
-    margin-right: 200px;
+    margin-right: 120px;
     margin-bottom: 30px;
     background-color: #11FDB2;
     border-radius: 10px;
-    padding: 25px;
+    padding: 70px;
     box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25);
 }
 
 .grafico {
-    width: 830px;
+    width: 900px;
     height: 600px;
     border-radius: 10px;
     padding: 10px;
@@ -348,18 +351,18 @@ body {
 
 
 
-/* TELA  DE PEDIDOS */
+/* TELA  DE PEDIDOS  Pesquisa*/
 
 .p_pedidos input {
-    width: 895px;
-    height: 40px;
+    width: 1500px;
+    height: 70px;
     border-radius: 30px;
     padding: 11px 20px;
     color: rgb(4, 4, 4);
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
-    margin-left: 57px;
+    margin-left: 110px;
 
 
 
@@ -450,6 +453,8 @@ body {
 
 
 #novoPedido {
+    width: 200px;
+    height: 70px;
     padding: 11px 20px;
     border: none;
     border-radius: 10px;
@@ -463,6 +468,7 @@ body {
 }
 
 #novoPedido:hover {
+    
 
     border-color: rgba(255, 2, 2, 0.593);
     transform: translateY(-4px) scale(1.05);
@@ -471,11 +477,13 @@ body {
 }
 
 #tabela {
-    height: 500px;
+    display: block;
+    width: 100%;
+    max-height: 900px;
     overflow-y: auto;
-    margin-top: 20px;
+    margin-top: 10px;
     position: relative;
-    z-index: 1;
+    z-index: 2;
 }
 
 #tabela table {
@@ -486,12 +494,14 @@ body {
 
 table {
     width: 90%;
-    margin: 30px auto;
+    margin: 70px auto;
     border-collapse: collapse;
     background: white;
     border-radius: 15px;
     max-height: 500px;
+
     overflow-y: auto;
+      box-shadow: 0 12px 10px rgba(0, 0, 0, 0.25);
 
 }
 
@@ -501,18 +511,20 @@ th {
     color: white;
     padding: 15px;
     text-align: left;
+    height: 150px;
     position: sticky;
     top: 0;
-    z-index: 10;
+    z-index: 2;
 }
 
 td {
+    height: 130px;
     padding: 15px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 4px solid #ddd;
 }
 
 tr:hover {
-    background: #f5f5f5;
+    background: #d30f0f;
 }
 
 
@@ -642,53 +654,53 @@ tr:hover {
 /*  Recabidos    */
 .conteudo-painel1 {
     background: linear-gradient(to bottom, #97929258, #bb9f9f52);
-    width: 410px;
-    height: 900px;
+    width: 450px;
+    height: 1050px;
     display: 1;
     align-self: center;
     text-align: center;
     border-radius: 10px;
     gap: 10px;
     justify-items: center;
-    box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25);
+    box-shadow: 5px 10px  10px rgba(0, 0, 0, 0.25);
 }
 
 .conteudo-painel2 {
     background: linear-gradient(to bottom, #06cbd9, #98cfd3);
-    width: 410px;
-    height: 900px;
+    width: 450px;
+    height: 1050px;
     display: 1;
     justify-items: center;
     text-align: center;
     border-radius: 10px;
     gap: 10px;
-    box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25);
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.25);
 
 }
 
 .conteudo-painel3 {
     background: linear-gradient(to bottom, #dc88e1, #ab75ae);
-    width: 410px;
-    height: 900px;
+    width: 450px;
+    height: 1050px;
     text-align: center;
     justify-items: center;
     display: 1;
     border-radius: 10px;
     gap: 10px;
-    box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25);
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.25);
 }
 
 .conteudo-painel4 {
     background: linear-gradient(to bottom, #e68eba, #9e5a77);
-    width: 410px;
-    height: 900px;
+    width: 450px;
+    height: 1050px;
     text-align: center;
     justify-items: center;
 
     display: 1;
     border-radius: 10px;
     gap: 10px;
-    box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25);
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.25);
 }
 
 /*  vER MAIS    */
@@ -787,18 +799,18 @@ tr:hover {
     color: rgb(53, 33, 33);
     padding: 15px;
     align-items: center;
-    box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25)
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.25)
 }
 
 .tabela-log {
-    width: 80%;
+    width: 90%;
     height: 70%;
     margin: 30px auto;
     border-collapse: collapse;
     background: white;
     border-radius: 15px;
     overflow: hidden;
-    margin-left: 20px;
+    margin-left: 100px;
 }
 
 th {
