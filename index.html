@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="Front-end/style.css">
-     <script src="https://kit.fontawesome.com/bcabfebb6d.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/bcabfebb6d.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -21,7 +22,7 @@
             <div class="aba_menu">
 
                 <div class="menu-lateral">
-                    <h1>Logo</h1>
+                    <img src="Front-end/logo.png" alt="Logo" class="logo">
 
                     <section id="botoes">
 
@@ -34,10 +35,11 @@
                             <a href="Front-end/relatorio.html"><i class="fa-regular fa-address-book"></i> Relatórios</a>
                         </nav>
 
-                        <a href="Front-end/configuracoes.html" class="configuracoes"><i class="fa-solid fa-gear"></i>Configurações</a>
+                        <a href="Front-end/configuracoes.html" class="configuracoes"><i
+                                class="fa-solid fa-gear"></i>Configurações</a>
 
                     </section>
-            
+
                 </div>
 
             </div>
@@ -52,8 +54,9 @@
                 <h2>Dashboard</h2>
                 <p>Visão geral das suas Produções</p>
                 <div class="usuario">
-                    <span>Usuário</span>
-                    <div class="foto">
+                    <span>Cauã Ferreira</span>
+                    <div class="perfil">
+                        <img src="Front-end/perfil.jpeg" alt="Foto de perfil" class="perfil">
                     </div>
                 </div>
 
@@ -64,27 +67,27 @@
             <section id="cards">
                 <div class="card1">
                     <h3>Produto Recebidos</h3>
-                    <strong>25</strong>
+                    <strong id="total-recebidos">0</strong>
                 </div>
 
                 <div class="card2">
                     <h3>Prontos</h3>
-                    <strong>8</strong>
+                    <strong id="total-prontos">0</strong>
                 </div>
 
                 <div class="card3">
                     <h3>Em produção</h3>
-                    <strong>12</strong>
+                    <strong id="total-producao">0</strong>
                 </div>
 
                 <div class="card4">
                     <h3>Atrasados</h3>
-                    <strong>2</strong>
+                    <strong id="total-atrasados">0</strong>
                 </div>
 
                 <div class="card5">
                     <h3>Estoque baixo</h3>
-                    <strong>4</strong>
+                    <strong id="total-estoque">0</strong>
                 </div>
 
             </section>
@@ -122,7 +125,7 @@
 
 
 
-
+    <script src="agr.js"></script>
 </body>
 
 </html>

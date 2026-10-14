@@ -37,7 +37,7 @@ body {
 
 .menu-lateral {
     align-items: center;
-    
+
     margin-top: auto;
     margin-right: 0px;
     width: 100%;
@@ -58,6 +58,17 @@ body {
     margin-bottom: 50px;
 }
 
+.perfil{
+    display: flex;
+    object-fit: cover;
+    margin-right: 100px;
+    width: 100px;
+    height: 100px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    object-position: center;
+}
+
 
 
 
@@ -69,9 +80,19 @@ body {
     gap: 10px;
 }
 
-.configuracoes{
+.configuracoes {
     display: block;
 
+}
+
+.logo{
+    display: flex;
+    margin-left: 65px;
+    margin-bottom: 30px;
+
+
+    width: 150px;
+    height: 150px;
 }
 
 .menu-lateral a {
@@ -111,11 +132,6 @@ body {
 
 /* CONTEÚDO */
 
-.usuario {
-
-    padding: 40px 10px;
-}
-
 
 
 /* CABEÇALHO */
@@ -124,22 +140,26 @@ body {
     background: linear-gradient(to right, #dee9e9, #dde3e3);
 
     display: flex;
+    width: 100%;
     justify-content: space-between;
     align-items: center;
+    margin: 0px;
+    margin-right: 80px;
+    padding: 30px;
     margin-bottom: 30px;
-    margin-left: 0px;
 }
 
 
 .cabecalho h2 {
     margin-left: 16px;
+    margin-bottom: 20px;
 
     font-size: 32px;
 }
 
 .cabecalho p {
-    margin-left: 16px;
-    transform: translateX(-212%);
+    margin-left: 50px;
+    transform: translateX(-350%);
     margin-top: 60px;
 
 }
@@ -169,7 +189,7 @@ body {
 
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 20px;
+    gap: 8px;
     padding: 30px;
 
 }
@@ -177,80 +197,75 @@ body {
 
 .card1 {
 
-    width: 280px;
-    height: 280px;
-    background-color: #8F8F8F;
+    width: 320px;
+    height: 320px;
+    background-color: #8f8f8f2b;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    gap: 3px;
     box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25);
     aspect-ratio: 1 / 1;
 }
 
 .card2 {
 
-    width: 280px;
-    height: 280px;
-    background-color: #37FF00;
+    width: 320px;
+    height: 320px;
+    background-color: #37ff00a4;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    gap: 3px;
     box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25);
     aspect-ratio: 1 / 1;
 }
 
 .card3 {
 
-    width: 280px;
-    height: 280px;
-    background-color: #F5E938;
+    width: 320px;
+    height: 320px;
+    background-color: #f5e8389f;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    gap: 3px;
     box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25);
     aspect-ratio: 1 / 1;
 }
 
 .card4 {
 
-    width: 280px;
-    height: 280px;
-    background-color: #F8BC3B;
+    width: 320px;
+    height: 320px;
+    background-color: #f8bc3bba;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    gap: 3px;
     box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25);
     aspect-ratio: 1 / 1;
 }
 
 .card5 {
 
-    width: 280px;
-    height: 280px;
-    background-color: #ff0000;
+    width: 320px;
+    height: 320px;
+    background-color: #ff0000ad;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    gap: 10px;
     box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25);
     aspect-ratio: 1 / 1;
     margin-right: 5px;
@@ -317,8 +332,8 @@ body {
 .pedidos {
     display: flex;
     flex-direction: column;
-    width: 900px;
-    height: 600px;
+    width: 920px;
+    height: 700px;
     margin-right: 120px;
     margin-bottom: 30px;
     background-color: #11FDB2;
@@ -328,8 +343,8 @@ body {
 }
 
 .grafico {
-    width: 900px;
-    height: 600px;
+    width: 920px;
+    height: 700px;
     border-radius: 10px;
     padding: 10px;
     background-color: #AF9DFF;
@@ -468,7 +483,7 @@ body {
 }
 
 #novoPedido:hover {
-    
+
 
     border-color: rgba(255, 2, 2, 0.593);
     transform: translateY(-4px) scale(1.05);
@@ -479,7 +494,7 @@ body {
 #tabela {
     display: block;
     width: 100%;
-    max-height: 900px;
+    max-height: 1000px;
     overflow-y: auto;
     margin-top: 10px;
     position: relative;
@@ -501,7 +516,7 @@ table {
     max-height: 500px;
 
     overflow-y: auto;
-      box-shadow: 0 12px 10px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 12px 10px rgba(0, 0, 0, 0.25);
 
 }
 
@@ -662,7 +677,7 @@ tr:hover {
     border-radius: 10px;
     gap: 10px;
     justify-items: center;
-    box-shadow: 5px 10px  10px rgba(0, 0, 0, 0.25);
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.25);
 }
 
 .conteudo-painel2 {
@@ -804,7 +819,7 @@ tr:hover {
 
 .tabela-log {
     width: 90%;
-    height: 70%;
+    min-height: 80%;
     margin: 30px auto;
     border-collapse: collapse;
     background: white;
@@ -891,4 +906,27 @@ tr:hover {
     background: orange;
     color: white;
     border-color: orange;
+}
+
+.graficos-relatorios {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    height: 80%;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    justify-items: center;
+    align-items: center;
+}
+
+.grafico-relat {
+    width: 80%;
+    height: 100%;
+    gap: 20px;
+    display: flex;
+    margin-top: auto;
+    align-items: center;
+    justify-content: center;
+     box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25)
+     
 }

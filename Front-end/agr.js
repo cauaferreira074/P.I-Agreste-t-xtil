@@ -96,3 +96,423 @@ botaoRegistrar.addEventListener("click", function () {
 
 });
 
+
+/* Pedidos   */
+
+
+const CHAVE_PEDIDOS = "agreste_pedidos";
+
+const STATUS_PRODUCAO = [
+    "Corte",
+    "Costura",
+    "Acabamento",
+    "Conferência"
+];
+
+const STATUS_VALIDOS = [
+    "Recebido",
+    "Corte",
+    "Costura",
+    "Acabamento",
+    "Conferência",
+    "Pronto",
+    "Enviado"
+];
+
+// Abre o formulário
+function abrirFormulario() {
+    const formulario = document.getElementById("formularioPedido");
+
+    if (formulario) {
+        formulario.style.display = "block";
+    }
+}
+
+// Fecha o formulário
+function fecharFormulario() {
+    const formulario = document.getElementById("formularioPedido");
+
+    if (formulario) {
+        formulario.style.display = "none";
+    }
+}
+
+// Recupera os pedidos salvos
+function carregarPedidos() {
+    try {
+        return JSON.parse(
+            localStorage.getItem(CHAVE_PEDIDOS) || "[]"
+        );
+    } catch (erro) {
+        console.error("Erro ao carregar pedidos:", erro);
+        return [];
+    }
+}
+
+// Salva os pedidos no navegador
+function salvarPedidos(pedidos) {
+    localStorage.setItem(
+        CHAVE_PEDIDOS,
+        JSON.stringify(pedidos)
+    );
+}
+
+// Converte datas para o formato usado pelo sistema
+function converterPrazo(data) {
+    if (!data) return "";
+
+    // Data no formato DD/MM/AAAA
+    const partes = data.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+
+    if (partes) {
+        return `${partes[3]}-${partes[2]}-${partes[1]}`;
+    }
+
+    // Data no formato AAAA-MM-DD
+    if (/^\d{4}-\d{2}-\d{2}$/.test(data)) {
+        return data;
+    }
+
+    return "";
+}
+
+// Importa a tabela antiga somente na primeira execução
+function importarTabelaInicial() {
+    const tabela = document.getElementById("listaPedidos");
+
+    if (!tabela) return;
+
+    // Se já existem pedidos salvos, não importa novamente
+    if (localStorage.getItem(CHAVE_PEDIDOS) !== null) {
+        return;
+    }
+
+    const pedidosAntigos = [];
+
+    tabela.querySelectorAll("tr").forEach((linha, indice) => {
+        const colunas = linha.querySelectorAll("td");
+
+        if (colunas.length < 5) return;
+
+        const seletor = linha.querySelector("select");
+
+        const numero = colunas[0].textContent.trim();
+        const cliente = colunas[1].textContent.trim();
+
+        const quantidadeTexto = colunas[2].textContent.trim();
+        const quantidade = Number(
+            quantidadeTexto.replace(/[^\d,.-]/g, "").replace(",", ".")
+        );
+
+        const statusDaTabela = colunas[4].textContent.trim();
+        const statusDoSeletor = seletor?.value;
+
+        const status =
+            STATUS_VALIDOS.includes(statusDoSeletor)
+                ? statusDoSeletor
+                : STATUS_VALIDOS.find(
+                    item => item === statusDaTabela
+                ) || "Recebido";
+
+        pedidosAntigos.push({
+            id: `antigo-${indice}-${numero}`,
+            numero,
+            cliente,
+            quantidade,
+            prazo: converterPrazo(colunas[3].textContent.trim()),
+            status
+        });
+    });
+
+    salvarPedidos(pedidosAntigos);
+}
+
+// Define a aparência do status
+function classeStatus(status) {
+    const classes = {
+        "Recebido": "status-rece",
+        "Corte": "status-cor",
+        "Costura": "status-cos",
+        "Acabamento": "status-acabamento",
+        "Conferência": "status-conferencia",
+        "Pronto": "status-pronto",
+        "Enviado": "status-enviado"
+    };
+
+    return classes[status] || "";
+}
+
+// Desenha novamente a tabela com os dados salvos
+function renderizarPedidos() {
+    const tabela = document.getElementById("listaPedidos");
+
+    // A página Dashboard não possui a tabela de pedidos
+    if (!tabela) return;
+
+    const pedidos = carregarPedidos();
+
+    tabela.replaceChildren();
+
+    pedidos.forEach(pedido => {
+        const linha = document.createElement("tr");
+
+        function criarCelula(conteudo, classe = "") {
+            const celula = document.createElement("td");
+
+            if (classe) {
+                celula.className = classe;
+            }
+
+            celula.textContent = conteudo;
+            linha.appendChild(celula);
+
+            return celula;
+        }
+
+        criarCelula(pedido.numero);
+        criarCelula(pedido.cliente);
+        criarCelula(`${pedido.quantidade} Peças`);
+
+        const prazoFormatado = pedido.prazo
+            ? pedido.prazo.split("-").reverse().join("/")
+            : "";
+
+        criarCelula(prazoFormatado);
+
+        const celulaStatus = document.createElement("td");
+        const indicador = document.createElement("div");
+
+        indicador.className = classeStatus(pedido.status);
+        indicador.textContent = pedido.status;
+
+        celulaStatus.appendChild(indicador);
+        linha.appendChild(celulaStatus);
+
+        const celulaAcao = document.createElement("td");
+        celulaAcao.className = "status";
+
+        const seletor = document.createElement("select");
+
+        STATUS_VALIDOS.forEach(status => {
+            const opcao = document.createElement("option");
+
+            opcao.value = status;
+            opcao.textContent = status;
+
+            seletor.appendChild(opcao);
+        });
+
+        seletor.value = STATUS_VALIDOS.includes(pedido.status)
+            ? pedido.status
+            : "Recebido";
+
+        seletor.addEventListener("change", function () {
+            const pedidosAtualizados = carregarPedidos();
+
+            const pedidoAtualizado = pedidosAtualizados.find(
+                item => item.id === pedido.id
+            );
+
+            if (!pedidoAtualizado) return;
+
+            pedidoAtualizado.status = seletor.value;
+
+            salvarPedidos(pedidosAtualizados);
+
+            renderizarPedidos();
+            atualizarCards();
+        });
+
+        celulaAcao.appendChild(seletor);
+        linha.appendChild(celulaAcao);
+
+        tabela.appendChild(linha);
+    });
+}
+
+// Atualiza os números dos cards do Dashboard
+
+function atualizarCards() {
+    const pedidos = carregarPedidos();
+
+    // Padroniza os status para evitar erros com maiúsculas/minúsculas
+    const normalizarStatus = status => {
+        const texto = (status || "").trim().toLowerCase();
+
+        const statusValidos = {
+            "recebido": "Recebido",
+            "corte": "Corte",
+            "costura": "Costura",
+            "acabamento": "Acabamento",
+            "conferência": "Conferência",
+            "conferencia": "Conferência",
+            "pronto": "Pronto",
+            "enviado": "Enviado"
+        };
+
+        return statusValidos[texto] || "";
+    };
+
+    const recebidos = pedidos.filter(
+        pedido => normalizarStatus(pedido.status) === "Recebido"
+    ).length;
+
+    const prontos = pedidos.filter(
+        pedido => normalizarStatus(pedido.status) === "Pronto"
+    ).length;
+
+    const emProducao = pedidos.filter(pedido =>
+        STATUS_PRODUCAO.includes(normalizarStatus(pedido.status))
+    ).length;
+
+    const hoje = new Date();
+    hoje.setHours(0, 0, 0, 0);
+
+    const atrasados = pedidos.filter(pedido => {
+        const status = normalizarStatus(pedido.status);
+
+        if (!pedido.prazo || status === "Enviado") {
+            return false;
+        }
+
+        const prazo = new Date(pedido.prazo + "T00:00:00");
+
+        return !Number.isNaN(prazo.getTime()) && prazo < hoje;
+    }).length;
+
+    const cards = {
+        "total-recebidos": recebidos,
+        "total-prontos": prontos,
+        "total-producao": emProducao,
+        "total-atrasados": atrasados
+    };
+
+    Object.entries(cards).forEach(([id, valor]) => {
+        const elemento = document.getElementById(id);
+
+        if (elemento) {
+            elemento.textContent = valor;
+        }
+    });
+}
+
+
+const cards = {
+    "total-recebidos": recebidos,
+    "total-prontos": prontos,
+    "total-producao": emProducao,
+    "total-atrasados": atrasados
+};
+
+Object.entries(cards).forEach(([id, valor]) => {
+    const elemento = document.getElementById(id);
+
+    if (elemento) {
+        elemento.textContent = valor;
+    }
+});
+
+
+// Registra um pedido novo
+function registrarPedido() {
+    const numero = document.getElementById("numeroPedido")?.value.trim();
+    const cliente = document.getElementById("nomeCliente")?.value.trim();
+    const quantidade = Number(
+        document.getElementById("quantidadeProduto")?.value
+    );
+    const prazo = document.getElementById("prazoPedido")?.value;
+
+    if (!numero) {
+        alert("Digite o número do pedido.");
+        return;
+    }
+
+    if (!cliente) {
+        alert("Digite o nome do cliente.");
+        return;
+    }
+
+    if (!Number.isFinite(quantidade) || quantidade <= 0) {
+        alert("A quantidade deve ser maior que zero.");
+        return;
+    }
+
+    if (!prazo) {
+        alert("Informe o prazo do pedido.");
+        return;
+    }
+
+    const pedidos = carregarPedidos();
+
+    if (pedidos.some(pedido => pedido.numero === numero)) {
+        alert("Já existe um pedido com esse número.");
+        return;
+    }
+
+    const novoPedido = {
+        id: `novo-${Date.now()}-${numero}`,
+        numero,
+        cliente,
+        quantidade,
+        prazo,
+        status: "Recebido"
+    };
+
+    pedidos.unshift(novoPedido);
+
+    salvarPedidos(pedidos);
+
+    renderizarPedidos();
+    atualizarCards();
+
+    document.getElementById("numeroPedido").value = "";
+    document.getElementById("nomeCliente").value = "";
+    document.getElementById("quantidadeProduto").value = "";
+    document.getElementById("prazoPedido").value = "";
+
+    fecharFormulario();
+
+    alert("Pedido registrado com sucesso!");
+}
+
+// Inicializa o sistema
+function inicializarPedidos() {
+    const botaoNovoPedido = document.getElementById("novoPedido");
+    const botaoFechar = document.getElementById("fecharFormulario");
+    const botaoRegistrar = document.getElementById("registrarPedido");
+
+    botaoNovoPedido?.addEventListener("click", abrirFormulario);
+    botaoFechar?.addEventListener("click", fecharFormulario);
+    botaoRegistrar?.addEventListener("click", registrarPedido);
+
+    importarTabelaInicial();
+    renderizarPedidos();
+    atualizarCards();
+}
+
+// Funciona mesmo se o arquivo carregar depois do HTML
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", inicializarPedidos);
+} else {
+    inicializarPedidos();
+}
+
+// Atualiza quando outra aba do mesmo site altera os pedidos
+window.addEventListener("storage", evento => {
+    if (evento.key === CHAVE_PEDIDOS) {
+        renderizarPedidos();
+        atualizarCards();
+    }
+
+    const cards = {
+        "total-recebidos": recebidos,
+        "total-prontos": prontos,
+        "total-producao": emProducao,
+        "total-atrasados": atrasados
+    };
+
+});
+
+
+
+
