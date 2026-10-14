@@ -11,7 +11,7 @@ body {
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     background-color: #1a0909;
     overflow: hidden;
     min-width: 100px;
@@ -32,6 +32,45 @@ body {
     background-color: white;
 }
 
+h1,
+h2,
+h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+
+
+}
+
+th {
+    font-family: 'cormorant' sans-serif;
+    font-weight: 800;
+    font-size: 30px;
+
+
+
+}
+
+td {
+    font-family: 'cormorant' sans-serif;
+    font-weight: 400;
+    font-size: 25px;
+
+
+
+}
+
+p {
+    font-family: 'cormorant' sans-serif;
+    font-weight: 600;
+
+}
+
+option {
+    font-family: 'cormorant' sans-serif;
+    font-weight: 400;
+
+
+}
 
 /* MENU */
 
@@ -52,13 +91,15 @@ body {
 
 
 .menu-lateral h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
 
     text-align: center;
     font-size: 50px;
     margin-bottom: 50px;
 }
 
-.perfil{
+.perfil {
     display: flex;
     object-fit: cover;
     margin-right: 100px;
@@ -67,6 +108,13 @@ body {
     aspect-ratio: 1 / 1;
     border-radius: 50%;
     object-position: center;
+}
+
+span{
+
+    font-family: 'Montserrat' sans-serif;
+    font-weight: 600;
+    font-size: 20px;
 }
 
 
@@ -85,7 +133,7 @@ body {
 
 }
 
-.logo{
+.logo {
     display: flex;
     margin-left: 65px;
     margin-bottom: 30px;
@@ -136,8 +184,13 @@ body {
 
 /* CABEÇALHO */
 
-.cabecalho {
-    background: linear-gradient(to right, #dee9e9, #dde3e3);
+.cabecalho,
+.cabecalho-pe,
+.cabecalho-es,
+.cabecalho-lo,
+.cabecalho-pr,
+.cabecalho-re {
+    background: linear-gradient(to right, #e9e8de, #dde3e3);
 
     display: flex;
     width: 100%;
@@ -150,7 +203,13 @@ body {
 }
 
 
-.cabecalho h2 {
+.cabecalho h2,
+.cabecalho-co h2,
+.cabecalho-es h2,
+.cabecalho-lo h2,
+.cabecalho-pe h2,
+.cabecalho-pr h2,
+.cabecalho-re h2 {
     margin-left: 16px;
     margin-bottom: 20px;
 
@@ -158,8 +217,71 @@ body {
 }
 
 .cabecalho p {
+    font-family: 'Montserrat' sans-serif;
+    font-weight: 600;
     margin-left: 50px;
-    transform: translateX(-350%);
+    font-size: 20px;
+    transform: translateX(-230%);
+    margin-top: 60px;
+
+}
+
+.cabecalho-es p {
+    font-family: 'Montserrat' sans-serif;
+    font-weight: 600;
+    margin-left: 50px;
+    font-size: 20px;
+    transform: translateX(-180%);
+    margin-top: 60px;
+
+}
+
+.cabecalho-lo p {
+    font-family: 'Montserrat' sans-serif;
+    font-weight: 600;
+    margin-left: 50px;
+    font-size: 20px;
+    transform: translateX(-200%);
+    margin-top: 60px;
+
+}
+
+.cabecalho-pr p {
+    font-family: 'Montserrat' sans-serif;
+    font-weight: 600;
+    margin-left: 50px;
+    font-size: 20px;
+    transform: translateX(-190%);
+    margin-top: 60px;
+
+}
+
+.cabecalho-pe p {
+    font-family: 'Montserrat' sans-serif;
+    font-weight: 600;
+    margin-left: 50px;
+    font-size: 20px;
+    transform: translateX(-220%);
+    margin-top: 60px;
+
+}
+
+.cabecalho-re p {
+    font-family: 'Montserrat' sans-serif;
+    font-weight: 600;
+    margin-left: 50px;
+    font-size: 20px;
+    transform: translateX(-340%);
+    margin-top: 60px;
+
+}
+
+.cabecalho-co p {
+    font-family: 'Montserrat' sans-serif;
+    font-weight: 600;
+    margin-left: 50px;
+    font-size: 20px;
+    transform: translateX(-230%);
     margin-top: 60px;
 
 }
@@ -199,8 +321,9 @@ body {
 
     width: 320px;
     height: 320px;
-    background-color: #8f8f8f2b;
+    background-color: #ff880071;
     border-radius: 10px;
+    border: solid 2px #00000035;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -214,7 +337,8 @@ body {
 
     width: 320px;
     height: 320px;
-    background-color: #37ff00a4;
+    background-color: #ff880071;
+    border: solid 2px #00000035;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -229,7 +353,8 @@ body {
 
     width: 320px;
     height: 320px;
-    background-color: #f5e8389f;
+    border: solid 2px #00000035;
+    background-color: #ff880071;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -244,7 +369,8 @@ body {
 
     width: 320px;
     height: 320px;
-    background-color: #f8bc3bba;
+    border: solid 2px #00000035;
+    background-color: #ff880071;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -259,7 +385,8 @@ body {
 
     width: 320px;
     height: 320px;
-    background-color: #ff0000ad;
+    border: solid 2px #00000035;
+    background-color: #ff880071;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -279,6 +406,9 @@ body {
 .card3 p,
 .card4 p,
 .card5 p {
+
+    font-family: 'cormorant' sans-serif;
+    font-weight: 300;
 
     font-size: 15px;
     color: #000000;
@@ -336,7 +466,7 @@ body {
     height: 700px;
     margin-right: 120px;
     margin-bottom: 30px;
-    background-color: #11FDB2;
+    background-color: #ff880071;
     border-radius: 10px;
     padding: 70px;
     box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25);
@@ -347,7 +477,7 @@ body {
     height: 700px;
     border-radius: 10px;
     padding: 10px;
-    background-color: #AF9DFF;
+    background-color: #ff880071;
     margin-left: 10px;
 
     display: flex;
@@ -359,6 +489,7 @@ body {
 /* PEDIDOS */
 
 .pedidos p {
+    font-family: 'cormorant' sans-serif;
 
     border-bottom: 1px solid #000000;
     padding: 15px;
@@ -371,13 +502,23 @@ body {
 .p_pedidos input {
     width: 1500px;
     height: 70px;
+    font-family: 'Montserrat' sans-serif;
     border-radius: 30px;
     padding: 11px 20px;
     color: rgb(4, 4, 4);
-    font-size: 15px;
+    font-size: 26px;
     font-weight: 600;
     cursor: pointer;
     margin-left: 110px;
+
+
+
+}
+
+.p_pedidos button {
+    font-family: 'Montserrat' sans-serif;
+    font-weight: 600;
+    font-size: 26px;
 
 
 
@@ -395,12 +536,38 @@ body {
 
 .status-rece {
     display: flex;
-    width: 110px;
+    width: 150px;
     height: 30px;
     text-align: center;
     align-items: center;
     justify-content: center;
     background: linear-gradient(to right, #8f8f8f49, #2f25251f);
+    border-radius: 15px;
+
+}
+
+.status-conf {
+    display: flex;
+    width: 150px;
+    height: 30px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to right, #d63398, #b3437ded);
+    border-radius: 15px;
+}
+
+
+
+
+.status-cos {
+    display: flex;
+    width: 150px;
+    height: 30px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to right, #AF9DFF, #af9dffc7);
     border-radius: 15px;
 
 }
@@ -475,7 +642,7 @@ body {
     border-radius: 10px;
     background: #e66007;
     color: white;
-    font-size: 15px;
+    font-size: 20px;
     font-weight: 600;
     cursor: pointer;
 
@@ -552,13 +719,96 @@ tr:hover {
     gap: 20px;
     overflow: hidden;
 
+}
 
 
+.pedido-id p {
+    font-family: 'comorant' sans-serif;
+    font-weight: 500;
+    font-size: 25px;
 
+
+}
+
+.pedido-id span {
+    font-family: 'comorant' sans-serif;
+    font-weight: 300;
+    font-size: 25px;
+
+}
+
+.pedido-id strong {
+
+    font-family: 'comorant' sans-serif;
+    font-weight: 600;
+    font-size: 25px;
+
+}
+
+.coluna-cabecalho1 {
+    font-family: 'comorant' sans-serif;
+    font-weight: 600;
+    font-size: 20px;
 
 
 
 }
+
+.coluna-cabecalho2 {
+    font-family: 'comorant' sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.coluna-cabecalho3 {
+
+    font-family: 'comorant' sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+
+.coluna-cabecalho4 {
+
+    font-family: 'comorant' sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.conteudo-painel1 a {
+    font-family: 'comorant' sans-serif;
+    font-weight: 600;
+    font-size: 100px;
+
+}
+
+.conteudo-painel2 a {
+    font-family: 'comorant' sans-serif;
+    font-weight: 600;
+    font-size: 25px;
+}
+
+.conteudo-painel3 a {
+    font-family: 'comorant' sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.conteudo-painel4 a {
+    font-family: 'comorant' sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+
+}
+
+
+
+
+
+
+
+
+
 
 #formularioPedido {
     width: 420px;
@@ -785,7 +1035,7 @@ tr:hover {
 }
 
 .configuracoes {
-    transform: translateY(200px);
+    transform: translateY(150px);
 
 
 }
@@ -927,6 +1177,5 @@ tr:hover {
     margin-top: auto;
     align-items: center;
     justify-content: center;
-     box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25)
-     
+    box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25)
 }
