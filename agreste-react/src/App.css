@@ -9,6 +9,87 @@ body {
   color: #292524;
 }
 
+.logo {
+  display: flex;
+  margin-bottom: 30px;
+  width: 150px;
+  height: 150px;
+}
+
+/*      Cabeçalho do perfil       */
+.cabecalho {
+  background: #925004;
+  display: flex;
+  width: 100%;
+
+  border-radius: 20px;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0px;
+  margin-right: 80px;
+  padding: 30px 40px;
+  margin-bottom: 30px;
+}
+
+
+.perfil {
+  display: flex;
+  object-fit: cover;
+  margin-right: 100px;
+  width: 100px;
+  height: 100px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  object-position: center;
+}
+
+.cabecalho h3 {
+  margin-left: 16px;
+  margin-bottom: 20px;
+  font-size: 20px;
+  width: 200px;
+  color: white;
+
+}
+
+.usuario span {
+  color: rgb(94, 44, 5);
+  font-family: 'Montserrat' sans-serif;
+  font-weight: 600;
+  font-size: 30px;
+
+}
+
+.cabecalho p {
+  font-family: 'Montserrat' sans-serif;
+  font-weight: 600;
+  margin-left: 50px;
+  font-size: 20px;
+  transform: translateX(-230%);
+  margin-top: 60px;
+
+}
+
+.usuario {
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  margin-left: 880px;
+}
+
+
+.foto {
+
+  width: 50px;
+  height: 50px;
+  background-color: #ddd;
+  border-radius: 50%;
+
+}
+
+
 .aplicacao {
   display: flex;
   min-height: 100vh;
@@ -17,6 +98,8 @@ body {
 .menu {
   width: 250px;
   flex-shrink: 0;
+  align-items: center;
+  justify-items: center;
   padding: 24px 18px;
   background: #D97706;
   align-items: center;
@@ -306,241 +389,218 @@ body {
 }
 
 .coluna-cabecalho1 {
-    width: 100%;
-    height: 80px;
-    margin-bottom: 20px;
-    border: 2px solid #0000003b;
-    border-radius: 10px;
-    color: #000000;
+  width: 100%;
+  height: 80px;
+  margin-bottom: 20px;
+  border: 2px solid #0000003b;
+  border-radius: 10px;
+  color: #000000;
 
 }
 
 #registrarPedido:hover {
-    background: #b45309;
+  background: #b45309;
 }
 
 
 #painel {
-    margin-left: 16px;
+  margin-left: 16px;
 
-    display: flex;
-    gap: 20px;
-    overflow: hidden;
-
-}
-
-
-.pedido-id p {
-    font-family: 'comorant' sans-serif;
-    font-weight: 500;
-    font-size: 25px;
-
+  display: flex;
+  gap: 20px;
+  overflow: hidden;
 
 }
 
-.pedido-id span {
-    font-family: 'comorant' sans-serif;
-    font-weight: 300;
-    font-size: 25px;
-
-}
-
-.pedido-id strong {
-
-    font-family: 'comorant' sans-serif;
-    font-weight: 600;
-    font-size: 25px;
-
-}
 
 .coluna-cabecalho1 {
-    font-family: 'comorant' sans-serif;
-    font-weight: 600;
-    font-size: 20px;
+  font-family: 'comorant' sans-serif;
+  font-weight: 600;
+  font-size: 20px;
 
 
 
 }
 
 .coluna-cabecalho2 {
-    font-family: 'comorant' sans-serif;
-    font-weight: 600;
-    font-size: 20px;
+  font-family: 'comorant' sans-serif;
+  font-weight: 600;
+  font-size: 20px;
 }
 
 .coluna-cabecalho3 {
 
-    font-family: 'comorant' sans-serif;
-    font-weight: 600;
-    font-size: 20px;
+  font-family: 'comorant' sans-serif;
+  font-weight: 600;
+  font-size: 20px;
 }
 
 
 .coluna-cabecalho4 {
 
-    font-family: 'comorant' sans-serif;
-    font-weight: 600;
-    font-size: 20px;
+  font-family: 'comorant' sans-serif;
+  font-weight: 600;
+  font-size: 20px;
 }
 
 .conteudo-painel1 a {
-    font-family: 'comorant' sans-serif;
-    font-weight: 600;
-    font-size: 100px;
+  font-family: 'comorant' sans-serif;
+  font-weight: 600;
+  font-size: 100px;
 
 }
 
 .conteudo-painel2 a {
-    font-family: 'comorant' sans-serif;
-    font-weight: 600;
-    font-size: 25px;
+  font-family: 'comorant' sans-serif;
+  font-weight: 600;
+  font-size: 25px;
 }
 
 .conteudo-painel3 a {
-    font-family: 'comorant' sans-serif;
-    font-weight: 600;
-    font-size: 20px;
+  font-family: 'comorant' sans-serif;
+  font-weight: 600;
+  font-size: 20px;
 }
 
 .conteudo-painel4 a {
-    font-family: 'comorant' sans-serif;
-    font-weight: 600;
-    font-size: 20px;
+  font-family: 'comorant' sans-serif;
+  font-weight: 600;
+  font-size: 20px;
 
 }
 
 .coluna-cabecalho2 {
-    width: 100%;
-    height: 80px;
-    margin-bottom: 20px;
-    border: 2px solid #0000003b;
-    border-radius: 10px;
-    color: #000000;
+  width: 100%;
+  height: 80px;
+  margin-bottom: 20px;
+  border: 2px solid #0000003b;
+  border-radius: 10px;
+  color: #000000;
 
 }
 
 .coluna-cabecalho3 {
-    width: 100%;
-    height: 80px;
-    margin-bottom: 20px;
-    border: 2px solid #0000003b;
-    border-radius: 10px;
-    color: #000000;
+  width: 100%;
+  height: 80px;
+  margin-bottom: 20px;
+  border: 2px solid #0000003b;
+  border-radius: 10px;
+  color: #000000;
 
 }
 
 .coluna-cabecalho4 {
-    width: 100%;
-    height: 80px;
-    margin-bottom: 20px;
-    border: 2px solid #0000003b;
-    border-radius: 10px;
-    color: #000000;
+  width: 100%;
+  height: 80px;
+  margin-bottom: 20px;
+  border: 2px solid #0000003b;
+  border-radius: 10px;
+  color: #000000;
 
 }
 
 
 /*  Recabidos    */
 .conteudo-painel1 {
-    background: linear-gradient(to bottom, #97929258, #bb9f9f52);
-    width: 450px;
-    height: 1050px;
-    display: 1;
-    align-self: center;
-    text-align: center;
-    border-radius: 10px;
-    gap: 10px;
-    justify-items: center;
-    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(to bottom, #97929258, #bb9f9f52);
+  width: 450px;
+  height: 800px;
+  display: 1;
+  align-self: center;
+  text-align: center;
+  border-radius: 10px;
+  gap: 10px;
+  justify-items: center;
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.25);
 }
 
 .conteudo-painel2 {
-    background: linear-gradient(to bottom, #06cbd9, #98cfd3);
-    width: 450px;
-    height: 1050px;
-    display: 1;
-    justify-items: center;
-    text-align: center;
-    border-radius: 10px;
-    gap: 10px;
-    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(to bottom, #06cbd9, #98cfd3);
+  width: 450px;
+  height: 1050px;
+  display: 1;
+  justify-items: center;
+  text-align: center;
+  border-radius: 10px;
+  gap: 10px;
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.25);
 
 }
 
 .conteudo-painel3 {
-    background: linear-gradient(to bottom, #dc88e1, #ab75ae);
-    width: 450px;
-    height: 1050px;
-    text-align: center;
-    justify-items: center;
-    display: 1;
-    border-radius: 10px;
-    gap: 10px;
-    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(to bottom, #dc88e1, #ab75ae);
+  width: 450px;
+  height: 1050px;
+  text-align: center;
+  justify-items: center;
+  display: 1;
+  border-radius: 10px;
+  gap: 10px;
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.25);
 }
 
 .conteudo-painel4 {
-    background: linear-gradient(to bottom, #e68eba, #9e5a77);
-    width: 450px;
-    height: 1050px;
-    text-align: center;
-    justify-items: center;
+  background: linear-gradient(to bottom, #e68eba, #9e5a77);
+  width: 450px;
+  height: 1050px;
+  text-align: center;
+  justify-items: center;
 
-    display: 1;
-    border-radius: 10px;
-    gap: 10px;
-    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.25);
+  display: 1;
+  border-radius: 10px;
+  gap: 10px;
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.25);
 }
 
 /*  vER MAIS    */
 
 .conteudo-painel1 a {
-    color: #000000;
-    text-decoration: none;
-    padding: 16px;
-    text-align: center;
-    border-radius: 10px;
-    font-size: 20px;
-    display: inline-block;
+  color: #000000;
+  text-decoration: none;
+  padding: 16px;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 20px;
+  display: inline-block;
 
-    transition: all 0.25s ease;
+  transition: all 0.25s ease;
 
 }
 
 .conteudo-painel2 a {
-    color: #000000;
-    text-decoration: none;
-    padding: 16px;
-    text-align: center;
-    border-radius: 10px;
-    font-size: 20px;
-    display: inline-block;
+  color: #000000;
+  text-decoration: none;
+  padding: 16px;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 20px;
+  display: inline-block;
 
-    transition: all 0.25s ease;
+  transition: all 0.25s ease;
 }
 
 .conteudo-painel3 a {
-    color: #000000;
-    text-decoration: none;
-    padding: 16px;
-    text-align: center;
-    border-radius: 10px;
-    font-size: 20px;
-    display: inline-block;
+  color: #000000;
+  text-decoration: none;
+  padding: 16px;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 20px;
+  display: inline-block;
 
-    transition: all 0.25s ease;
+  transition: all 0.25s ease;
 
 }
 
 .conteudo-painel4 a {
-    color: #000000;
-    text-decoration: none;
-    padding: 16px;
-    border-radius: 10px;
-    font-size: 20px;
-    display: inline-block;
+  color: #000000;
+  text-decoration: none;
+  padding: 16px;
+  border-radius: 10px;
+  font-size: 20px;
+  display: inline-block;
 
-    transition: all 0.25s ease;
+  transition: all 0.25s ease;
 
 }
 
@@ -548,15 +608,53 @@ body {
 .conteudo-painel2 a:hover,
 .conteudo-painel3 a:hover,
 .conteudo-painel4 a:hover {
-    transform: translateY(5px);
+  transform: translateY(5px);
+}
 
+.pedido-id {
+  display: flex;
+  width: 80%;
+  height: 20%;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 20px;
+  background-color: rgb(252, 251, 251);
+  border-radius: 5px;
+  color: rgb(53, 33, 33);
+  padding: 15px;
+  align-items: center;
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.25)
+}
 
-
-
-
+.pedido-id p {
+  font-family: 'comorant' sans-serif;
+  font-weight: 500;
+  font-size: 25px;
 
 
 }
+
+.pedido-id span {
+  font-family: 'comorant' sans-serif;
+  font-weight: 300;
+  font-size: 25px;
+
+}
+
+.pedido-id strong {
+
+  font-family: 'comorant' sans-serif;
+  font-weight: 600;
+  font-size: 25px;
+
+}
+
+
+
+
+
+
+
 
 @media (max-width: 700px) {
   .cabecalho-pedidos {
