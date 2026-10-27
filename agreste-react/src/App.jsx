@@ -47,7 +47,10 @@ function App() {
   return (
     <div className="aplicacao">
       <anside className="menu">
-        <h2>Agreste Têxtil</h2>
+
+        <img src="/logo.png" alt="Logo" class="logo" />
+
+        <h2>Carcará tech</h2>
 
         <nav>
           <button onClick={() => setPagina("Dashboard")}>
@@ -73,6 +76,21 @@ function App() {
       </anside>
 
       <main className="conteudo" id="dashboard">
+
+        <header className="cabecalho">
+
+          <h3>Com a carcará tech sua gestão é organizada!</h3>
+
+          <div className="usuario">
+            <div className="perfil">
+              <img src="/perfil.jpeg" alt="Foto de perfil" className="perfil" />
+            </div>
+          </div>
+
+
+
+        </header>
+
         {pagina === "Pedidos" ? (
           <Pedidos />
         ) : pagina === "Producao" ? (
