@@ -1,0 +1,30 @@
+AGRESTE TÊXTIL — FRONTEND REACT + BACKEND JAVA PURO
+
+O que foi integrado:
+- Tela Pedidos consulta a API Java para listar, cadastrar e atualizar status.
+- Dashboard carrega os indicadores e os últimos pedidos da API.
+- Tela Produção exibe pedidos reais agrupados por status.
+- O frontend não usa mais localStorage nem pedidos fictícios como fonte de dados.
+- Backend permanece em Java puro usando HttpServer e Gson, sem Spring Boot.
+
+REQUISITOS
+- JDK instalado (o backend foi aberto no IntelliJ com Java 26; Java 17+ é recomendado para este código).
+- Maven instalado ou Maven Wrapper/integração Maven do IntelliJ.
+- Node.js e npm instalados para executar o React.
+
+COMO EXECUTAR
+1. Abra a pasta agreste-backend no IntelliJ (a pasta que contém pom.xml).
+2. Execute o método main da classe br.com.agrestetextil.Servidor.
+3. Confirme que http://localhost:8080/api/health retorna status "ok".
+4. Abra um terminal na pasta P.I-Agreste-t-xtil-main/agreste-react.
+5. Execute: npm install
+6. Depois execute: npm run dev
+7. Abra o endereço local informado pelo Vite no terminal (normalmente http://localhost:5173).
+
+IMPORTANTE
+- Mantenha o backend Java e o frontend React executando ao mesmo tempo.
+- Os pedidos são salvos no arquivo agreste-backend/dados/pedidos.json.
+- A tela Pedidos usa GET/POST /api/pedidos e PATCH /api/pedidos/{numero}/status.
+- O Dashboard usa GET /api/dashboard.
+- Se mudar a porta do backend, atualize API_URL no arquivo src/api.js.
+- Os menus Logística e Relatórios continuam sem integração com o backend.
