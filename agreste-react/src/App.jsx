@@ -1,54 +1,77 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+import Dashboard from "./pages/dashboard";
 import Pedidos from "./pages/pedidos";
 import Producao from "./pages/producao";
-
-
+import Logistica from "./pages/logistica";
+import Relatorio from "./pages/relatorio";
+import Estoque from "./pages/estoque";
 
 function App() {
   const [pagina, setPagina] = useState("Dashboard");
 
-  const [pedidos, setPedidos] = useState([
-    { id: 1, produto: "Camisa polo", status: "Recebido", atrasado: false },
-    { id: 2, produto: "Calça jeans", status: "Pronto", atrasado: false },
-    { id: 3, produto: "Camiseta", status: "Costura", atrasado: true },
-    { id: 4, produto: "Jaqueta", status: "Corte", atrasado: false },
-  ]);
+  const [pedidos, setPedidos] = useState(() => {
+    const pedidosSalvos = localStorage.getItem("agreste_pedidos");
 
-  // Calcula os números dos cards
-  const recebidos = pedidos.filter(
-    (pedido) => pedido.status === "Recebido"
-  ).length;
+    return pedidosSalvos
+      ? JSON.parse(pedidosSalvos)
+      : [];
+  });
 
-  const prontos = pedidos.filter(
-    (pedido) => pedido.status === "Pronto"
-  ).length;
-
-  const emProducao = pedidos.filter(
-    (pedido) =>
-      ["Corte", "Costura", "Acabamento", "Conferência"]
-        .includes(pedido.status)
-  ).length;
-
-  const atrasados = pedidos.filter(
-    (pedido) => pedido.atrasado
-  ).length;
-
-  // Atualiza o status de um pedido
-  function atualizarStatus(id, novoStatus) {
-    setPedidos((listaAtual) =>
-      listaAtual.map((pedido) =>
-        pedido.id === id
-          ? { ...pedido, status: novoStatus }
-          : pedido
-      )
+  useEffect(() => {
+    localStorage.setItem(
+      "agreste_pedidos",
+      JSON.stringify(pedidos)
     );
-  }
+  }, [pedidos]);
+
+
+  const [tecidos, setTecidos] = useState(() => {
+    const salvos = localStorage.getItem("agreste_estoque");
+
+    return salvos ? JSON.parse(salvos) : [
+      {
+        id: 1,
+        nome: "Jeans",
+        cor: "Azul",
+        quantidade: 150,
+        estoqueMinimo: 30,
+        unidade: "metros"
+      },
+      {
+        id: 2,
+        nome: "Algodão",
+        cor: "Branco",
+        quantidade: 80,
+        estoqueMinimo: 20,
+        unidade: "metros"
+      },
+      {
+        id: 3,
+        nome: "Malha",
+        cor: "Preta",
+        quantidade: 45,
+        estoqueMinimo: 20,
+        unidade: "metros"
+      }
+    ];
+  });
+
+  useEffect(() => {
+    localStorage.setItem(
+      "agreste_react_pedidos",
+      JSON.stringify(pedidos)
+    );
+  }, [pedidos]);
+
+
 
   return (
     <div className="aplicacao">
-      <anside className="menu">
 
-        <img src="/logo.png" alt="Logo" class="logo" />
+      <aside className="menu">
+
+        <img src="/logo.png" alt="Logo" className="logo" />
 
         <h2>Carcará tech</h2>
 
@@ -65,119 +88,73 @@ function App() {
             Produção
           </button>
 
-          <button onClick={() => setPagina("Logística")}>
+          <button onClick={() => setPagina("Logistica")}>
             Logística
           </button>
 
-          <button onClick={() => setPagina("Relatórios")}>
+          <button onClick={() => setPagina("Relatorio")}>
             Relatórios
           </button>
-        </nav>
-      </anside>
 
-      <main className="conteudo" id="dashboard">
+          <button onClick={() => setPagina("Estoque")}>
+            Estoque
+          </button>
+        </nav>
+
+      </aside>
+
+      <main className="conteudo">
 
         <header className="cabecalho">
-
-          <h3>Com a carcará tech sua gestão é organizada!</h3>
+          <h3>Com a Carcará Tech sua gestão é organizada!</h3>
 
           <div className="usuario">
             <div className="perfil">
-              <img src="/perfil.jpeg" alt="Foto de perfil" className="perfil" />
+              <img
+                src="/perfil.jpeg"
+                alt="Foto de perfil"
+                className="perfil"
+              />
             </div>
           </div>
-
-
-
         </header>
 
-        {pagina === "Pedidos" ? (
-          <Pedidos />
+        {pagina === "Dashboard" ? (
+          <Dashboard
+            pedidos={pedidos}
+            tecidos={tecidos}
+            setPagina={setPagina}
+          />
+        ) : pagina === "Pedidos" ? (
+          <Pedidos
+            pedidos={pedidos}
+            setPedidos={setPedidos}
+          />
         ) : pagina === "Producao" ? (
           <Producao />
+        ) : pagina === "Logistica" ? (
+          <Logistica
+            pedidos={pedidos}
+            setPedidos={setPedidos}
+          />
+        ) : pagina === "Estoque" ? (
+          <Estoque
+            tecidos={tecidos}
+            setTecidos={setTecidos}
+          />
+        ) : pagina === "Relatorio" ? (
+          <Relatorio />
         ) : (
-          <>
-            <header>
-              <h2>Dashboard</h2>
-              <p>Acompanhe os cards da sua operação</p>
-            </header>
-
-            <section className="cards">
-              <article className="card">
-                <h3>Produtos recebidos</h3>
-                <span>{recebidos}</span>
-              </article>
-
-              <article className="card">
-                <h3>Prontos</h3>
-                <span>{prontos}</span>
-              </article>
-
-              <article className="card">
-                <h3>Em produção</h3>
-                <span>{emProducao}</span>
-              </article>
-
-              <article className="card">
-                <h3>Atrasados</h3>
-                <span>{atrasados}</span>
-              </article>
-
-              <article className="card">
-                <h3>Estoque</h3>
-                <span>0</span>
-              </article>
-
-
-
-            </section>
-
-            <div className="tabela">
-
-              <section className="grafico">grafico</section>
-
-              <section className="ultimosPedidos">pedido</section>
-
-            </div>
-          </>
+          <Dashboard
+            pedidos={pedidos}
+            tecidos={tecidos}
+            setPagina={setPagina}
+          />
         )}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       </main>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </div>
   );
-
-
-
 }
 
 export default App;

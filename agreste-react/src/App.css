@@ -124,9 +124,35 @@ body {
   border: none;
   font-size: 25px;
   padding: 12px;
-  margin: 40px;
+  margin: 20px;
   border-radius: 8px;
 }
+
+span {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+p {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 30px;
+}
+
+h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 25px;
+}
+
+
 
 .menu button:hover {
   background: #1a0909;
@@ -168,13 +194,13 @@ body {
 
 .card h3 {
   margin: 15px;
-  font-size: 15px;
+  font-size: 25px;
   color: #78716c;
 }
 
 .card span {
   margin: 200px 100px 0% 85px;
-  font-size: 50px;
+  font-size: 100px;
   font-weight: bold;
   color: #b45309;
 }
@@ -189,8 +215,8 @@ body {
 }
 
 .grafico {
-  width: 50%;
-  height: 66%;
+  width: 880px;
+  height: 800px;
   border: 1px solid #e7e5e4;
   padding: 370px 400px;
   border-radius: 10px;
@@ -204,19 +230,97 @@ body {
 }
 
 .ultimosPedidos {
-  width: 50%;
-  height: 66%;
+  width: 900px;
+  height: 800px;
   border: 1px solid #e7e5e4;
   padding: 370px 400px;
   border-radius: 10px;
   display: grid;
   flex-direction: column;
   background-color: white;
-  margin: 20px 20px 20px -65px;
+  margin: 20px 20px 20px 10px;
   justify-content: center;
   align-items: center;
   box-shadow: 0 3px 10px #00000008;
 }
+
+
+/* SEÇÃO DE ÚLTIMOS PEDIDOS */
+
+
+/* ÁREA DOS GRÁFICOS E TABELAS */
+
+.tabela {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    align-items: stretch;
+    width: 100%;
+}
+
+.grafico-container,
+.ultimosPedidos {
+    width: 100%;
+    min-width: 0;
+    min-height: 420px;
+    padding: 28px;
+    box-sizing: border-box;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+}
+
+.grafico-container h2,
+.ultimosPedidos h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+/* ÚLTIMOS PEDIDOS */
+
+.ultimosPedidos {
+    display: flex;
+    flex-direction: column;
+}
+
+.tituloPedidos {
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+.tabelaPedidos {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.tabelaPedidos table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabelaPedidos th {
+    font-size: 14px;
+    padding: 16px;
+    background: #fafaf9;
+    text-align: left;
+}
+
+.tabelaPedidos td {
+    font-size: 14px;
+    padding: 20px 16px;
+    border-bottom: 1px solid #eee;
+}
+
+/* TELAS MENORES */
+
+@media (max-width: 900px) {
+    .tabela {
+        grid-template-columns: 1fr;
+    }
+}
+
+
 
 /*  Tabela formatação          */
 
@@ -504,7 +608,7 @@ body {
 .conteudo-painel1 {
   background: linear-gradient(to bottom, #97929258, #bb9f9f52);
   width: 450px;
-  height: 800px;
+  height: 1050px;
   display: 1;
   align-self: center;
   text-align: center;
@@ -648,6 +752,338 @@ body {
   font-size: 25px;
 
 }
+
+/*      Tela de relatorios e tabelas              */
+
+.graficos-relatorios {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+  height: 80%;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  justify-items: center;
+  align-items: center;
+}
+
+.grafico-relat {
+  width: 900px;
+  height: 500px;
+  gap: 20px;
+  display: flex;
+  margin-top: auto;
+  border: 1px solid #e7e5e4;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.25)
+}
+
+
+/* PAINEL DE ACOMPANHAMENTO */
+
+.acompanhamento {
+  background: #fff;
+  padding: 28px;
+  border-radius: 16px;
+  margin-top: 25px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+  animation: aparecer 0.3s ease;
+}
+
+.acompanhamento h2 {
+  color: #78350f;
+  font-size: 23px;
+  margin-bottom: 8px;
+}
+
+.acompanhamento > p {
+  color: #777;
+  margin: 8px 0;
+}
+
+.acompanhamento h3 {
+  color: #444;
+  margin: 30px 0 20px;
+}
+
+/* BOTÃO VOLTAR */
+
+.acompanhamento button {
+  background: #fff7ed;
+  color: #9a3412;
+  border: 1px solid #fed7aa;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-bottom: 22px;
+  transition: 0.2s;
+}
+
+.acompanhamento button:hover {
+  background: #ffedd5;
+}
+
+/* LINHA DO TEMPO */
+
+.linha-etapas {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 30px;
+  overflow-x: auto;
+  padding: 10px 5px 20px;
+}
+
+.etapa {
+  flex: 1;
+  min-width: 95px;
+  text-align: center;
+  position: relative;
+}
+
+/* CÍRCULO DA ETAPA */
+
+.etapa span {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+  border-radius: 50%;
+  background: #e5e7eb;
+  color: #777;
+  font-weight: bold;
+  position: relative;
+  z-index: 2;
+}
+
+/* ETAPAS CONCLUÍDAS */
+
+.etapa.concluida span {
+  background: #fed7aa;
+  color: #9a3412;
+}
+
+/* ETAPA ATUAL */
+
+.etapa.atual span {
+  background: #c2410c;
+  color: white;
+  box-shadow: 0 0 0 5px #ffedd5;
+}
+
+.etapa p {
+  color: #777;
+  font-size: 13px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.etapa.atual p {
+  color: #9a3412;
+  font-weight: 700;
+}
+
+.etapa small {
+  display: inline-block;
+  margin-top: 7px;
+  color: #c2410c;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+
+.estoque {
+  padding: 30px;
+  background: #f8fafc;
+  min-height: 100vh;
+  color: #292524;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.estoque header {
+  margin-bottom: 28px;
+}
+
+.estoque header h2 {
+  font-size: 28px;
+  color: #92400e;
+  margin-bottom: 8px;
+}
+
+.estoque header p {
+  color: #78716c;
+  font-size: 14px;
+}
+
+/* Seções e formulários */
+.estoque form,
+.alerta-estoque,
+.historico-estoque,
+.estoque .tabela-pedidos {
+  background: #ffffff;
+  padding: 22px;
+  border-radius: 14px;
+  border: 1px solid #e7e5e4;
+  margin-bottom: 22px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.04);
+}
+
+.estoque h3 {
+  color: #92400e;
+  margin-bottom: 18px;
+  font-size: 18px;
+}
+
+/* Campos */
+.estoque input,
+.estoque select {
+  padding: 12px 14px;
+  border: 1px solid #e7e5e4;
+  border-radius: 9px;
+  background: #fafaf9;
+  color: #292524;
+  outline: none;
+  margin: 5px;
+  max-width: 100%;
+}
+
+.estoque input:focus,
+.estoque select:focus {
+  border-color: #d97706;
+  box-shadow: 0 0 0 3px rgba(217,119,6,0.12);
+}
+
+/* Botões */
+.estoque button {
+  background: #d97706;
+  color: white;
+  border: none;
+  padding: 11px 17px;
+  border-radius: 9px;
+  cursor: pointer;
+  font-weight: 600;
+  margin: 5px;
+  transition: 0.2s;
+}
+
+.estoque button:hover {
+  background: #92400e;
+  transform: translateY(-1px);
+}
+
+/* Tabelas */
+.estoque .tabela-pedidos {
+  overflow-x: auto;
+  padding: 0;
+}
+
+.estoque table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+.estoque th {
+  background: #fff7ed;
+  color: #92400e;
+  font-size: 13px;
+  text-align: left;
+  padding: 16px;
+}
+
+.estoque td {
+  padding: 15px 16px;
+  border-bottom: 1px solid #f1f0ee;
+  font-size: 13px;
+}
+
+.estoque tbody tr:hover {
+  background: #fffbeb;
+}
+
+/* Alertas */
+.alerta-estoque p {
+  background: #fff7ed;
+  color: #9a3412;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+/* Histórico */
+.historico-estoque {
+  margin-top: 25px;
+}
+
+.grafico-container {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 25px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.grafico-container h2 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .estoque {
+    padding: 16px;
+  }
+
+  .estoque form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .estoque input,
+  .estoque select,
+  .estoque button {
+    width: 100%;
+    margin: 5px 0;
+  }
+}
+
+
+/* ANIMAÇÃO */
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 650px) {
+  .acompanhamento {
+    padding: 18px;
+  }
+
+  .linha-etapas {
+    justify-content: flex-start;
+  }
+
+  .etapa {
+    min-width: 105px;
+  }
+}
+
 
 
 

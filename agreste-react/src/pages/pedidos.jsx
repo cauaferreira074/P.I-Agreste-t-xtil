@@ -1,5 +1,6 @@
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import Acompanhamento from "./acompanhamento";
 
 const statusDisponiveis = [
   { valor: "recebido", nome: "Recebido" },
@@ -28,15 +29,7 @@ function dataFormatada(data) {
   return `${dia}/${mes}/${ano}`;
 }
 
-function Pedidos() {
-  const [pedidos, setPedidos] = useState(() => {
-    try {
-      const salvos = localStorage.getItem("agreste_react_pedidos");
-      return salvos ? JSON.parse(salvos) : pedidosIniciais;
-    } catch {
-      return pedidosIniciais;
-    }
-  });
+function Pedidos({ pedidos, setPedidos }) {
 
   const [pesquisa, setPesquisa] = useState("");
   const [formularioAberto, setFormularioAberto] = useState(false);
@@ -48,9 +41,8 @@ function Pedidos() {
     prazo: "",
   });
 
-  useEffect(() => {
-    localStorage.setItem("agreste_react_pedidos", JSON.stringify(pedidos));
-  }, [pedidos]);
+  const [pedidoSelecionado, setPedidoSelecionado] = useState(null);
+
 
   function atualizarCampo(evento) {
     const { name, value } = evento.target;
@@ -223,7 +215,9 @@ function Pedidos() {
               );
 
               return (
-                <tr key={pedido.numero}>
+                <tr key={pedido.numero}
+                  onClick={() => setPedidoSelecionado(pedido)}
+                  className="linha-pedido">
                   <td>#{pedido.numero}</td>
                   <td>{pedido.cliente}</td>
                   <td>{pedido.quantidade} peças</td>
@@ -253,6 +247,15 @@ function Pedidos() {
                 </tr>
               );
             })}
+
+            {pedidoSelecionado && (
+              <Acompanhamento
+                pedido={pedidos.find(
+                  p => p.numero === pedidoSelecionado.numero
+                )}
+                fechar={() => setPedidoSelecionado(null)}
+              />
+            )}
 
             {pedidosFiltrados.length === 0 && (
               <tr>
