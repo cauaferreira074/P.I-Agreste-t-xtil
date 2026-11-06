@@ -29,7 +29,9 @@ function dataFormatada(data) {
   return `${dia}/${mes}/${ano}`;
 }
 
-function Pedidos({ pedidos, setPedidos }) {
+function Pedidos({ pedidos, setPedidos, setAnimar }) {
+
+ 
 
   const [pesquisa, setPesquisa] = useState("");
   const [formularioAberto, setFormularioAberto] = useState(false);
@@ -92,8 +94,9 @@ function Pedidos({ pedidos, setPedidos }) {
           : pedido
       )
     );
-  }
 
+    setAnimar((valor) => valor + 1);
+  }
   const pedidosFiltrados = pedidos.filter((pedido) => {
     const termo = pesquisa.toLowerCase();
 

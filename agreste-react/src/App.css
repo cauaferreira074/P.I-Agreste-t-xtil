@@ -18,7 +18,7 @@ body {
 
 /*      Cabeçalho do perfil       */
 .cabecalho {
-  background: #925004;
+  background: linear-gradient(to top, #D97706, #7C2D12);
   display: flex;
   width: 100%;
 
@@ -60,6 +60,14 @@ body {
 
 }
 
+.img-card {
+  width: 80px;
+  height: 80px;
+  margin-left: 30px;
+  margin-top: 15px;
+  padding: none;
+}
+
 .cabecalho p {
   font-family: 'Montserrat' sans-serif;
   font-weight: 600;
@@ -68,6 +76,32 @@ body {
   transform: translateX(-230%);
   margin-top: 60px;
 
+}
+
+@keyframes pulo {
+  0% {
+    transform: translateY(0);
+  }
+
+  30% {
+    transform: translateY(-15px);
+  }
+
+  50% {
+    transform: translateY(0);
+  }
+
+  70% {
+    transform: translateY(-7px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.icone-pulo {
+  animation: pulo 0.6s ease;
 }
 
 .usuario {
@@ -96,19 +130,35 @@ body {
 }
 
 .menu {
-  width: 250px;
+  width: 500px;
   flex-shrink: 0;
   align-items: center;
   justify-items: center;
   padding: 24px 18px;
-  background: #D97706;
+  background: linear-gradient(to bottom, #D97706, #7C2D12);
   align-items: center;
   color: white;
 }
 
+.lucide {
+  display: inline-block;
+
+  width: 40px;
+  height: 40px;
+  color: #f6f5f4;
+  stroke-width: 2.5;
+  margin-right: 10px;
+}
+
+.menu-button i {
+  width: 50px;
+  height: 20px;
+}
+
 .menu h2 {
   font-family: 'Montserrat', sans-serif;
-  font-weight: 800;
+  font-weight: 700;
+  font-size: 70px;
 }
 
 .menu nav {
@@ -119,43 +169,65 @@ body {
 
 .menu button {
   color: white;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'cormorant', sans-serif;
   background: none;
   border: none;
-  font-size: 25px;
-  padding: 12px;
-  margin: 20px;
+  font-size: 40px;
+  padding: 12px 20px;
+  margin: 10px;
   border-radius: 8px;
+  font-weight: 400;
+}
+
+.menu-button i {
+  width: 32px;
+  height: 32px;
+  color: #D97706;
+  stroke-width: 2.5;
 }
 
 span {
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 30px;
 }
 
-p {
+header p {
   font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  font-size: 20px;
+  font-weight: 800;
+  font-size: 25px;
 }
 
 h3 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
-  font-size: 30px;
+  font-size: 35px;
+
 }
 
 h2 {
   font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+
+}
+
+.dashboard {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 50px;
+}
+
+.acompanhamentoPedidos p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 35px;
   font-weight: 600;
-  font-size: 25px;
 }
 
 
 
 .menu button:hover {
   background: #1a0909;
+  width: 100%;
 }
 
 .conteudo {
@@ -199,7 +271,7 @@ h2 {
 }
 
 .card span {
-  margin: 200px 100px 0% 85px;
+  margin: 100px 40px 0px 40px;
   font-size: 100px;
   font-weight: bold;
   color: #b45309;
@@ -215,7 +287,7 @@ h2 {
 }
 
 .grafico {
-  width: 880px;
+  width: 800px;
   height: 800px;
   border: 1px solid #e7e5e4;
   padding: 370px 400px;
@@ -230,15 +302,15 @@ h2 {
 }
 
 .ultimosPedidos {
-  width: 900px;
-  height: 800px;
+  width: 880px;
+  height: 850px;
   border: 1px solid #e7e5e4;
   padding: 370px 400px;
   border-radius: 10px;
   display: grid;
   flex-direction: column;
   background-color: white;
-  margin: 20px 20px 20px 10px;
+  margin: 30px 20px 20px 10px;
   justify-content: center;
   align-items: center;
   box-shadow: 0 3px 10px #00000008;
@@ -251,73 +323,87 @@ h2 {
 /* ÁREA DOS GRÁFICOS E TABELAS */
 
 .tabela {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 20px;
-    align-items: stretch;
-    width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  align-items: stretch;
+  width: 100%;
 }
 
 .grafico-container,
 .ultimosPedidos {
-    width: 100%;
-    min-width: 0;
-    min-height: 420px;
-    padding: 28px;
-    box-sizing: border-box;
-    background: #fff;
-    border: 1px solid #e5e7eb;
-    border-radius: 16px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+  width: 100%;
+  min-width: 0;
+  min-height: 420px;
+  padding: 28px;
+  box-sizing: border-box;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+}
+
+.visaoPedidos {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 30px;
+
+
 }
 
 .grafico-container h2,
 .ultimosPedidos h2 {
-    font-size: 20px;
-    margin-bottom: 20px;
+  font-size: 40px;
+  margin-bottom: 20px;
 }
 
 /* ÚLTIMOS PEDIDOS */
 
 .ultimosPedidos {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  font-size: 30px;
+  flex-direction: column;
+  color: rgb(5, 5, 5);
 }
 
 .tituloPedidos {
-    width: 100%;
-    margin-bottom: 25px;
+  width: 100%;
+  font-size: 50px;
+  margin-bottom: 25px;
 }
 
 .tabelaPedidos {
-    width: 100%;
-    overflow-x: auto;
+  width: 100%;
+  overflow-x: auto;
 }
 
 .tabelaPedidos table {
-    width: 100%;
-    border-collapse: collapse;
+  width: 100%;
+  height: 600px;
+  font-size: 20px;
+  border-collapse: collapse;
 }
 
 .tabelaPedidos th {
-    font-size: 14px;
-    padding: 16px;
-    background: #fafaf9;
-    text-align: left;
+  font-size: 25px;
+  padding: 16px;
+  background: linear-gradient(to top, #ff8e04, #c2410c);
+  color: #ffffff;
+  text-align: left;
 }
 
 .tabelaPedidos td {
-    font-size: 14px;
-    padding: 20px 16px;
-    border-bottom: 1px solid #eee;
+  font-size: 25px;
+  padding: 20px 16px;
+  border-bottom: 1px solid #eee;
 }
 
 /* TELAS MENORES */
 
 @media (max-width: 900px) {
-    .tabela {
-        grid-template-columns: 1fr;
-    }
+  .tabela {
+    grid-template-columns: 1fr;
+  }
 }
 
 
@@ -339,17 +425,20 @@ h2 {
 
 .cabecalho-pedidos h1 {
   margin-bottom: 8px;
+  font-size: 60px;
 }
 
 .cabecalho-pedidos p {
   color: #78716c;
+  font-size: 25px;
 }
 
 .botao-novo {
-  padding: 12px 18px;
+  padding: 25px 50px;
   background: #b45309;
   color: white;
   border: none;
+  font-size: 25px;
   border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
@@ -365,18 +454,21 @@ h2 {
   margin-bottom: 20px;
   border: 1px solid #d6d3d1;
   border-radius: 8px;
-  font-size: 15px;
+
+  font-size: 25px;
 }
 
 .formulario-pedido {
   background: white;
   padding: 24px;
+  font-size: 25px;
   border: 1px solid #e7e5e4;
   border-radius: 12px;
   margin-bottom: 24px;
 }
 
 .formulario-pedido h2 {
+  font-size: 36px;
   margin-top: 0;
 }
 
@@ -394,13 +486,14 @@ h2 {
 }
 
 .campo label {
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 27px;
+  font-weight: 400;
 }
 
 .campo input {
   width: 100%;
   min-width: 0;
+  font-size: 25px;
   padding: 11px;
   border: 1px solid #d6d3d1;
   border-radius: 7px;
@@ -409,7 +502,7 @@ h2 {
 .tabela-pedidos {
   width: 100%;
   overflow-x: auto;
-  background: white;
+  background: rgb(253, 253, 253);
   border: 1px solid #e7e5e4;
   border-radius: 12px;
 }
@@ -423,27 +516,31 @@ h2 {
 .tabela-pedidos th,
 .tabela-pedidos td {
   padding: 15px;
+  font-size: 50px;
+  background: #f9f9f9;
   border-bottom: 1px solid #e7e5e4;
   white-space: nowrap;
 }
 
 .tabela-pedidos th {
-  background: #f5f5f4;
-  color: #57534e;
-  font-size: 13px;
+  background: #D97706;
+  color: #ffffff;
+  font-size: 25px;
 }
 
 .tabela-pedidos td {
-  font-size: 14px;
+  font-size: 25px;
 }
 
 .tabela-pedidos tbody tr:hover {
   background: #fafaf9;
+  font-size: 25px;
 }
 
 .tabela-pedidos select {
-  max-width: 150px;
+  max-width: 200px;
   padding: 9px;
+  font-size: 23px;
   border: 1px solid #d6d3d1;
   border-radius: 7px;
   background: white;
@@ -453,7 +550,7 @@ h2 {
   display: inline-block;
   padding: 6px 10px;
   border-radius: 20px;
-  font-size: 12px;
+  font-size: 25px;
   font-weight: 600;
 }
 
@@ -607,8 +704,8 @@ h2 {
 /*  Recabidos    */
 .conteudo-painel1 {
   background: linear-gradient(to bottom, #97929258, #bb9f9f52);
-  width: 450px;
-  height: 1050px;
+  width: 500px;
+  height: 1300px;
   display: 1;
   align-self: center;
   text-align: center;
@@ -620,8 +717,8 @@ h2 {
 
 .conteudo-painel2 {
   background: linear-gradient(to bottom, #06cbd9, #98cfd3);
-  width: 450px;
-  height: 1050px;
+  width: 500px;
+  height: 1300px;
   display: 1;
   justify-items: center;
   text-align: center;
@@ -633,8 +730,8 @@ h2 {
 
 .conteudo-painel3 {
   background: linear-gradient(to bottom, #dc88e1, #ab75ae);
-  width: 450px;
-  height: 1050px;
+  width: 500px;
+  height: 1300px;
   text-align: center;
   justify-items: center;
   display: 1;
@@ -645,8 +742,8 @@ h2 {
 
 .conteudo-painel4 {
   background: linear-gradient(to bottom, #e68eba, #9e5a77);
-  width: 450px;
-  height: 1050px;
+  width: 500px;
+  height: 1300px;
   text-align: center;
   justify-items: center;
 
@@ -796,7 +893,7 @@ h2 {
   margin-bottom: 8px;
 }
 
-.acompanhamento > p {
+.acompanhamento>p {
   color: #777;
   margin: 8px 0;
 }
@@ -929,7 +1026,7 @@ h2 {
   border-radius: 14px;
   border: 1px solid #e7e5e4;
   margin-bottom: 22px;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.04);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.04);
 }
 
 .estoque h3 {
@@ -954,7 +1051,7 @@ h2 {
 .estoque input:focus,
 .estoque select:focus {
   border-color: #d97706;
-  box-shadow: 0 0 0 3px rgba(217,119,6,0.12);
+  box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.12);
 }
 
 /* Botões */

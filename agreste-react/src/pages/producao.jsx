@@ -41,9 +41,9 @@ function Producao() {
 
 
                     <div className="coluna-cabecalho1">
-                        <span>.</span>
+                      
                         <h3>Recebidos</h3>
-                        <strong>( 3 )</strong>
+                        <strong>{'recebido'}</strong>
                     </div>
 
                     <div className="pedido-id">
@@ -73,9 +73,9 @@ function Producao() {
 
 
                     <div className="coluna-cabecalho2">
-                        <span>.</span>
+                     
                         <h3>Corte</h3>
-                        <strong>( 4 )</strong>
+                        <strong>{'corte'}</strong>
                     </div>
 
 
@@ -105,9 +105,9 @@ function Producao() {
 
 
                     <div className="coluna-cabecalho3">
-                        <span>.</span>
+                    
                         <h3>Costura</h3>
-                        <strong>( 3 )</strong>
+                        <strong>{'costura'}</strong>
                     </div>
 
 
@@ -132,9 +132,8 @@ function Producao() {
 
 
                     <div className="coluna-cabecalho4">
-                        <span>.</span>
                         <h3>Acabamento</h3>
-                        <strong>( 2 )</strong>
+                        <strong>{'acabamento'}</strong>
                     </div>
 
 

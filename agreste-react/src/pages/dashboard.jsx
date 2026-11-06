@@ -8,7 +8,7 @@ import {
 } from "recharts";
 
 
-function Dashboard({ pedidos = [], tecidos = [], setPagina }) {
+function Dashboard({ pedidos = [], tecidos = [], setPagina, animar }) {
 
     const recebidos = pedidos.filter(
         pedido => pedido.status === "recebido"
@@ -88,7 +88,7 @@ function Dashboard({ pedidos = [], tecidos = [], setPagina }) {
     return (
         <>
             <header>
-                <h2>Dashboard</h2>
+                <h2 className="dashboard">Dashboard</h2>
                 <p>Acompanhe os cards da sua operação</p>
             </header>
 
@@ -97,21 +97,26 @@ function Dashboard({ pedidos = [], tecidos = [], setPagina }) {
                 <article className="card">
                     <h3>Produtos recebidos</h3>
                     <span>{recebidos}</span>
+                    <img key={animar} src="/recebidos.png" alt="Produtos recebidos" className="img-card icone-pulo" />
                 </article>
 
                 <article className="card">
                     <h3>Prontos</h3>
                     <span>{prontos}</span>
+                    <img key={animar} src="/prontos.png" alt="Produtos prontos" className="img-card icone-pulo" />
                 </article>
 
                 <article className="card">
                     <h3>Em produção</h3>
                     <span>{emProducao}</span>
+                    <img key={animar}
+                    src="/producao.png" alt="Produtos em produção" className="img-card icone-pulo" />
                 </article>
 
                 <article className="card">
                     <h3>Atrasados</h3>
                     <span>{atrasados}</span>
+                    <img key={animar} src="/atrasados.png" alt="Produtos atrasados" className="img-card icone-pulo" />
                 </article>
 
                 <article
@@ -137,7 +142,7 @@ function Dashboard({ pedidos = [], tecidos = [], setPagina }) {
 
                 <section className="grafico-container">
 
-                    <h2>Visão geral dos pedidos</h2>
+                    <h3 className="visaoPedidos">Visão geral dos pedidos</h3>
                     <div style={{ width: "100%", height: "600px" }}>
 
                         <ResponsiveContainer width="100%" height="100%">
@@ -173,8 +178,7 @@ function Dashboard({ pedidos = [], tecidos = [], setPagina }) {
 
                 <section className="ultimosPedidos">
                     <div className="tituloPedidos">
-                        <div>
-                            <h2>Últimos pedidos</h2>
+                        <div className="acompanhamentoPedidos">
                             <p>Acompanhe os pedidos recentes</p>
                         </div>
 

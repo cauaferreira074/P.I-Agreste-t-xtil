@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import './App.css';
 import Dashboard from "./pages/dashboard";
 import Pedidos from "./pages/pedidos";
 import Producao from "./pages/producao";
@@ -64,6 +64,10 @@ function App() {
     );
   }, [pedidos]);
 
+  useEffect(() => {
+    window.lucide.createIcons();
+  }, []);
+
 
 
   return (
@@ -77,26 +81,32 @@ function App() {
 
         <nav>
           <button onClick={() => setPagina("Dashboard")}>
+            <i className="lucide" data-lucide="layout-dashboard"></i>
             Dashboard
           </button>
 
           <button onClick={() => setPagina("Pedidos")}>
+            <i className="lucide" data-lucide="shopping-cart"></i>
             Pedidos
           </button>
 
           <button onClick={() => setPagina("Producao")}>
+            <i className="lucide" data-lucide="package"></i>
             Produção
           </button>
 
           <button onClick={() => setPagina("Logistica")}>
+            <i className="lucide" data-lucide="truck"></i>
             Logística
           </button>
 
           <button onClick={() => setPagina("Relatorio")}>
+            <i className="lucide" data-lucide="bar-chart-3"></i>
             Relatórios
           </button>
 
           <button onClick={() => setPagina("Estoque")}>
+            <i className="lucide" data-lucide="archive"></i>
             Estoque
           </button>
         </nav>
