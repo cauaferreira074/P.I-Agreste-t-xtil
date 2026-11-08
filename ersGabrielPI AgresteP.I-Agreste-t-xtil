@@ -1,0 +1,45 @@
+ Front-teste/README.md                              |   83 [32m+[m
+ Front-teste/agr.js                                 |  518 [32m++++++[m
+ Front-teste/ccc                                    |  513 [32m++++++[m
+ Front-teste/configuracoes.html                     |  112 [32m++[m
+ Front-teste/estoque.html                           |  230 [32m+++[m
+ Front-teste/logistica.html                         |  238 [32m+++[m
+ Front-teste/pedidos.html                           |  498 [32m++++++[m
+ Front-teste/producao.html                          |  247 [32m+++[m
+ "Front-teste/pr\303\241tica.js"                    |    5 [32m+[m
+ Front-teste/relatorio.html                         |   88 [32m+[m
+ Front-teste/style.css                              | 1647 [32m+++++++++++++++++++[m
+ agreste-react/.gitignore                           |   24 [31m-[m
+ agreste-react/.oxlintrc.json                       |    8 [31m-[m
+ agreste-react/README.md                            |   16 [31m-[m
+ agreste-react/index.html                           |   14 [31m-[m
+ agreste-react/package-lock.json                    | 1731 [31m--------------------[m
+ agreste-react/package.json                         |   25 [31m-[m
+ agreste-react/public/atrasados.png                 |  Bin [31m226083[m -> [32m0[m bytes
+ agreste-react/public/em_producao.png               |  Bin [31m227560[m -> [32m0[m bytes
+ agreste-react/public/favicon.svg                   |    1 [31m-[m
+ agreste-react/public/icons.svg                     |   24 [31m-[m
+ agreste-react/public/logo.png                      |  Bin [31m1310081[m -> [32m0[m bytes
+ agreste-react/public/perfil.jpeg                   |  Bin [31m56608[m -> [32m0[m bytes
+ agreste-react/public/prontos.png                   |  Bin [31m180138[m -> [32m0[m bytes
+ agreste-react/public/recebidos.png                 |  Bin [31m215761[m -> [32m0[m bytes
+ agreste-react/src/App.css                          | 1227 [31m--------------[m
+ agreste-react/src/App.jsx                          |  170 [31m--[m
+ agreste-react/src/assets/hero.png                  |  Bin [31m13057[m -> [32m0[m bytes
+ agreste-react/src/assets/react.svg                 |    1 [31m-[m
+ agreste-react/src/assets/vite.svg                  |    1 [31m-[m
+ agreste-react/src/index.css                        |    0
+ agreste-react/src/main.jsx                         |   12 [31m-[m
+ agreste-react/src/pages/acompanhamento.jsx         |   57 [31m-[m
+ .../src/pages/acompanhamentoLogistica.jsx          |   62 [31m-[m
+ agreste-react/src/pages/dashboard.jsx              |  224 [31m---[m
+ agreste-react/src/pages/estoque.jsx                |  340 [31m----[m
+ agreste-react/src/pages/logistica.jsx              |  147 [31m--[m
+ agreste-react/src/pages/pedidos.jsx                |  276 [31m----[m
+ agreste-react/src/pages/producao.jsx               |  169 [31m--[m
+ agreste-react/src/pages/relatorio.jsx              |   30 [31m-[m
+ agreste-react/vite.config.js                       |    7 [31m-[m
+ node_modules/.package-lock.json                    |    6 [32m+[m
+ package-lock.json                                  |    6 [32m+[m
+ package.json                                       |    1 [32m+[m
+ 44 files changed, 4192 insertions(+), 4566 deletions(-)

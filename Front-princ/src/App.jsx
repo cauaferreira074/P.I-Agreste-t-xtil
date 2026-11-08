@@ -9,7 +9,11 @@ import Estoque from "./pages/estoque";
 import Configuracoes from "./pages/configuracoes";
 import Notificacoes from "./pages/notificacoes";
 
+
+
 function App() {
+
+  
   const [pagina, setPagina] = useState("Dashboard");
 
   const [pedidos, setPedidos] = useState(() => {
@@ -69,6 +73,8 @@ function App() {
   useEffect(() => {
     window.lucide.createIcons();
   }, []);
+
+  
 
 
 
