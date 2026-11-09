@@ -1,169 +1,74 @@
 
+function Producao({ pedidos = [] }) {
 
-
-function Producao() {
-
-
-
-    function renderizarColuna(status, titulo, classe) {
+    function renderizarColuna(status, titulo, classe, classeCabecalho) {
         const pedidosDaColuna = pedidos.filter(
-            (pedido) => pedido.status === status
+            pedido => pedido.status === status
         );
 
         return (
             <div className={classe}>
-                <div className="coluna-cabecalho">
+                <div className={classeCabecalho}>
                     <h3>{titulo}</h3>
-                    <strong>({pedidosDaColuna.length})</strong>
+                    <strong>{pedidosDaColuna.length}</strong>
                 </div>
 
-                {pedidosDaColuna.map((pedido) => (
-                    <div className="pedido-id" key={pedido.numero}>
-                        <strong>#{pedido.numero}</strong>
-                        <p>{pedido.cliente}</p>
-                        <span>{pedido.quantidade} peças</span>
-                    </div>
-                ))}
+                {pedidosDaColuna.length > 0 ? (
+                    pedidosDaColuna.map(pedido => (
+                        <div
+                            className="pedido-id"
+                            key={pedido.id ?? pedido.numero}
+                        >
+                            <strong>#{pedido.numero}</strong>
+                            <p>{pedido.cliente}</p>
+                            <span>{pedido.quantidade} peças</span>
+                        </div>
+                    ))
+                ) : (
+                    <p className="sem-pedidos">
+                        Nenhum pedido nesta etapa.
+                    </p>
+                )}
             </div>
         );
     }
 
     return (
-
         <main className="conteudo" id="producao">
 
-            
-
-
-
             <section id="painel">
-                <div className="conteudo-painel1">
 
+                {renderizarColuna(
+                    "recebido",
+                    "Recebidos",
+                    "conteudo-painel1",
+                    "coluna-cabecalho1"
+                )}
 
-                    <div className="coluna-cabecalho1">
-                      
-                        <h3>Recebidos</h3>
-                        <strong>{'recebido'}</strong>
-                    </div>
+                {renderizarColuna(
+                    "corte",
+                    "Corte",
+                    "conteudo-painel2",
+                    "coluna-cabecalho2"
+                )}
 
-                    <div className="pedido-id">
-                        <strong>#00123</strong>
-                        <p>LojaF</p>
-                        <span>200 peças</span>
-                    </div>
+                {renderizarColuna(
+                    "costura",
+                    "Costura",
+                    "conteudo-painel3",
+                    "coluna-cabecalho3"
+                )}
 
-                    <div className="pedido-id">
-                        <strong>#00124</strong>
-                        <p>LojaG</p>
-                        <span>150 peças</span>
-                    </div>
-
-                    <div className="pedido-id">
-                        <strong>#00129</strong>
-                        <p>LojaE</p>
-                        <span>600 peças</span>
-                    </div>
-
-                    <a href="#">ver mais</a>
-
-                </div>
-
-
-                <div className="conteudo-painel2">
-
-
-                    <div className="coluna-cabecalho2">
-                     
-                        <h3>Corte</h3>
-                        <strong>{'corte'}</strong>
-                    </div>
-
-
-                    <div className="pedido-id">
-                        <strong>#00126</strong>
-                        <p>LojaB</p>
-                        <span>300 peças</span>
-                    </div>
-
-                    <div className="pedido-id">
-                        <strong>#00130</strong>
-                        <p>LojaH</p>
-                        <span>400 peças</span>
-                    </div>
-
-                    <div className="pedido-id">
-                        <strong>#00132</strong>
-                        <p>LojaI</p>
-                        <span>250 peças</span>
-                    </div>
-
-                    <a href="#">ver mais</a>
-
-                </div>
-
-                <div className="conteudo-painel3">
-
-
-                    <div className="coluna-cabecalho3">
-                    
-                        <h3>Costura</h3>
-                        <strong>{'costura'}</strong>
-                    </div>
-
-
-
-                    <div className="pedido-id">
-                        <strong>#00125</strong>
-                        <p>LojaA</p>
-                        <span>250 peças</span>
-                    </div>
-
-                    <div className="pedido-id">
-                        <strong>#00128</strong>
-                        <p>LojaD</p>
-                        <span>400 peças</span>
-                    </div>
-
-                    <a href="#">ver mais</a>
-
-                </div>
-
-                <div className="conteudo-painel4">
-
-
-                    <div className="coluna-cabecalho4">
-                        <h3>Acabamento</h3>
-                        <strong>{'acabamento'}</strong>
-                    </div>
-
-
-                    <div className="pedido-id">
-                        <strong>#00127</strong>
-                        <p>LojaT</p>
-                        <span>200 peças</span>
-                    </div>
-
-                    <div className="pedido-id">
-                        <strong>#00131</strong>
-                        <p>LojaN</p>
-                        <span> 100 peças</span>
-                    </div>
-
-                    <a href="#">ver mais</a>
-
-                </div>
+                {renderizarColuna(
+                    "acabamento",
+                    "Acabamento",
+                    "conteudo-painel4",
+                    "coluna-cabecalho4"
+                )}
 
             </section>
-
-        </main>    
-
-
-            );
-
-
-
-
-
+        </main>
+    );
 }
 
-            export default Producao;
+export default Producao;

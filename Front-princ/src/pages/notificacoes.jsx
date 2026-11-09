@@ -1,79 +1,191 @@
+
 import React, { useState, useEffect } from "react";
 
-
-const notificacoesIniciais = [
-    {
-        id: 1,
-        titulo: "Novo pedido recebido",
-        descricao: "Um novo pedido foi registrado no sistema.",
-        tipo: "pedido",
-        icone: "shopping_cart",
-        data: "Hoje",
-        lida: false
-    },
-    {
-        id: 2,
-        titulo: "Estoque baixo",
-        descricao: "A quantidade de um tecido está abaixo do esperado.",
-        tipo: "estoque",
-        icone: "inventory_2",
-        data: "Hoje",
-        lida: false
-    },
-    {
-        id: 3,
-        titulo: "Produção finalizada",
-        descricao: "Um pedido concluiu todas as etapas de produção.",
-        tipo: "producao",
-        icone: "check_circle",
-        data: "Ontem",
-        lida: true
-    },
-    {
-        id: 4,
-        titulo: "Pedido pronto para expedição",
-        descricao: "Existe um pedido aguardando envio.",
-        tipo: "logistica",
-        icone: "local_shipping",
-        data: "Ontem",
-        lida: true
-    },
-    {
-        id: 5,
-        titulo: "Pedido com atraso",
-        descricao: "Um pedido ultrapassou a previsão de entrega.",
-        tipo: "pedido",
-        icone: "schedule",
-        data: "Há 2 dias",
-        lida: false
-    }
-];
-
-function Notificacoes() {
-
-    const [notificacoes, setNotificacoes] = useState(() => {
-        try {
-            const salvas = localStorage.getItem("agreste_notificacoes");
-            return salvas ? JSON.parse(salvas) : notificacoesIniciais;
-        } catch {
-            return notificacoesIniciais;
-        }
-    });
+function Notificacoes({
+    pedidos = [],
+    tecidos = [],
+    notificacoes = [],
+    setNotificacoes
+}) {
 
     const [filtro, setFiltro] = useState("todas");
     const [categoria, setCategoria] = useState("todas");
 
+    // Detectar alterações nos pedidos e no estoque
     useEffect(() => {
-        localStorage.setItem(
-            "agreste_notificacoes",
-            JSON.stringify(notificacoes)
-        );
-    }, [notificacoes]);
+        const chaveEstado = "agreste_estado_notificacoes";
 
+        const estadoAtual = {
+            pedidos: pedidos.map(p => ({
+                id: String(p.id ?? p.numero),
+                numero: p.numero,
+                cliente: p.cliente,
+                status: p.status,
+                statusLogistica: p.statusLogistica
+            })),
+
+            tecidos: tecidos.map(t => ({
+                id: String(t.id),
+                nome: t.nome,
+                quantidade: Number(t.quantidade),
+                estoqueMinimo: Number(t.estoqueMinimo)
+            }))
+        };
+
+        const estadoSalvo = localStorage.getItem(chaveEstado);
+
+        // Primeira execução: guardar estado sem gerar alertas antigos
+        if (!estadoSalvo) {
+            localStorage.setItem(
+                chaveEstado,
+                JSON.stringify(estadoAtual)
+            );
+            return;
+        }
+
+        let anterior;
+
+        try {
+            anterior = JSON.parse(estadoSalvo);
+        } catch {
+            localStorage.setItem(
+                chaveEstado,
+                JSON.stringify(estadoAtual)
+            );
+            return;
+        }
+
+        const novas = [];
+        const dataAtual = new Date().toLocaleString("pt-BR");
+
+        function adicionarNotificacao(titulo, descricao, tipo, icone) {
+            novas.push({
+                id: `${Date.now()}-${novas.length}`,
+                titulo,
+                descricao,
+                tipo,
+                icone,
+                data: dataAtual,
+                lida: false
+            });
+        }
+
+        const pedidosAnteriores = anterior.pedidos || [];
+        const tecidosAnteriores = anterior.tecidos || [];
+
+        // 1. Novos pedidos
+        pedidos.forEach(pedido => {
+            const id = String(pedido.id ?? pedido.numero);
+
+            const existia = pedidosAnteriores.some(
+                p => String(p.id) === id
+            );
+
+            if (!existia) {
+                adicionarNotificacao(
+                    "Novo pedido recebido",
+                    `O pedido #${pedido.numero} de ${pedido.cliente} foi registrado.`,
+                    "pedido",
+                    "shopping_cart"
+                );
+            }
+        });
+
+        // 2. Produção finalizada
+        pedidos.forEach(pedido => {
+            const id = String(pedido.id ?? pedido.numero);
+
+            const pedidoAnterior = pedidosAnteriores.find(
+                p => String(p.id) === id
+            );
+
+            if (
+                pedidoAnterior &&
+                pedidoAnterior.status !== "pronto" &&
+                pedido.status === "pronto"
+            ) {
+                adicionarNotificacao(
+                    "Produção finalizada",
+                    `O pedido #${pedido.numero} está pronto.`,
+                    "producao",
+                    "check_circle"
+                );
+            }
+        });
+
+        // 3. Atualização da logística
+        pedidos.forEach(pedido => {
+            const id = String(pedido.id ?? pedido.numero);
+
+            const pedidoAnterior = pedidosAnteriores.find(
+                p => String(p.id) === id
+            );
+
+            if (
+                pedidoAnterior &&
+                pedidoAnterior.statusLogistica !== pedido.statusLogistica &&
+                pedido.status === "pronto"
+            ) {
+                adicionarNotificacao(
+                    "Atualização na logística",
+                    `O pedido #${pedido.numero} teve seu andamento atualizado.`,
+                    "logistica",
+                    "local_shipping"
+                );
+            }
+        });
+
+        // 4. Estoque baixo
+        tecidos.forEach(tecido => {
+            const id = String(tecido.id);
+
+            const tecidoAnterior = tecidosAnteriores.find(
+                t => String(t.id) === id
+            );
+
+            const quantidade = Number(tecido.quantidade);
+            const minimo = Number(tecido.estoqueMinimo);
+
+            const estoqueBaixo =
+                Number.isFinite(quantidade) &&
+                Number.isFinite(minimo) &&
+                quantidade <= minimo;
+
+            const estavaBaixo = tecidoAnterior
+                ? Number(tecidoAnterior.quantidade) <=
+                  Number(tecidoAnterior.estoqueMinimo)
+                : false;
+
+            if (estoqueBaixo && !estavaBaixo) {
+                adicionarNotificacao(
+                    "Estoque baixo",
+                    `O tecido ${tecido.nome} atingiu o limite mínimo de estoque.`,
+                    "estoque",
+                    "inventory_2"
+                );
+            }
+        });
+
+        // Adicionar novas notificações à lista compartilhada
+        if (novas.length > 0) {
+            setNotificacoes(prev => [...novas, ...prev]);
+        }
+
+        // Atualizar estado anterior
+        localStorage.setItem(
+            chaveEstado,
+            JSON.stringify(estadoAtual)
+        );
+
+    }, [pedidos, tecidos, setNotificacoes]);
+
+    // Indicadores
     const naoLidas = notificacoes.filter(n => !n.lida).length;
     const total = notificacoes.length;
 
+    // Filtros
     const notificacoesFiltradas = notificacoes.filter(n => {
+
         const correspondeStatus =
             filtro === "todas" ||
             (filtro === "naoLidas" && !n.lida) ||
@@ -85,6 +197,7 @@ function Notificacoes() {
         return correspondeStatus && correspondeCategoria;
     });
 
+    // Marcar uma como lida
     function marcarComoLida(id) {
         setNotificacoes(prev =>
             prev.map(n =>
@@ -93,18 +206,21 @@ function Notificacoes() {
         );
     }
 
+    // Marcar todas como lidas
     function marcarTodasComoLidas() {
         setNotificacoes(prev =>
             prev.map(n => ({ ...n, lida: true }))
         );
     }
 
+    // Excluir uma notificação
     function excluirNotificacao(id) {
         setNotificacoes(prev =>
             prev.filter(n => n.id !== id)
         );
     }
 
+    // Limpar todas
     function limparNotificacoes() {
         setNotificacoes([]);
     }
@@ -132,7 +248,6 @@ function Notificacoes() {
                     </div>
                 </div>
             </header>
-
 
             {/* INDICADORES */}
             <section className="notificacoes-indicadores">
@@ -169,11 +284,11 @@ function Notificacoes() {
 
             </section>
 
-
             {/* FILTROS */}
             <section className="notificacoes-filtros-area">
 
                 <div className="notificacoes-filtros">
+
                     <button
                         className={filtro === "todas" ? "ativo" : ""}
                         onClick={() => setFiltro("todas")}
@@ -194,6 +309,7 @@ function Notificacoes() {
                     >
                         Lidas
                     </button>
+
                 </div>
 
                 <select
@@ -209,7 +325,6 @@ function Notificacoes() {
                 </select>
 
             </section>
-
 
             {/* AÇÕES */}
             <div className="notificacoes-toolbar">
@@ -241,7 +356,6 @@ function Notificacoes() {
                 </div>
 
             </div>
-
 
             {/* LISTA */}
             <section className="notificacoes-lista">

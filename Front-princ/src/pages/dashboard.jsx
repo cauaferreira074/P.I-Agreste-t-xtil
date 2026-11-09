@@ -97,26 +97,26 @@ function Dashboard({ pedidos = [], tecidos = [], setPagina, animar }) {
                 <article className="card">
                     <h3>Pedidos recebidos</h3>
                     <span>{recebidos}</span>
-                    <img key={animar} src="/recebidos.png" alt="Pedidos recebidos" className="img-card icone-pulo" />
+                    <img key={animar} src={`${import.meta.env.BASE_URL}recebidos.png`} alt="Pedidos recebidos" className="img-card icone-pulo" />
                 </article>
 
                 <article className="card">
                     <h3>Prontos</h3>
                     <span>{prontos}</span>
-                    <img key={animar} src="/prontos.png" alt="Pedidos prontos" className="img-card icone-pulo" />
+                    <img key={animar} src={`${import.meta.env.BASE_URL}prontos.png`} alt="Pedidos prontos" className="img-card icone-pulo" />
                 </article>
 
                 <article className="card">
                     <h3>Em produção</h3>
                     <span>{emProducao}</span>
                     <img key={animar}
-                        src="/producao.png" alt="Pedidos em produção" className="img-card icone-pulo" />
+                        src={`${import.meta.env.BASE_URL}producao.png`} alt="Pedidos em produção" className="img-card icone-pulo" />
                 </article>
 
                 <article className="card">
                     <h3>Atrasados</h3>
                     <span>{atrasados}</span>
-                    <img key={animar} src="/atrasados.png" alt="Pedidos atrasados" className="img-card icone-pulo" />
+                    <img key={animar} src={`${import.meta.env.BASE_URL}atrasados.png`} alt="Pedidos atrasados" className="img-card icone-pulo" />
                 </article>
 
                 <article

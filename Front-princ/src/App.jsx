@@ -13,7 +13,7 @@ import Notificacoes from "./pages/notificacoes";
 
 function App() {
 
-  
+
   const [pagina, setPagina] = useState("Dashboard");
 
   const [pedidos, setPedidos] = useState(() => {
@@ -74,7 +74,12 @@ function App() {
     window.lucide.createIcons();
   }, []);
 
-  
+  const [notificacoes, setNotificacoes] = useState(() => {
+    const salvas = localStorage.getItem("agreste_notificacoes");
+    return salvas ? JSON.parse(salvas) : [];
+  });
+
+
 
 
 
@@ -83,7 +88,7 @@ function App() {
 
       <aside className="menu">
 
-        <img src="/logo.png" alt="Logo" className="logo" />
+        <img src={`${import.meta.env.BASE_URL}logo.png`} alt="Logo" className="logo" />
 
         <h2>Carcará tech</h2>
 
@@ -128,25 +133,41 @@ function App() {
 
           <div className="usuario">
             <div className="perfil">
-              <button onClick={() => setPagina("notificacoes")} className="noti">
-                <span className="material-symbols-outlined notificacao" style={{ fontSize: "60px", color: "white" }}>
-                  notifications
-                </span>
-              </button>
 
-              <button onClick={() => setPagina("Configuracoes")} className="noti">
-                <span className="material-symbols-outlined" style={{ fontSize: "60px", color: "white" }}>
+
+              <div>
+                <button
+                  onClick={() => setPagina("notificacoes")}
+                  className="noti"
+                >
+                  <span
+                    className="material-symbols-outlined notificacao"
+                    style={{ fontSize: "60px", color: "white" }}
+                  >
+                    notifications
+                  </span>
+
+                  {notificacoes.some((n) => !n.lida) && (
+                    <span className="indicador-vermelho"></span>
+                  )}
+                </button>
+              </div>
+
+
+              <button onClick={() => setPagina("Configuracoes")} className="noti1">
+                <span className="material-symbols-outlined1" style={{ fontSize: "60px", color: "white" }}>
                   settings
                 </span>
               </button>
               <img
-                src="/perfil.jpeg"
+                src={`${import.meta.env.BASE_URL}perfil.jpeg`}
                 alt="Foto de perfil"
                 className="perfil"
               />
               <div className="usuario-info">
-                <h4 style={{ fontSize: "30px" }}>Gabriel</h4>
-                <p>Administrador</p>
+                <h4  style={{ fontSize: "20px", color: "white" }}>
+                  Gabriel
+                </h4>
               </div>
             </div>
           </div>
@@ -165,7 +186,7 @@ function App() {
             setPedidos={setPedidos}
           />
         ) : pagina === "Producao" ? (
-          <Producao />
+          <Producao pedidos={pedidos} />
         ) : pagina === "Logistica" ? (
           <Logistica
             pedidos={pedidos}
@@ -181,7 +202,10 @@ function App() {
         ) : pagina === "Configuracoes" ? (
           <Configuracoes />
         ) : pagina === "notificacoes" ? (
-          <Notificacoes />
+          <Notificacoes
+            pedidos={pedidos}
+            tecidos={tecidos}
+          />
 
         ) : (
           <Dashboard
