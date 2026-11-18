@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 function Configuracoes() {
+
+    const navigate = useNavigate();
+
+    function sair() {
+        navigate("/");
+    }
 
     const [config, setConfig] = useState(() => {
         const salva = localStorage.getItem("agreste_config");
@@ -126,7 +133,17 @@ function Configuracoes() {
                         />
                     </div>
 
+
                 </section>
+
+                <button
+                    className="botao-sair"
+                    onClick={sair}
+                >
+                    <i data-lucide="log-out"></i>
+                    Sair da conta
+                </button>
+
 
 
                 {/* SISTEMA */}

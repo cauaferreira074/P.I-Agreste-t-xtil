@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./pages/login";
 import Dashboard from "./pages/dashboard";
 import Pedidos from "./pages/pedidos";
 import Producao from "./pages/producao";
@@ -11,7 +13,8 @@ import Notificacoes from "./pages/notificacoes";
 
 
 
-function App() {
+
+function Sistema() {
 
 
   const [pagina, setPagina] = useState("Dashboard");
@@ -84,6 +87,8 @@ function App() {
 
 
   return (
+
+
     <div className="aplicacao">
 
       <aside className="menu">
@@ -165,7 +170,7 @@ function App() {
                 className="perfil"
               />
               <div className="usuario-info">
-                <h4  style={{ fontSize: "20px", color: "white" }}>
+                <h4 style={{ fontSize: "20px", color: "white" }}>
                   Gabriel
                 </h4>
               </div>
@@ -173,6 +178,7 @@ function App() {
           </div>
 
         </header>
+
 
         {pagina === "Dashboard" ? (
           <Dashboard
@@ -219,5 +225,19 @@ function App() {
     </div>
   );
 }
+
+  function App() {
+    return (
+      <BrowserRouter basename="/P.I-Agreste-t-xtil">
+        <Routes>
+
+          <Route path="/" element={<Login />} />
+
+          <Route path="/dashboard/*" element={<Sistema />} />
+
+        </Routes>
+      </BrowserRouter>
+    );
+} 
 
 export default App;

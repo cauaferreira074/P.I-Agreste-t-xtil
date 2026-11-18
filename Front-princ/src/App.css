@@ -19,6 +19,122 @@
 /* =========================================
    CONFIGURAÇÕES GERAIS
 ========================================= */
+/*      Plano de fundo login     */
+.planoFundo {
+  min-height: 100vh;
+  width: 100%;
+  background-image: url('/fundo.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+}
+
+.logoo {
+  display: flex;
+  width: 272px;
+  height: 272px;
+  margin: 400px 0px 100px 110px;
+
+
+
+}
+
+.loginFundo {
+  display: flex;
+  width: 80%;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to right, #FEF9EC, #D8D0C5) left/ 50% 100% no-repeat, linear-gradient(to bottom, #B05C35, #FEF9EC) right/ 50% 100% no-repeat;
+  height: 800px;
+  border-radius: 30px;
+  margin: 0;
+
+
+}
+
+.loginDireito {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: left;
+  margin-right: 540px;
+  margin-bottom: 400px ;
+
+
+  color: rgb(0, 0, 0);
+  text-align: left;
+    padding: 30px;
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+}
+.nomet{
+  color: #084E4D;
+}
+
+.nomep{
+  font-size: 20px;
+
+}
+
+.formulario input {
+  width: 457px;
+  height: 70px;
+  border-radius: 50px;
+  border: 1px solid #00000026;
+  margin-bottom: 8px;
+ 
+}
+
+.formButton {
+  width: 457px;
+  height: 70px;
+  border-radius: 50px;
+  border: 1px solid #00000026;
+  margin-left: 1px;
+  margin-bottom: 8px;
+  margin-top: 20px;
+  background: #194544;
+  color: white;
+}
+
+.botao-sair {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  background: #dc2626;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.botao-sair:hover {
+  background: #b91c1c;
+}
+
+
+
+
+
+
+
+
+
 
 * {
   box-sizing: border-box;
@@ -29,6 +145,8 @@ html {
   min-width: 320px;
   scroll-behavior: smooth;
 }
+
+
 
 body {
   margin: 0;
