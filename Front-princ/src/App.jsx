@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Cadastro from "./pages/pages/cadastro";
 import Login from "./pages/login";
 import Dashboard from "./pages/dashboard";
 import Pedidos from "./pages/pedidos";
@@ -12,9 +13,27 @@ import Configuracoes from "./pages/configuracoes";
 import Notificacoes from "./pages/notificacoes";
 
 
-
-
 function Sistema() {
+
+  const [autenticado, setAutenticado] = useState(false);
+
+  const senhaAgreste = import.meta.env.VITE_SENHA_AGRESTE;
+
+  function sair() {
+    setAutenticado(false);
+    setPagina("Dashboard");
+  }
+
+  function verificarSenha(senha) {
+    if (senha === senhaAgreste) {
+      setAutenticado(true);
+    } else {
+      alert("Senha incorreta!!!");
+    }
+  }
+
+
+
 
 
   const [pagina, setPagina] = useState("Dashboard");
@@ -83,7 +102,9 @@ function Sistema() {
   });
 
 
-
+  if (!autenticado) {
+    return <Login onLogin={verificarSenha} />;
+  }
 
 
   return (
@@ -133,51 +154,56 @@ function Sistema() {
 
       <main className="conteudo">
 
+
         <header className="cabecalho">
+
           <h3>Com a Carcará Tech sua gestão é organizada!</h3>
 
-          <div className="usuario">
-            <div className="perfil">
+          <div className="barra-acoes">
 
+            {/* NOTIFICAÇÕES */}
+            <button
+              onClick={() => setPagina("notificacoes")}
+              className="noti"
+            >
+              <span className="material-symbols-outlined notificacao">
+                notifications
+              </span>
 
-              <div>
-                <button
-                  onClick={() => setPagina("notificacoes")}
-                  className="noti"
-                >
-                  <span
-                    className="material-symbols-outlined notificacao"
-                    style={{ fontSize: "60px", color: "white" }}
-                  >
-                    notifications
-                  </span>
+              {notificacoes.some((n) => !n.lida) && (
+                <span className="indicador-vermelho"></span>
+              )}
+            </button>
 
-                  {notificacoes.some((n) => !n.lida) && (
-                    <span className="indicador-vermelho"></span>
-                  )}
-                </button>
-              </div>
+            {/* CONFIGURAÇÕES */}
+            <button
+              onClick={() => setPagina("Configuracoes")}
+              className="noti1"
+            >
+              <span className="material-symbols-outlined1">
+                settings
+              </span>
+            </button>
 
+            {/* USUÁRIO */}
+            <div className="usuario">
 
-              <button onClick={() => setPagina("Configuracoes")} className="noti1">
-                <span className="material-symbols-outlined1" style={{ fontSize: "60px", color: "white" }}>
-                  settings
-                </span>
-              </button>
               <img
                 src={`${import.meta.env.BASE_URL}perfil.jpeg`}
                 alt="Foto de perfil"
                 className="perfil"
               />
+
               <div className="usuario-info">
-                <h4 style={{ fontSize: "20px", color: "white" }}>
-                  Gabriel
-                </h4>
+                <h4>Gabriel</h4>
               </div>
+
             </div>
+
           </div>
 
         </header>
+
 
 
         {pagina === "Dashboard" ? (
@@ -206,7 +232,7 @@ function Sistema() {
         ) : pagina === "Relatorio" ? (
           <Relatorio pedidos={pedidos} />
         ) : pagina === "Configuracoes" ? (
-          <Configuracoes />
+          <Configuracoes sair={sair} />
         ) : pagina === "notificacoes" ? (
           <Notificacoes
             pedidos={pedidos}
@@ -226,18 +252,25 @@ function Sistema() {
   );
 }
 
-  function App() {
-    return (
-      <BrowserRouter basename="/P.I-Agreste-t-xtil">
-        <Routes>
+function App() {
+  return (
+    <BrowserRouter basename="/P.I-Agreste-t-xtil">
+      <Routes>
+        <Route path="/" element={<Sistema />} />
 
-          <Route path="/" element={<Login />} />
+        <Route
+          path="/cadastro"
+          element={<Cadastro />}
+        />
 
-          <Route path="/dashboard/*" element={<Sistema />} />
+        <Route
+          path="/dashboard/*"
+          element={<Sistema />}
+        />
+      </Routes>
+    </BrowserRouter>
+  );
+}
 
-        </Routes>
-      </BrowserRouter>
-    );
-} 
 
 export default App;

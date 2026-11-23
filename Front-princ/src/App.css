@@ -19,7 +19,11 @@
 /* =========================================
    CONFIGURAÇÕES GERAIS
 ========================================= */
-/*      Plano de fundo login     */
+
+/* =================================
+   PLANO DE FUNDO
+================================= */
+
 .planoFundo {
   min-height: 100vh;
   width: 100%;
@@ -32,92 +36,213 @@
   justify-content: center;
   align-items: center;
 
-
+  padding: 30px 20px;
+  box-sizing: border-box;
 }
 
-.logoo {
-  display: flex;
-  width: 272px;
-  height: 272px;
-  margin: 400px 0px 100px 110px;
-
-
-
-}
+/* =================================
+   CONTAINER PRINCIPAL
+================================= */
 
 .loginFundo {
   display: flex;
-  width: 80%;
+  width: 100%;
+  max-width: 1100px;
+  min-height: 650px;
+
   justify-content: center;
   align-items: center;
-  background: linear-gradient(to right, #FEF9EC, #D8D0C5) left/ 50% 100% no-repeat, linear-gradient(to bottom, #B05C35, #FEF9EC) right/ 50% 100% no-repeat;
-  height: 800px;
+
+  background:
+    linear-gradient(to right, #FEF9EC, #D8D0C5) left / 50% 100% no-repeat,
+    linear-gradient(to bottom, #B05C35, #FEF9EC) right / 50% 100% no-repeat;
+
   border-radius: 30px;
-  margin: 0;
-
-
+  overflow: hidden;
+  margin: auto;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
 }
 
-.loginDireito {
+/* =================================
+   LADO ESQUERDO
+================================= */
+
+.loginEsquerdo {
   width: 50%;
+  min-height: 650px;
+
   display: flex;
   flex-direction: column;
-  justify-content: left;
-  align-items: left;
-  margin-right: 540px;
-  margin-bottom: 400px ;
+  justify-content: center;
+  align-items: center;
 
+  color: #000;
+  text-align: center;
 
-  color: rgb(0, 0, 0);
-  text-align: left;
-    padding: 30px;
+  padding: 30px;
+  box-sizing: border-box;
 }
 
-.formulario {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-
+.logoo {
+  width: min(75%, 272px);
+  height: auto;
+  object-fit: contain;
+  margin: 0 auto 20px;
 }
-.nomet{
+
+.logoo2 {
+  width: 200px;
+  max-width: 70%;
+  height: auto;
+  object-fit: contain;
+  margin: 20px auto;
+  padding: 0;
+}
+
+.blocoCria {
+  width: 100%;
+  max-width: 400px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.AindaNao {
+  margin: 10px 0;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.criarH2 {
   color: #084E4D;
 }
 
-.nomep{
-  font-size: 20px;
+.criarConta {
+  width: 100%;
+  max-width: 359px;
+  min-height: 55px;
 
+  background: transparent;
+  border: 3px solid #115e59;
+  border-radius: 10px;
+
+  cursor: pointer;
+  margin: 20px auto;
+
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+.criarConta:hover {
+  background: #084E4D;
+  color: #fff;
+}
+
+/* =================================
+   LADO DIREITO
+================================= */
+
+.LoginDireito {
+  width: 50%;
+  min-height: 650px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  color: #000;
+  text-align: center;
+
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.nomet {
+  color: #084E4D;
+  font-size: 28px;
+}
+
+.nomep {
+  font-size: 18px;
+  margin-bottom: 25px;
+}
+
+/* =================================
+   FORMULÁRIO
+================================= */
+
+.formulario {
+  width: 100%;
+  max-width: 457px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 }
 
 .formulario input {
-  width: 457px;
-  height: 70px;
-  border-radius: 50px;
+  width: 310%;
+  height: 60px;
+
+  box-sizing: border-box;
+
+  border-radius: 15px;
   border: 1px solid #00000026;
-  margin-bottom: 8px;
- 
+  margin-left: -130px;
+  margin-bottom: 12px;
+  padding: 0 22px;
+
+  font-size: 15px;
+  outline: none;
+}
+
+.formulario input:focus {
+  border-color: #115e59;
+  box-shadow: 0 0 0 3px rgba(17, 94, 89, 0.12);
 }
 
 .formButton {
-  width: 457px;
-  height: 70px;
+  width: 100%;
+  min-height: 60px;
+
+  box-sizing: border-box;
+
   border-radius: 50px;
-  border: 1px solid #00000026;
-  margin-left: 1px;
-  margin-bottom: 8px;
-  margin-top: 20px;
+  border: none;
+
+  margin: 15px 0 8px;
+
   background: #194544;
   color: white;
+
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: 600;
+
+  transition: 0.3s;
 }
+
+.formButton:hover {
+  background: #084E4D;
+}
+
+/* =================================
+   BOTÃO SAIR
+================================= */
 
 .botao-sair {
   display: flex;
   align-items: center;
   gap: 10px;
+
   padding: 12px 20px;
+
   background: #dc2626;
   color: white;
+
   border: none;
   border-radius: 8px;
+
   cursor: pointer;
   font-weight: 600;
   transition: 0.3s;
@@ -126,6 +251,177 @@
 .botao-sair:hover {
   background: #b91c1c;
 }
+
+/* =================================
+   TABLETS
+================================= */
+
+@media (max-width: 900px) {
+
+  .loginFundo {
+    max-width: 750px;
+    min-height: 550px;
+  }
+
+  .loginEsquerdo,
+  .LoginDireito {
+    min-height: 550px;
+    padding: 25px;
+  }
+
+  .logoo {
+    width: 220px;
+  }
+
+  .logoo2 {
+    width: 160px;
+  }
+
+  .formulario input,
+  .formButton {
+    height: 55px;
+  }
+
+  .nomet {
+    font-size: 23px;
+  }
+
+  .nomep {
+    font-size: 16px;
+  }
+}
+
+/* =================================
+   CELULARES
+================================= */
+
+@media (max-width: 600px) {
+
+  .planoFundo {
+    min-height: 100vh;
+    padding: 15px;
+    align-items: center;
+  }
+
+  .loginFundo {
+    width: 100%;
+    max-width: 430px;
+    min-height: auto;
+
+    flex-direction: column;
+    border-radius: 20px;
+
+    background: linear-gradient(to bottom,
+        #FEF9EC,
+        #D8D0C5);
+  }
+
+  .loginEsquerdo {
+    width: 100%;
+    min-height: auto;
+
+    padding: 25px 20px 5px;
+  }
+
+  .LoginDireito {
+    width: 100%;
+    min-height: auto;
+
+    padding: 20px 25px 35px;
+    margin: 0;
+  }
+
+  .logoo {
+    width: 140px;
+    height: auto;
+    margin: 0 auto 10px;
+  }
+
+  .logoo2 {
+    width: 100px;
+    height: auto;
+    margin: 10px auto;
+  }
+
+  .blocoCria {
+    margin: 10px auto;
+  }
+
+  .AindaNao {
+    font-size: 15px;
+  }
+
+  .criarConta {
+    max-width: 100%;
+    min-height: 48px;
+    font-size: 16px;
+    margin: 12px auto;
+  }
+
+  .nomet {
+    font-size: 23px;
+  }
+
+  .nomep {
+    font-size: 15px;
+    margin-bottom: 18px;
+  }
+
+  .formulario {
+    max-width: 100%;
+  }
+
+  .formulario input {
+    height: 52px;
+    font-size: 14px;
+    padding: 0 18px;
+  }
+
+  .formButton {
+    height: 52px;
+    font-size: 15px;
+  }
+}
+
+/* =================================
+   CELULARES PEQUENOS
+================================= */
+
+@media (max-width: 360px) {
+
+  .planoFundo {
+    padding: 10px;
+  }
+
+  .loginFundo {
+    border-radius: 15px;
+  }
+
+  .loginEsquerdo {
+    padding: 20px 15px 5px;
+  }
+
+  .LoginDireito {
+    padding: 15px 18px 25px;
+  }
+
+  .logoo {
+    width: 115px;
+  }
+
+  .nomet {
+    font-size: 20px;
+  }
+
+  .nomep {
+    font-size: 14px;
+  }
+
+  .AindaNao {
+    font-size: 14px;
+  }
+}
+
 
 
 
@@ -1418,6 +1714,184 @@ h2 {
   opacity: 0.9;
 }
 
+
+/* MENU DE CONFIGURAÇÕES */
+
+.config-menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.config-menu button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  background: #fff;
+  color: #555;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.config-menu button:hover,
+.config-menu button.ativo {
+  background: #fff3e5;
+  color: #b45309;
+  border-color: #d97706;
+}
+
+/* FOTO DE PERFIL */
+
+.perfil-foto {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 25px 0;
+}
+
+.perfil-foto img,
+.perfil-avatar {
+  width: 95px;
+  height: 95px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #f1f1f1;
+}
+
+.perfil-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+}
+
+.perfil-avatar span {
+  font-size: 45px;
+}
+
+.perfil-foto h3 {
+  margin-bottom: 5px;
+}
+
+.perfil-foto p {
+  color: #777;
+  margin-bottom: 12px;
+}
+
+.botao-foto,
+.botao-remover-foto {
+  display: inline-block;
+  padding: 9px 14px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 13px;
+  margin-right: 8px;
+}
+
+.botao-foto {
+  background: #d97706;
+  color: white;
+}
+
+.botao-remover-foto {
+  border: 1px solid #ddd;
+  background: white;
+  color: #555;
+}
+
+/* FAQ */
+
+.faq-list {
+  margin-top: 20px;
+}
+
+.faq-item {
+  border-bottom: 1px solid #eee;
+  padding: 17px 5px;
+}
+
+.faq-item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  font-weight: 600;
+  list-style: none;
+  gap: 10px;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary span {
+  color: #d97706;
+  transition: transform 0.2s;
+}
+
+.faq-item[open] summary span {
+  transform: rotate(180deg);
+}
+
+.faq-item p {
+  color: #666;
+  line-height: 1.7;
+  margin-top: 12px;
+}
+
+/* TERMOS DE USO */
+
+.termos-conteudo {
+  margin-top: 20px;
+  line-height: 1.7;
+}
+
+.termos-conteudo h3 {
+  color: #92400e;
+  font-size: 16px;
+  margin: 22px 0 8px;
+}
+
+.termos-conteudo p {
+  color: #666;
+  font-size: 14px;
+}
+
+.termos-data {
+  margin-top: 30px;
+  font-weight: 600;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 600px) {
+  .config-menu {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .config-menu button {
+    justify-content: center;
+    font-size: 12px;
+    padding: 10px 5px;
+  }
+
+  .perfil-foto {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .config-title {
+    gap: 10px;
+  }
+}
+
+
+
 /* =========================================
    NOTIFICAÇÕES
 ========================================= */
@@ -1816,6 +2290,8 @@ h2 {
   font-size: 14px;
   color: #999;
 }
+
+
 
 /* =========================================
    RESPONSIVIDADE - NOTEBOOKS E TELAS MÉDIAS
@@ -2776,4 +3252,292 @@ h2 {
   font-feature-settings: 'liga';
   -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
+}
+
+/* =========================================
+   CORREÇÃO DO CABEÇALHO RESPONSIVO
+========================================= */
+
+.cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 0;
+}
+
+.usuario {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.noti {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* =========================================
+   TABLETS
+========================================= */
+
+@media (max-width: 768px) {
+
+  .cabecalho {
+    padding: 15px;
+    gap: 8px;
+  }
+
+  .usuario {
+    gap: 6px;
+  }
+
+  .perfil {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+  }
+
+  .noti {
+    padding: 7px;
+  }
+
+  .noti .lucide {
+    width: 22px;
+    height: 22px;
+  }
+
+  .usuario-info h5 {
+    font-size: 12px;
+  }
+
+  .usuario span {
+    font-size: 12px;
+  }
+}
+
+/* =========================================
+   CELULARES
+========================================= */
+
+@media (max-width: 480px) {
+
+  .cabecalho {
+    padding: 12px 8px;
+    gap: 5px;
+  }
+
+  .cabecalho h3 {
+    font-size: 14px;
+    min-width: 0;
+  }
+
+  .usuario {
+    gap: 5px;
+  }
+
+  .perfil {
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+  }
+
+  .noti {
+    padding: 5px;
+  }
+
+  .noti .lucide {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    margin: 0;
+  }
+
+  .usuario-info {
+    display: none;
+  }
+}
+
+/* CORREÇÃO DOS ÍCONES NO MOBILE */
+
+@media (max-width: 480px) {
+
+    .cabecalho {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 5px;
+        width: 100%;
+        padding: 12px 8px;
+    }
+
+    .noti,
+    .noti1 {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        padding: 6px;
+        visibility: visible;
+    }
+
+    .noti .lucide,
+    .noti1 .lucide {
+        width: 21px;
+        height: 21px;
+        min-width: 21px;
+        margin: 0;
+    }
+
+    .usuario {
+        display: flex !important;
+        flex-shrink: 0;
+        align-items: center;
+    }
+
+    .perfil {
+        width: 35px;
+        height: 35px;
+        min-width: 35px;
+    }
+
+    .usuario-info {
+        display: none;
+    }
+}
+
+
+/* =========================================
+   CABEÇALHO E BARRA DE AÇÕES
+========================================= */
+
+.cabecalho {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 20px 25px;
+    margin-bottom: 25px;
+    min-width: 0;
+}
+
+.cabecalho h3 {
+    font-size: 18px;
+    margin: 0;
+}
+
+.barra-acoes {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 15px;
+    flex-shrink: 0;
+}
+
+.noti,
+.noti1 {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    flex-shrink: 0;
+}
+
+.noti .material-symbols-outlined,
+.noti1 .material-symbols-outlined1 {
+    font-size: 32px !important;
+    color: white;
+}
+
+.usuario {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.perfil {
+    width: 45px;
+    height: 45px;
+    min-width: 45px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.usuario-info h4 {
+    font-size: 16px !important;
+    color: white;
+    margin: 0;
+}
+
+/* =========================================
+   RESPONSIVIDADE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .cabecalho {
+        padding: 15px 10px;
+        gap: 8px;
+    }
+
+    .cabecalho h3 {
+        font-size: 14px;
+    }
+
+    .barra-acoes {
+        gap: 8px;
+    }
+
+    .perfil {
+        width: 38px;
+        height: 38px;
+        min-width: 38px;
+    }
+
+    .noti .material-symbols-outlined,
+    .noti1 .material-symbols-outlined1 {
+        font-size: 27px !important;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .cabecalho {
+        padding: 12px 8px;
+        gap: 5px;
+    }
+
+    .cabecalho h3 {
+        font-size: 12px;
+    }
+
+    .barra-acoes {
+        gap: 5px;
+    }
+
+    .usuario-info {
+        display: none;
+    }
+
+    .perfil {
+        width: 32px;
+        height: 32px;
+        min-width: 32px;
+    }
+
+    .noti,
+    .noti1 {
+      
+      padding: 4px;
+      margin-left: 100px;
+    }
 }

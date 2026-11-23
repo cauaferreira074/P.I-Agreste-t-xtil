@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
-function Login() {
+function Login({ onLogin }) {
 
 
     const navigate = useNavigate();
@@ -9,13 +9,8 @@ function Login() {
     const [password, setPassword] = useState('');
 
     function fazerLogin(event) {
-
-        navigate("/dashboard");
-
         event.preventDefault();
-
-        console.log('Email:', email);
-        console.log('Tentativa de login');
+        onLogin(password);
     }
 
     return (
@@ -24,13 +19,18 @@ function Login() {
             <div className='loginFundo'>
 
 
-                <div className='loginDireito'>
+                <div className='loginEsquerdo'>
 
-                    <img className='logoo' src="logo.png" alt="logo" />
 
-                    <h2 className='nomet'>Bem vindo a Carcará Tech</h2>
-                    <p className='nomep'>Entre na sua conta para continuar.</p>
+                    <div>
+                        <img className='logoo' src="/P.I-Agreste-t-xtil/logo.png" alt="logo" />
+
+                        <h2 className='nomet'>Bem vindo a Carcará Tech</h2>
+                        <p className='nomep'>Entre na sua conta para continuar.</p>
+                    </div>
+
                     <form onSubmit={fazerLogin}>
+
 
                         <div className='formulario'>
                             <label htmlFor="email">Email:</label>
@@ -58,12 +58,43 @@ function Login() {
                             />
                         </div>
 
+                        <p>Esqueceu senha ?</p>
+
                         <button className='formButton' type="submit">
                             Entrar
                         </button>
 
                     </form>
                 </div>
+
+                <div className='LoginDireito'>
+
+                    <img className='logoo2' src="/P.I-Agreste-t-xtil/logo.png" alt="logo" />
+
+                    <div className='blocoCria'>
+
+                        <h3 className='AindaNao'>Ainda não possui uma conta?</h3>
+
+                        <h2 className='criarH2'>Faça parte da Carcará tech</h2>
+                        <p className='textConta'>Tenha mais controle e organização na gestão têxtil.</p>
+
+
+
+                        <button
+                            type="button"
+                            onClick={() => navigate("/cadastro")}
+                            className='criarConta'>Criar conta
+
+                        </button>
+                    </div>
+
+
+
+
+
+                </div>
+
+
             </div>
 
         </div >
