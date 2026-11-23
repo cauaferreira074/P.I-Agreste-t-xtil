@@ -27,6 +27,11 @@ function Cadastro() {
     function criarConta(e) {
         e.preventDefault();
 
+        if (!dados.nome.trim() || !dados.empresa.trim() || !dados.email.trim()) {
+            alert("Preencha todos os campos.");
+            return;
+        }
+
         if (dados.senha.length < 8) {
             alert("A senha deve ter pelo menos 8 caracteres.");
             return;
@@ -42,9 +47,37 @@ function Cadastro() {
             return;
         }
 
-        alert("Validação concluída! Conecte o cadastro ao sistema de autenticação para criar a conta.");
-    }
+        const usuariosSalvos = JSON.parse(
+            localStorage.getItem("agreste_usuarios") || "[]"
+        );
 
+        const emailExiste = usuariosSalvos.some(
+            (usuario) => usuario.email.toLowerCase() === dados.email.trim().toLowerCase()
+        );
+
+        if (emailExiste) {
+            alert("Este e-mail já possui uma conta cadastrada.");
+            return;
+        }
+
+        const novoUsuario = {
+            nome: dados.nome,
+            empresa: dados.empresa,
+            email: dados.email.trim().toLowerCase(),
+            senha: dados.senha
+        };
+
+        usuariosSalvos.push(novoUsuario);
+
+        localStorage.setItem(
+            "agreste_usuarios",
+            JSON.stringify(usuariosSalvos)
+        );
+
+        alert("Conta criada com sucesso!");
+
+        navigate("/");
+    }
     return (
 
         <div className="cadastro-pagina">

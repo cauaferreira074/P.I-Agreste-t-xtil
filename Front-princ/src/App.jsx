@@ -17,21 +17,33 @@ function Sistema() {
 
   const [autenticado, setAutenticado] = useState(false);
 
-  const senhaAgreste = import.meta.env.VITE_SENHA_AGRESTE;
 
   function sair() {
     setAutenticado(false);
     setPagina("Dashboard");
   }
 
-  function verificarSenha(senha) {
-    if (senha === senhaAgreste) {
+  function verificarLogin(email, senha) {
+    const usuariosSalvos = JSON.parse(
+      localStorage.getItem("agreste_usuarios") || "[]"
+    );
+
+    const usuarioEncontrado = usuariosSalvos.find(
+      usuario =>
+        usuario.email === email.trim().toLowerCase() &&
+        usuario.senha === senha
+    );
+
+    if (usuarioEncontrado) {
       setAutenticado(true);
     } else {
-      alert("Senha incorreta!!!");
+      alert("E-mail ou senha incorretos!");
     }
-  }
 
+    if (!autenticado) {
+      return <Login onLogin={verificarLogin} />;
+    } 
+  }
 
 
 
@@ -103,7 +115,7 @@ function Sistema() {
 
 
   if (!autenticado) {
-    return <Login onLogin={verificarSenha} />;
+    return <Login onLogin={verificarLogin} />;
   }
 
 

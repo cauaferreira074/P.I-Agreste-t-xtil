@@ -10,7 +10,15 @@ function Login({ onLogin }) {
 
     function fazerLogin(event) {
         event.preventDefault();
-        onLogin(password);
+
+        const emailFormatado = email.trim().toLowerCase();
+
+        if (!emailFormatado || !password) {
+            alert("Preencha seu e-mail e sua senha.");
+            return;
+        }
+
+        onLogin(emailFormatado, password);
     }
 
     return (
