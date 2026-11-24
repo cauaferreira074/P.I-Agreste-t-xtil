@@ -131,32 +131,32 @@ function Sistema() {
         <h2>Carcará tech</h2>
 
         <nav>
-          <button onClick={() => setPagina("Dashboard")}>
+          <button className={pagina==="Dashboard" ? "ativo":""} onClick={() => setPagina("Dashboard")}>
             <i className="lucide" data-lucide="layout-dashboard"></i>
             Dashboard
           </button>
 
-          <button onClick={() => setPagina("Pedidos")}>
+          <button className={pagina==="Pedidos" ? "ativo":""} onClick={() => setPagina("Pedidos")}>
             <i className="lucide" data-lucide="shopping-cart"></i>
             Pedidos
           </button>
 
-          <button onClick={() => setPagina("Producao")}>
+          <button className={pagina==="Producao" ? "ativo":""} onClick={() => setPagina("Producao")}>
             <i className="lucide" data-lucide="package"></i>
             Produção
           </button>
 
-          <button onClick={() => setPagina("Logistica")}>
+          <button className={pagina==="Logistica" ? "ativo":""} onClick={() => setPagina("Logistica")}>
             <i className="lucide" data-lucide="truck"></i>
             Logística
           </button>
 
-          <button onClick={() => setPagina("Relatorio")}>
+          <button className={pagina==="Relatorio" ? "ativo":""} onClick={() => setPagina("Relatorio")}>
             <i className="lucide" data-lucide="bar-chart-3"></i>
             Relatórios
           </button>
 
-          <button onClick={() => setPagina("Estoque")}>
+          <button className={pagina==="Estoque" ? "ativo":""} onClick={() => setPagina("Estoque")}>
             <i className="lucide" data-lucide="archive"></i>
             Estoque
           </button>

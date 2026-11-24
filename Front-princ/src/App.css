@@ -526,12 +526,24 @@ button {
   width: 270px;
   min-width: 230px;
   flex-shrink: 0;
+
   display: flex;
   flex-direction: column;
   align-items: center;
+
   padding: 24px 18px;
+  box-sizing: border-box;
+
   background: linear-gradient(to bottom, #D97706, #7C2D12);
   color: white;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+
+  overflow-y: auto;
+  z-index: 1000;
 }
 
 .menu h2 {
@@ -565,9 +577,14 @@ button {
   font-weight: 500;
   text-align: left;
   transition: background 0.2s ease;
+
 }
 
 .menu button:hover {
+  background: #1a0909;
+}
+
+.menu button.ativo {
   background: #1a0909;
 }
 
@@ -580,11 +597,11 @@ button {
 ========================================= */
 
 .conteudo {
-  flex: 1;
+  margin-left: 270px;
+  width: calc(100% - 270px);
   min-width: 0;
-  width: 0;
-  padding: 28px;
-  overflow-x: hidden;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
 .conteudo header {
@@ -3365,48 +3382,48 @@ h2 {
 
 @media (max-width: 480px) {
 
-    .cabecalho {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 5px;
-        width: 100%;
-        padding: 12px 8px;
-    }
+  .cabecalho {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    width: 100%;
+    padding: 12px 8px;
+  }
 
-    .noti,
-    .noti1 {
-        display: flex !important;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-        padding: 6px;
-        visibility: visible;
-    }
+  .noti,
+  .noti1 {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    padding: 6px;
+    visibility: visible;
+  }
 
-    .noti .lucide,
-    .noti1 .lucide {
-        width: 21px;
-        height: 21px;
-        min-width: 21px;
-        margin: 0;
-    }
+  .noti .lucide,
+  .noti1 .lucide {
+    width: 21px;
+    height: 21px;
+    min-width: 21px;
+    margin: 0;
+  }
 
-    .usuario {
-        display: flex !important;
-        flex-shrink: 0;
-        align-items: center;
-    }
+  .usuario {
+    display: flex !important;
+    flex-shrink: 0;
+    align-items: center;
+  }
 
-    .perfil {
-        width: 35px;
-        height: 35px;
-        min-width: 35px;
-    }
+  .perfil {
+    width: 35px;
+    height: 35px;
+    min-width: 35px;
+  }
 
-    .usuario-info {
-        display: none;
-    }
+  .usuario-info {
+    display: none;
+  }
 }
 
 
@@ -3415,67 +3432,67 @@ h2 {
 ========================================= */
 
 .cabecalho {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 15px;
-    padding: 20px 25px;
-    margin-bottom: 25px;
-    min-width: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 20px 25px;
+  margin-bottom: 25px;
+  min-width: 0;
 }
 
 .cabecalho h3 {
-    font-size: 18px;
-    margin: 0;
+  font-size: 18px;
+  margin: 0;
 }
 
 .barra-acoes {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 15px;
-    flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 15px;
+  flex-shrink: 0;
 }
 
 .noti,
 .noti1 {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 5px;
-    flex-shrink: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  flex-shrink: 0;
 }
 
 .noti .material-symbols-outlined,
 .noti1 .material-symbols-outlined1 {
-    font-size: 32px !important;
-    color: white;
+  font-size: 32px !important;
+  color: white;
 }
 
 .usuario {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
 }
 
 .perfil {
-    width: 45px;
-    height: 45px;
-    min-width: 45px;
-    object-fit: cover;
-    border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  min-width: 45px;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 .usuario-info h4 {
-    font-size: 16px !important;
-    color: white;
-    margin: 0;
+  font-size: 16px !important;
+  color: white;
+  margin: 0;
 }
 
 /* =========================================
@@ -3484,60 +3501,60 @@ h2 {
 
 @media (max-width: 768px) {
 
-    .cabecalho {
-        padding: 15px 10px;
-        gap: 8px;
-    }
+  .cabecalho {
+    padding: 15px 10px;
+    gap: 8px;
+  }
 
-    .cabecalho h3 {
-        font-size: 14px;
-    }
+  .cabecalho h3 {
+    font-size: 14px;
+  }
 
-    .barra-acoes {
-        gap: 8px;
-    }
+  .barra-acoes {
+    gap: 8px;
+  }
 
-    .perfil {
-        width: 38px;
-        height: 38px;
-        min-width: 38px;
-    }
+  .perfil {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+  }
 
-    .noti .material-symbols-outlined,
-    .noti1 .material-symbols-outlined1 {
-        font-size: 27px !important;
-    }
+  .noti .material-symbols-outlined,
+  .noti1 .material-symbols-outlined1 {
+    font-size: 27px !important;
+  }
 }
 
 @media (max-width: 480px) {
 
-    .cabecalho {
-        padding: 12px 8px;
-        gap: 5px;
-    }
+  .cabecalho {
+    padding: 12px 8px;
+    gap: 5px;
+  }
 
-    .cabecalho h3 {
-        font-size: 12px;
-    }
+  .cabecalho h3 {
+    font-size: 12px;
+  }
 
-    .barra-acoes {
-        gap: 5px;
-    }
+  .barra-acoes {
+    gap: 5px;
+  }
 
-    .usuario-info {
-        display: none;
-    }
+  .usuario-info {
+    display: none;
+  }
 
-    .perfil {
-        width: 32px;
-        height: 32px;
-        min-width: 32px;
-    }
+  .perfil {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+  }
 
-    .noti,
-    .noti1 {
-      
-      padding: 4px;
-      margin-left: 100px;
-    }
+  .noti,
+  .noti1 {
+
+    padding: 4px;
+    margin-left: 100px;
+  }
 }
