@@ -15,7 +15,9 @@ import Notificacoes from "./pages/notificacoes";
 
 function Sistema() {
 
+
   const [autenticado, setAutenticado] = useState(false);
+
 
 
 
@@ -122,17 +124,21 @@ function Sistema() {
     ];
   });
 
-  useEffect(() => {
-    localStorage.setItem(
-      "agreste_react_pedidos",
-      JSON.stringify(pedidos)
-    );
-  }, [pedidos]);
 
   useEffect(() => {
-    window.lucide.createIcons();
-  }, []);
+    const atualizarIcones = () => {
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+    };
 
+    atualizarIcones();
+
+    const temporizador = setTimeout(atualizarIcones, 100);
+
+    return () => clearTimeout(temporizador);
+
+  }, [pagina]);
   const [notificacoes, setNotificacoes] = useState(() => {
     const salvas = localStorage.getItem("agreste_notificacoes");
     return salvas ? JSON.parse(salvas) : [];
@@ -176,14 +182,14 @@ function Sistema() {
             Logística
           </button>
 
-          <button className={pagina === "Relatorio" ? "ativo" : ""} onClick={() => setPagina("Relatorio")}>
-            <i className="lucide" data-lucide="bar-chart-3"></i>
-            Relatórios
-          </button>
-
           <button className={pagina === "Estoque" ? "ativo" : ""} onClick={() => setPagina("Estoque")}>
             <i className="lucide" data-lucide="archive"></i>
             Estoque
+          </button>
+
+          <button className={pagina === "Relatorio" ? "ativo" : ""} onClick={() => setPagina("Relatorio")}>
+            <i className="lucide" data-lucide="bar-chart-3"></i>
+            Relatórios
           </button>
         </nav>
 
@@ -203,7 +209,7 @@ function Sistema() {
               onClick={() => setPagina("notificacoes")}
               className="noti"
             >
-              <span className="material-symbols-outlined notificacao">
+              <span className="material-symbols-outlined2 notificacao">
                 notifications
               </span>
 
@@ -260,13 +266,18 @@ function Sistema() {
             setTecidos={setTecidos}
           />
         ) : pagina === "Relatorio" ? (
-          <Relatorio pedidos={pedidos} />
+          <Relatorio
+            pedidos={pedidos}
+            tecidos={tecidos}
+          />
         ) : pagina === "Configuracoes" ? (
           <Configuracoes sair={sair} />
         ) : pagina === "notificacoes" ? (
           <Notificacoes
             pedidos={pedidos}
             tecidos={tecidos}
+            notificacoes={notificacoes}
+            setNotificacoes={setNotificacoes}
           />
 
         ) : (

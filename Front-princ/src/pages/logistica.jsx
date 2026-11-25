@@ -54,14 +54,14 @@ function Logistica({ pedidos, setPedidos }) {
             </header>
 
             <input
-                className="pesquisa-pedidos"
+                className="pesquisa-logistica"
                 type="search"
                 placeholder="Procurar pedido..."
                 value={pesquisa}
                 onChange={evento => setPesquisa(evento.target.value)}
             />
 
-            <div className="tabela-pedidos">
+            <div className="tabela-logistica">
                 <table>
                     <thead>
                         <tr>
@@ -131,6 +131,53 @@ function Logistica({ pedidos, setPedidos }) {
 
             </div>
 
+
+            <section className="painel-logistica">
+
+                <div className="painel-logistica-texto">
+                    <span className="painel-logistica-etiqueta">
+                        AGRESTE TÊXTIL
+                    </span>
+
+                    <h2>
+                        Da produção até a entrega.
+                    </h2>
+
+                    <p>
+                        Cada pedido percorre um caminho.
+                        Acompanhe as etapas e mantenha sua operação organizada.
+                    </p>
+
+                    <div className="painel-logistica-detalhe">
+                        <span className="material-symbols-outlined">
+                            inventory_2
+                        </span>
+
+                        <span>
+                            Organização, controle e eficiência logística.
+                        </span>
+                    </div>
+                </div>
+
+                <div className="painel-logistica-ilustracao">
+                    <div className="logistica-circulo">
+                        <span className="material-symbols-outlined">
+                            local_shipping
+                        </span>
+                    </div>
+
+                    <div className="logistica-linha"></div>
+
+                    <div className="logistica-circulo secundario">
+                        <span className="material-symbols-outlined">
+                            package_2
+                        </span>
+                    </div>
+                </div>
+
+            </section>
+
+
             {pedidoSelecionado && (
                 <AcompanhamentoLogistica
                     pedido={pedidos.find(
@@ -140,7 +187,7 @@ function Logistica({ pedidos, setPedidos }) {
                 />
             )}
 
-             
+
         </main>
     );
 }

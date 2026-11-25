@@ -1,12 +1,15 @@
 
 import React from "react";
 import {
-    PieChart,
-    Pie,
-    Cell,
+    ResponsiveContainer,
+    BarChart,
+    Bar,
+    CartesianGrid,
+    XAxis,
+    YAxis,
     Tooltip,
     Legend,
-    ResponsiveContainer
+    Cell
 } from "recharts";
 
 // Etapas da produção
@@ -30,7 +33,7 @@ const etapasLogistica = [
     { valor: "entregue", nome: "Entregues" }
 ];
 
-// Componente reutilizável dos gráficos
+// Gráfico reutilizável
 function GraficoPizza({ titulo, dados, cores, unidade = "pedidos" }) {
 
     if (!dados.some(item => item.quantidade > 0)) {
@@ -47,38 +50,22 @@ function GraficoPizza({ titulo, dados, cores, unidade = "pedidos" }) {
             <h3>{titulo}</h3>
 
             <ResponsiveContainer width="100%" height={500}>
-                <PieChart>
-                    <Pie
-                        data={dados}
-                        dataKey="quantidade"
-                        nameKey="nome"
-                        cx="50%"
-                        cy="50%"
-                        outerRadius={110}
-                        label={
-                            dados.some(item => item.quantidade > 0)
-                                ? ({ x, y, percent, index, textAnchor }) => (
-                                    <text
-                                        x={x}
-                                        y={y}
-                                        fill={cores[index % cores.length]}
-                                        textAnchor={textAnchor}
-                                        dominantBaseline="central"
-                                        fontSize={18}
-                                    >
-                                        {`${name} (${(percent * 100).toFixed(0)}%)`}
-                                    </text>
-                                )
-                                : false
-                        }
-                    >
-                        {dados.map((item, index) => (
-                            <Cell
-                                key={`celula-${index}`}
-                                fill={cores[index % cores.length]}
-                            />
-                        ))}
-                    </Pie>
+                <BarChart
+                    data={dados}
+                    margin={{ top: 25, right: 25, left: 10, bottom: 15 }}
+                >
+                    <CartesianGrid
+                        strokeDasharray="3 3"
+                        vertical={false}
+                    />
+
+                    <XAxis
+                        dataKey="nome"
+                        tick={{ fontSize: 13 }}
+                        interval={0}
+                    />
+
+                    <YAxis allowDecimals={false} />
 
                     <Tooltip
                         formatter={(valor) => [
@@ -87,30 +74,101 @@ function GraficoPizza({ titulo, dados, cores, unidade = "pedidos" }) {
                         ]}
                     />
 
-                    <Legend
-                        content={({ payload }) => {
-                            const itensVisiveis = payload?.filter(
-                                item => Number(item.payload?.quantidade) > 0
-                            );
+                    <Bar
+                        dataKey="quantidade"
+                        name="Quantidade"
+                        radius={[7, 7, 0, 0]}
+                        maxBarSize={65}
+                    >
+                        {dados.map((item, index) => (
+                            <Cell
+                                key={`celula-${index}`}
+                                fill={cores[index % cores.length]}
+                            />
+                        ))}
+                    </Bar>
+                </BarChart>
+            </ResponsiveContainer>
 
-                            return (
-                                <div className="legenda-grafico">
-                                    {itensVisiveis.map((item, index) => (
-                                        <div className="legenda-item" key={index}>
-                                            <span
-                                                className="legenda-cor"
-                                                style={{ backgroundColor: item.color }}
-                                            />
-                                            <span style={{ color: item.color }}>
-                                                {item.value}
-                                            </span>
-                                        </div>
-                                    ))}
-                                </div>
-                            );
-                        }}
+            <div className="legenda-grafico">
+                {dados
+                    .filter(item => item.quantidade > 0)
+                    .map(item => {
+                        const index = dados.indexOf(item);
+
+                        return (
+                            <div className="legenda-item" key={item.nome}>
+                                <span
+                                    className="legenda-cor"
+                                    style={{
+                                        backgroundColor: cores[index % cores.length]
+                                    }}
+                                />
+                                <span>
+                                    {item.nome}
+                                </span>
+                            </div>
+                        );
+                    })}
+            </div>
+        </div>
+    );
+}
+
+// Gráfico comparativo de estoque atual x mínimo
+function GraficoComparativo({ titulo, dados }) {
+
+    if (!dados.some(item => item.atual > 0 || item.minimo > 0)) {
+        return (
+            <div className="grafico-relat">
+                <h3>{titulo}</h3>
+                <p>Nenhum dado registrado.</p>
+            </div>
+        );
+    }
+
+    return (
+        <div className="grafico-relat">
+            <h3>{titulo}</h3>
+
+            <ResponsiveContainer width="100%" height={500}>
+                <BarChart
+                    data={dados}
+                    margin={{ top: 25, right: 25, left: 10, bottom: 15 }}
+                >
+                    <CartesianGrid
+                        strokeDasharray="3 3"
+                        vertical={false}
                     />
-                </PieChart>
+
+                    <XAxis
+                        dataKey="nome"
+                        tick={{ fontSize: 13 }}
+                        interval={0}
+                    />
+
+                    <YAxis allowDecimals={false} />
+
+                    <Tooltip
+                        formatter={(valor) => [`${valor} metros`]}
+                    />
+
+                    <Legend />
+
+                    <Bar
+                        dataKey="atual"
+                        name="Estoque atual"
+                        fill="#D97706"
+                        radius={[7, 7, 0, 0]}
+                    />
+
+                    <Bar
+                        dataKey="minimo"
+                        name="Estoque mínimo"
+                        fill="#DC2626"
+                        radius={[7, 7, 0, 0]}
+                    />
+                </BarChart>
             </ResponsiveContainer>
         </div>
     );
@@ -163,35 +221,56 @@ function Relatorio({ pedidos = [], tecidos = [] }) {
     }));
 
     // =====================================
-    // 3. GRÁFICO DE ESTOQUE
+    // 3. ANÁLISE DE ESTOQUE
     // =====================================
 
-    const estoqueBaixo = tecidos
-        .filter(tecido =>
-            tecido.quantidade <= tecido.estoqueMinimo
-        )
-        .reduce((total, tecido) =>
-            total + Number(tecido.quantidade || 0), 0
-        );
+    const tecidosAnalisados = tecidos.map(tecido => ({
+        nome: tecido.nome,
+        quantidade: Number(tecido.quantidade || 0),
+        estoqueMinimo: Number(tecido.estoqueMinimo ?? 20)
+    }));
 
-    const estoqueAdequado = tecidos
-        .filter(tecido =>
-            tecido.quantidade > tecido.estoqueMinimo
-        )
-        .reduce((total, tecido) =>
-            total + Number(tecido.quantidade || 0), 0
-        );
+    // Distribuição por categoria
 
-    const dadosEstoque = [
-        { nome: "Estoque adequado", quantidade: estoqueAdequado },
-        { nome: "Estoque baixo", quantidade: estoqueBaixo }
+    const estoqueBaixo = tecidosAnalisados.filter(
+        tecido => tecido.quantidade <= tecido.estoqueMinimo
+    ).length;
+
+    const estoqueMedio = tecidosAnalisados.filter(
+        tecido =>
+            tecido.quantidade > tecido.estoqueMinimo &&
+            tecido.quantidade <= tecido.estoqueMinimo * 2
+    ).length;
+
+    const estoqueAlto = tecidosAnalisados.filter(
+        tecido => tecido.quantidade > tecido.estoqueMinimo * 2
+    ).length;
+
+    const dadosEstoqueCategorias = [
+        { nome: "Estoque baixo", quantidade: estoqueBaixo },
+        { nome: "Estoque médio", quantidade: estoqueMedio },
+        { nome: "Estoque alto", quantidade: estoqueAlto }
     ];
+
+    // Quantidade disponível por tecido
+
+    const dadosQuantidadeTecidos = tecidosAnalisados.map(tecido => ({
+        nome: tecido.nome,
+        quantidade: tecido.quantidade
+    }));
+
+    // Estoque atual x estoque mínimo
+
+    const dadosComparativoEstoque = tecidosAnalisados.map(tecido => ({
+        nome: tecido.nome,
+        atual: tecido.quantidade,
+        minimo: tecido.estoqueMinimo
+    }));
 
     // =====================================
     // 4. GRÁFICO DE LOGÍSTICA
     // =====================================
 
-    // Apenas pedidos que já estão prontos
     const pedidosLogistica = pedidos.filter(
         pedido => pedido.status === "pronto"
     );
@@ -206,7 +285,7 @@ function Relatorio({ pedidos = [], tecidos = [] }) {
     }));
 
     // =====================================
-    // CORES DOS GRÁFICOS
+    // 5. CORES DOS GRÁFICOS
     // =====================================
 
     const coresPedidos = [
@@ -227,8 +306,17 @@ function Relatorio({ pedidos = [], tecidos = [] }) {
     ];
 
     const coresEstoque = [
-        "#15803D",
-        "#DC2626"
+        "#DC2626",
+        "#F59E0B",
+        "#15803D"
+    ];
+
+    const coresQuantidade = [
+        "#D97706",
+        "#B45309",
+        "#92400E",
+        "#C2410C",
+        "#EA580C"
     ];
 
     const coresLogistica = [
@@ -239,6 +327,10 @@ function Relatorio({ pedidos = [], tecidos = [] }) {
         "#2563EB",
         "#15803D"
     ];
+
+    // =====================================
+    // 6. TELA DE RELATÓRIOS
+    // =====================================
 
     return (
         <main>
@@ -258,12 +350,26 @@ function Relatorio({ pedidos = [], tecidos = [] }) {
                     cores={coresProducao}
                 />
 
-                {/* GRÁFICO DE ESTOQUE */}
+                {/* DISTRIBUIÇÃO DO ESTOQUE */}
                 <GraficoPizza
-                    titulo="Gráfico de estoque"
-                    dados={dadosEstoque}
+                    titulo="Distribuição do estoque"
+                    dados={dadosEstoqueCategorias}
                     cores={coresEstoque}
+                    unidade="materiais"
+                />
+
+                {/* QUANTIDADE POR TECIDO */}
+                <GraficoPizza
+                    titulo="Quantidade disponível por tecido"
+                    dados={dadosQuantidadeTecidos}
+                    cores={coresQuantidade}
                     unidade="metros"
+                />
+
+                {/* ESTOQUE ATUAL X MÍNIMO */}
+                <GraficoComparativo
+                    titulo="Estoque atual x estoque mínimo"
+                    dados={dadosComparativoEstoque}
                 />
 
                 {/* GRÁFICO DE LOGÍSTICA */}
@@ -281,17 +387,19 @@ function Relatorio({ pedidos = [], tecidos = [] }) {
                 </p>
 
                 <p>
-                    <strong>Pedidos em produção no prazo:</strong>{" "}
-                    {pedidos.filter(pedido =>
-                        ["corte", "costura", "acabamento", "conferencia"].includes(
-                            pedido.status
-                        ) && !pedido.atrasado
-                    ).length}
+                    <strong>Materiais com estoque baixo:</strong> {estoqueBaixo}
                 </p>
 
                 <p>
-                    <strong>Total de tecidos cadastrados:</strong>{" "}
-                    {tecidos.length}
+                    <strong>Materiais com estoque médio:</strong> {estoqueMedio}
+                </p>
+
+                <p>
+                    <strong>Materiais com estoque alto:</strong> {estoqueAlto}
+                </p>
+
+                <p>
+                    <strong>Total de tecidos cadastrados:</strong> {tecidos.length}
                 </p>
             </div>
         </main>

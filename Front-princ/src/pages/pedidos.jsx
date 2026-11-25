@@ -45,6 +45,7 @@ function Pedidos({ pedidos, setPedidos, setAnimar, excluirPedido }) {
 
   const [pedidoSelecionado, setPedidoSelecionado] = useState(null);
 
+  const [modoEdicao, setModoEdicao] = useState(false);
 
   function atualizarCampo(evento) {
     const { name, value } = evento.target;
@@ -53,6 +54,63 @@ function Pedidos({ pedidos, setPedidos, setAnimar, excluirPedido }) {
       ...atual,
       [name]: value,
     }));
+  }
+
+  function editarPedido(pedido) {
+    setFormulario({
+      numero: pedido.numero,
+      cliente: pedido.cliente,
+      quantidade: pedido.quantidade,
+      prazo: pedido.prazo,
+    });
+
+    setPedidoSelecionado(pedido);
+    setModoEdicao(true);
+    setFormularioAberto(true);
+  }
+
+  function salvarEdicao(evento) {
+    evento.preventDefault();
+
+    const numeroOriginal = pedidoSelecionado.numero;
+
+    const numeroNovo = formulario.numero.trim().padStart(5, "0");
+
+    const numeroExiste = pedidos.some(
+      pedido =>
+        pedido.numero === numeroNovo &&
+        pedido.numero !== numeroOriginal
+    );
+
+    if (numeroExiste) {
+      alert("Já existe um pedido com esse número.");
+      return;
+    }
+
+    const pedidosAtualizados = pedidos.map(pedido =>
+      pedido.numero === numeroOriginal
+        ? {
+          ...pedido,
+          numero: numeroNovo,
+          cliente: formulario.cliente.trim(),
+          quantidade: Number(formulario.quantidade),
+          prazo: formulario.prazo,
+        }
+        : pedido
+    );
+
+    setPedidos(pedidosAtualizados);
+
+    setFormulario({
+      numero: "",
+      cliente: "",
+      quantidade: "",
+      prazo: "",
+    });
+
+    setPedidoSelecionado(null);
+    setModoEdicao(false);
+    setFormularioAberto(false);
   }
 
   function registrarPedido(evento) {
@@ -133,8 +191,11 @@ function Pedidos({ pedidos, setPedidos, setAnimar, excluirPedido }) {
       />
 
       {formularioAberto && (
-        <form className="formulario-pedido" onSubmit={registrarPedido}>
-          <h2>Novo pedido</h2>
+        <form
+          className="formulario-pedido"
+          onSubmit={modoEdicao ? salvarEdicao : registrarPedido}
+        >
+          <h2>{modoEdicao ? "Editar pedido" : "Novo pedido"}</h2>
 
           <div className="campos-pedido">
             <div className="campo">
@@ -151,7 +212,7 @@ function Pedidos({ pedidos, setPedidos, setAnimar, excluirPedido }) {
                 required
               />
             </div>
-
+            0
             <div className="campo">
               <label htmlFor="cliente">Cliente</label>
               <input
@@ -263,6 +324,18 @@ function Pedidos({ pedidos, setPedidos, setAnimar, excluirPedido }) {
                           delete
                         </span>
                       </button>
+
+                      <button
+                        type="button"
+                        className="botao-editar"
+                        title="Editar pedido"
+                        onClick={(evento) => {
+                          evento.stopPropagation();
+                          editarPedido(pedido);
+                        }}
+                      >
+                        <span className="material-symbols-outlined">edit</span>
+                      </button>
                     </td>
                   </tr>
                 );
@@ -283,6 +356,45 @@ function Pedidos({ pedidos, setPedidos, setAnimar, excluirPedido }) {
           </tbody>
         </table>
       </div>
+
+
+      <section className="painel-pedidos">
+
+        <div className="painel-pedidos-texto">
+          <span className="painel-pedidos-etiqueta">
+            AGRESTE TÊXTIL
+          </span>
+
+          <h2>Cada pedido conta.</h2>
+
+          <p>
+            Organize suas demandas, acompanhe os prazos
+            e mantenha sua produção em movimento.
+          </p>
+
+          <div className="painel-pedidos-detalhe">
+            <span className="material-symbols-outlined">
+              assignment_turned_in
+            </span>
+
+            <span>
+              Controle e organização em cada pedido.
+            </span>
+          </div>
+        </div>
+
+        <div className="painel-pedidos-ilustracao">
+          <span className="material-symbols-outlined">
+            receipt_long
+          </span>
+          <span className="material-symbols-outlined">
+            inventory_2
+          </span>
+        </div>
+
+      </section>
+
+
     </section>
   );
 }

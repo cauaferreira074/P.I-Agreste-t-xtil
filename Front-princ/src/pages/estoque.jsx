@@ -127,6 +127,7 @@ function Estoque({ tecidos, setTecidos }) {
     }
 
     function editarTecido(tecido) {
+        console.log("Botão editar acionado:", tecido);
         setEditandoId(tecido.id);
 
         setNome(tecido.nome);
@@ -275,7 +276,17 @@ function Estoque({ tecidos, setTecidos }) {
                                 <td>{tecido.quantidade}</td>
                                 <td>{tecido.unidade}</td>
                                 <td>
-                                    <button onClick={() => excluirTecido(tecido.id)}>
+                                    <button
+                                        type="button"
+                                        onClick={() => editarTecido(tecido)}
+                                    >
+                                        Editar
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        onClick={() => excluirTecido(tecido.id)}
+                                    >
                                         Excluir
                                     </button>
                                 </td>

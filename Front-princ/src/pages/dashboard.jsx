@@ -1,10 +1,13 @@
 import {
-    PieChart,
-    Pie,
-    Cell,
+    ResponsiveContainer,
+    BarChart,
+    Bar,
+    CartesianGrid,
+    XAxis,
+    YAxis,
     Tooltip,
     Legend,
-    ResponsiveContainer
+    Cell
 } from "recharts";
 
 
@@ -27,27 +30,44 @@ function Dashboard({ pedidos = [], tecidos = [], setPagina, animar }) {
         ].includes(pedido.status)
     ).length;
 
-    const atrasados = pedidos.filter(
-        pedido => pedido.atrasado
-    ).length;
+    const hoje = new Date();
+
+    const dataHoje = [
+        hoje.getFullYear(),
+        String(hoje.getMonth() + 1).padStart(2, "0"),
+        String(hoje.getDate()).padStart(2, "0")
+    ].join("-");
+
+    const atrasados = pedidos.filter(pedido => {
+        const prazoVencido = pedido.prazo && pedido.prazo < dataHoje;
+
+        const pedidoConcluido =
+            pedido.status === "enviado" ||
+            pedido.statusLogistica === "entregue";
+
+        return prazoVencido && !pedidoConcluido;
+    }).length;
 
     const estoqueBaixo = tecidos.filter(
-        tecido => tecido.quantidade <= tecido.estoqueMinimo
+        tecido => tecido.quantidade <= (tecido.estoqueMinimo ?? 20)
     ).length;
 
     const estoqueMedio = tecidos.filter(
         tecido =>
-            tecido.quantidade > tecido.estoqueMinimo &&
-            tecido.quantidade <= tecido.estoqueMinimo * 2
+            tecido.quantidade > (tecido.estoqueMinimo ?? 20) &&
+            tecido.quantidade <= (tecido.estoqueMinimo ?? 20) * 2
     ).length;
 
     const estoqueAlto = tecidos.filter(
-        tecido => tecido.quantidade > tecido.estoqueMinimo * 2
+        tecido => tecido.quantidade > (tecido.estoqueMinimo ?? 20) * 2
     ).length;
 
-    const pedidosAtrasados = pedidos.filter(
-        pedido => pedido.atrasado
-    ).length;
+    const totalMateriais = tecidos.length;
+
+    const quantidadeTotal = tecidos.reduce(
+        (total, tecido) => total + Number(tecido.quantidade || 0),
+        0
+    );
 
     const recebidosNoPrazo = pedidos.filter(
         pedido => pedido.status === "recebido" && !pedido.atrasado
@@ -120,21 +140,23 @@ function Dashboard({ pedidos = [], tecidos = [], setPagina, animar }) {
                 </article>
 
                 <article
-                    className="card"
+                    className="card card-estoque"
                     onClick={() => setPagina("Estoque")}
                     style={{ cursor: "pointer" }}
                 >
                     <h3>Estoque</h3>
 
+                    <span>{totalMateriais}</span>
+                    <small>Materiais cadastrados</small>
+
+                    <p>Quantidade total: {quantidadeTotal} metros</p>
                     <p>Baixo: {estoqueBaixo}</p>
-
                     <p>Médio: {estoqueMedio}</p>
-
                     <p>Alto: {estoqueAlto}</p>
 
                     <small>Ver detalhes do estoque →</small>
                 </article>
-
+                
             </section>
 
             <div className="tabela">
@@ -146,17 +168,27 @@ function Dashboard({ pedidos = [], tecidos = [], setPagina, animar }) {
                     <div style={{ width: "100%", height: "600px" }}>
 
                         <ResponsiveContainer width="100%" height="100%">
-                            <PieChart>
+                            <BarChart
+                                data={dadosGrafico}
+                                margin={{ top: 20, right: 20, left: 0, bottom: 10 }}
+                            >
+                                <CartesianGrid strokeDasharray="3 3" />
 
-                                <Pie
-                                    data={dadosGrafico}
+                                <XAxis
+                                    dataKey="nome"
+                                    tick={{ fontSize: 12 }}
+                                />
+
+                                <YAxis />
+
+                                <Tooltip />
+
+                                <Legend />
+
+                                <Bar
                                     dataKey="quantidade"
-                                    nameKey="nome"
-                                    cx="50%"
-                                    cy="50%"
-                                    outerRadius={190}
-                                    fill="#8884d8"
-                                    label
+                                    name="Quantidade"
+                                    radius={[6, 6, 0, 0]}
                                 >
                                     {dadosGrafico.map((item, index) => (
                                         <Cell
@@ -164,12 +196,9 @@ function Dashboard({ pedidos = [], tecidos = [], setPagina, animar }) {
                                             fill={coresGrafico[index]}
                                         />
                                     ))}
-                                </Pie>
+                                </Bar>
 
-                                <Tooltip />
-                                <Legend />
-
-                            </PieChart>
+                            </BarChart>
                         </ResponsiveContainer>
 
                     </div>

@@ -1,8 +1,8 @@
+
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
 function Login({ onLogin }) {
-
 
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
@@ -22,90 +22,106 @@ function Login({ onLogin }) {
     }
 
     return (
-        <div className='planoFundo'>
+        <main className="planoFundo">
 
-            <div className='loginFundo'>
+            <div className="loginFundo">
 
+                {/* LADO ESQUERDO */}
 
-                <div className='loginEsquerdo'>
+                <section className="loginEsquerdo">
 
+                    <img
+                        className="logoo"
+                        src="/P.I-Agreste-t-xtil/logo.png"
+                        alt="Logo Carcará Tech"
+                    />
 
-                    <div>
-                        <img className='logoo' src="/P.I-Agreste-t-xtil/logo.png" alt="logo" />
+                    <div className="loginApresentacao">
+                        <h1>Sua produção, conectada.</h1>
 
-                        <h2 className='nomet'>Bem vindo a Carcará Tech</h2>
-                        <p className='nomep'>Entre na sua conta para continuar.</p>
+                        <p>
+                            Mais controle, organização e eficiência
+                            para a gestão têxtil.
+                        </p>
                     </div>
 
-                    <form onSubmit={fazerLogin}>
+                </section>
 
+                {/* LADO DIREITO */}
 
-                        <div className='formulario'>
-                            <label htmlFor="email">Email:</label>
+                <section className="loginDireito">
 
-                            <input
-                                id='email'
-                                placeholder="Digite seu email"
-                                type="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                required
-                            />
-                        </div>
+                    <div className="loginConteudo">
 
-                        <div className='formulario'>
-                            <label htmlFor="senha">Senha:</label>
+                        <h2>Bem-vindo ao Carcará Tech</h2>
 
-                            <input
-                                id='senha'
-                                placeholder="Digite sua senha"
-                                type="password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                required
-                            />
-                        </div>
+                        <h3>Entre na sua conta para continuar.</h3>
 
-                        <p>Esqueceu senha ?</p>
+                        <form onSubmit={fazerLogin}>
 
-                        <button className='formButton' type="submit">
-                            Entrar
-                        </button>
+                            <div className="formulario">
+                                <label htmlFor="email">Email</label>
 
-                    </form>
-                </div>
+                                <input
+                                    id="email"
+                                    placeholder="Digite seu email"
+                                    type="email"
+                                    value={email}
+                                    onChange={(e) =>
+                                        setEmail(e.target.value)
+                                    }
+                                    required
+                                />
+                            </div>
 
-                <div className='LoginDireito'>
+                            <div className="formulario">
+                                <label htmlFor="senha">Senha</label>
 
-                    <img className='logoo2' src="/P.I-Agreste-t-xtil/logo.png" alt="logo" />
+                                <input
+                                    id="senha"
+                                    placeholder="Digite sua senha"
+                                    type="password"
+                                    value={password}
+                                    onChange={(e) =>
+                                        setPassword(e.target.value)
+                                    }
+                                    required
+                                />
+                            </div>
 
-                    <div className='blocoCria'>
+                            <div className="loginRecuperar">
+                                <button type="button">
+                                    Esqueceu senha?
+                                </button>
+                            </div>
 
-                        <h3 className='AindaNao'>Ainda não possui uma conta?</h3>
+                            <button
+                                className="formButton"
+                                type="submit"
+                            >
+                                Entrar
+                            </button>
 
-                        <h2 className='criarH2'>Faça parte da Carcará tech</h2>
-                        <p className='textConta'>Tenha mais controle e organização na gestão têxtil.</p>
+                            <p className="criar-conta">
+                                Não tem uma conta?
 
+                                <button
+                                    type="button"
+                                    onClick={() => navigate("/cadastro")}
+                                >
+                                    Criar conta
+                                </button>
+                            </p>
 
+                        </form>
 
-                        <button
-                            type="button"
-                            onClick={() => navigate("/cadastro")}
-                            className='criarConta'>Criar conta
-
-                        </button>
                     </div>
 
-
-
-
-
-                </div>
-
+                </section>
 
             </div>
 
-        </div >
+        </main>
     );
 }
 
