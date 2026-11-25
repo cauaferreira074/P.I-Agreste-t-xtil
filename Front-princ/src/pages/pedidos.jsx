@@ -29,9 +29,9 @@ function dataFormatada(data) {
   return `${dia}/${mes}/${ano}`;
 }
 
-function Pedidos({ pedidos, setPedidos, setAnimar }) {
+function Pedidos({ pedidos, setPedidos, setAnimar, excluirPedido }) {
 
- 
+
 
   const [pesquisa, setPesquisa] = useState("");
   const [formularioAberto, setFormularioAberto] = useState(false);
@@ -212,58 +212,73 @@ function Pedidos({ pedidos, setPedidos, setAnimar }) {
           </thead>
 
           <tbody>
-            {pedidosFiltrados.map((pedido) => {
-              const statusAtual = statusDisponiveis.find(
-                (status) => status.valor === pedido.status
-              );
+            {pedidosFiltrados.length > 0 ? (
+              pedidosFiltrados.map((pedido) => {
+                const statusAtual = statusDisponiveis.find(
+                  (status) => status.valor === pedido.status
+                );
 
-              return (
-                <tr key={pedido.numero}
-                  onClick={() => setPedidoSelecionado(pedido)}
-                  className="linha-pedido">
-                  <td>#{pedido.numero}</td>
-                  <td>{pedido.cliente}</td>
-                  <td>{pedido.quantidade} peças</td>
-                  <td>{dataFormatada(pedido.prazo)}</td>
+                return (
+                  <tr
+                    key={pedido.numero}
+                    onClick={() => setPedidoSelecionado(pedido)}
+                    className="linha-pedido"
+                  >
+                    <td>#{pedido.numero}</td>
+                    <td>{pedido.cliente}</td>
+                    <td>{pedido.quantidade} peças</td>
+                    <td>{dataFormatada(pedido.prazo)}</td>
 
-                  <td>
-                    <span className={`status-pedido status-${pedido.status}`}>
-                      {statusAtual?.nome ?? pedido.status}
-                    </span>
-                  </td>
+                    <td>
+                      <span className={`status-pedido status-${pedido.status}`}>
+                        {statusAtual?.nome ?? pedido.status}
+                      </span>
+                    </td>
 
-                  <td>
-                    <select
-                      aria-label={`Alterar status do pedido ${pedido.numero}`}
-                      value={pedido.status}
-                      onChange={(evento) =>
-                        modificarStatus(pedido.numero, evento.target.value)
-                      }
-                    >
-                      {statusDisponiveis.map((status) => (
-                        <option key={status.valor} value={status.valor}>
-                          {status.nome}
-                        </option>
-                      ))}
-                    </select>
-                  </td>
+                    <td>
+                      <select
+                        aria-label={`Alterar status do pedido ${pedido.numero}`}
+                        value={pedido.status}
+                        onChange={(evento) =>
+                          modificarStatus(pedido.numero, evento.target.value)
+                        }
+                      >
+                        {statusDisponiveis.map((status) => (
+                          <option key={status.valor} value={status.valor}>
+                            {status.nome}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+
+                    <td>
+                      <button
+                        className="botao-excluir"
+                        onClick={(evento) => {
+                          evento.stopPropagation();
+                          excluirPedido(pedido.numero);
+                        }}
+                      >
+                        <span className="material-symbols-outlined">
+                          delete
+                        </span>
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })
+            ) : (
+              <>
+                <tr className="estado-vazio">
+                  <td colSpan={7}>Nenhum pedido encontrado.</td>
                 </tr>
-              );
-            })}
 
-            {pedidoSelecionado && (
-              <Acompanhamento
-                pedido={pedidos.find(
-                  p => p.numero === pedidoSelecionado.numero
-                )}
-                fechar={() => setPedidoSelecionado(null)}
-              />
-            )}
-
-            {pedidosFiltrados.length === 0 && (
-              <tr>
-                <td colSpan="6">Nenhum pedido encontrado.</td>
-              </tr>
+                {Array.from({ length: 4 }).map((_, index) => (
+                  <tr className="linha-vazia" key={index}>
+                    <td colSpan={6}></td>
+                  </tr>
+                ))}
+              </>
             )}
           </tbody>
         </table>

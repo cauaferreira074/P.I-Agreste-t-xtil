@@ -237,10 +237,10 @@
 
   padding: 12px 20px;
 
-  background: #dc2626;
-  color: white;
+  background: #fcfcfc;
+  color: rgb(10, 0, 0);
 
-  border: none;
+  border: 1px solid black;
   border-radius: 8px;
 
   cursor: pointer;
@@ -249,7 +249,29 @@
 }
 
 .botao-sair:hover {
-  background: #b91c1c;
+  background: #ee3535;
+  color: white;
+}
+
+/*    excluir         */
+
+.botao-excluir {
+  background: transparent;
+  border: none;
+  color: #DC2626;
+  cursor: pointer;
+  padding: 7px;
+  border-radius: 8px;
+  transition: 0.2s;
+}
+
+.botao-excluir:hover {
+  background: #FEE2E2;
+  color: #991B1B;
+}
+
+.botao-excluir span {
+  font-size: 19px;
 }
 
 /* =================================
@@ -534,7 +556,10 @@ button {
   padding: 24px 18px;
   box-sizing: border-box;
 
-  background: linear-gradient(to bottom, #D97706, #7C2D12);
+  background-image: url('/lado.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   color: white;
 
   position: fixed;
@@ -570,7 +595,7 @@ button {
   font-family: 'Cormorant', sans-serif;
   background: none;
   border: none;
-  font-size: 21px;
+  font-size: 28px;
   padding: 13px 15px;
   margin: 0;
   border-radius: 8px;
@@ -997,10 +1022,15 @@ h2 {
 .tabela-pedidos th,
 .tabela-pedidos td {
   padding: 14px;
-  font-size: 15px;
-  background: #f9f9f9;
-  border-bottom: 1px solid #e7e5e4;
+  font-size: 14px;
+  border-bottom: 1px dashed #d6c4b5;
   white-space: nowrap;
+}
+
+.linha-vazia td {
+  height: 55px;
+  background: #fffaf5;
+  border-bottom: 1px dashed #c9a990;
 }
 
 .tabela-pedidos th {
@@ -1009,12 +1039,17 @@ h2 {
   font-size: 15px;
 }
 
-.tabela-pedidos td {
+.tabela-pedidos .estado-vazio td {
+  height: 55px;
+  text-align: center;
+  color: #a8a29e;
   font-size: 14px;
+  border-bottom: 1px dashed #c9a990;
+  background: #fffaf5;
 }
 
 .tabela-pedidos tbody tr:hover {
-  background: #fafaf9;
+  border: 2px solid #ca6d02;
 }
 
 .tabela-pedidos select {
@@ -1098,12 +1133,13 @@ h2 {
    PAINEL DE PRODUÇÃO
 ========================================= */
 
-#painel {
-  margin-left: 0;
+.painel {
+
   display: flex;
   align-items: flex-start;
   gap: 16px;
   width: 100%;
+  height: 90%;
   min-width: 0;
   overflow-x: auto;
   padding: 5px 5px 20px;
@@ -1116,8 +1152,8 @@ h2 {
   width: 100%;
   min-width: 230px;
   max-width: 100%;
-  min-height: 500px;
-  height: auto;
+  height: 80%;
+  margin: 30px;
   flex: 1 0 230px;
   display: flex;
   flex-direction: column;
@@ -1156,7 +1192,7 @@ h2 {
   border-radius: 10px;
   font-family: 'Cormorant', sans-serif;
   font-weight: 600;
-  font-size: 16px;
+  font-size: px;
   display: inline-block;
   transition: all 0.25s ease;
 }
@@ -1224,6 +1260,7 @@ h2 {
   align-items: center;
   justify-content: center;
   gap: 15px;
+  background: linear-gradient(to top, rgb(221, 215, 215), rgb(242, 232, 232));
   width: 100%;
   min-width: 0;
   min-height: 420px;
@@ -1611,6 +1648,7 @@ h2 {
   margin-bottom: 20px;
   border: 1px solid #eee;
   min-width: 0;
+  
 }
 
 .config-title {
@@ -1629,6 +1667,10 @@ h2 {
   font-size: 20px;
   margin-bottom: 5px;
   color: #333;
+}
+
+.figura {
+  font-size: 40px !important; 
 }
 
 .config-title p {
@@ -1768,6 +1810,7 @@ h2 {
   align-items: center;
   gap: 20px;
   margin: 25px 0;
+  
 }
 
 .perfil-foto img,
@@ -3107,12 +3150,16 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex: 0 0 280px;
-  width: 280px;
-  min-width: 280px;
+
+  flex: 0 0 340px;
+  width: 340px;
+  min-width: 340px;
+
   height: auto;
-  min-height: 450px;
-  padding: 15px;
+  min-height: 1000px;
+
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .coluna-cabecalho1,
@@ -3557,4 +3604,21 @@ h2 {
     padding: 4px;
     margin-left: 100px;
   }
+}
+
+.espacamento {
+  width: 81%;
+  height: 280px;
+  background-image: url('/banner1.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: fixed;
+  border-radius: 20px;
+
+
+  margin-top: 340px;
+
+
+
 }

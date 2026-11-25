@@ -34,39 +34,41 @@ function Producao({ pedidos = [] }) {
     }
 
     return (
-        <main className="conteudo" id="producao">
+        <main className="conteudop" id="producao">
 
-            <section id="painel">
+            <div className="painel">
+
 
                 {renderizarColuna(
                     "recebido",
                     "Recebidos",
                     "conteudo-painel1",
-                    "coluna-cabecalho1"
+                    "coluna-cabecalho (1)"
                 )}
 
                 {renderizarColuna(
                     "corte",
                     "Corte",
                     "conteudo-painel2",
-                    "coluna-cabecalho2"
+                    "coluna-cabecalho (2)"
                 )}
 
                 {renderizarColuna(
                     "costura",
                     "Costura",
                     "conteudo-painel3",
-                    "coluna-cabecalho3"
+                    "coluna-cabecalho (3)"
                 )}
 
                 {renderizarColuna(
                     "acabamento",
                     "Acabamento",
                     "conteudo-painel4",
-                    "coluna-cabecalho4"
+                    "coluna-cabecalho (4)"
                 )}
 
-            </section>
+            
+            </div>
         </main>
     );
 }

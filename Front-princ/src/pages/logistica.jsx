@@ -128,6 +128,7 @@ function Logistica({ pedidos, setPedidos }) {
                         )}
                     </tbody>
                 </table>
+
             </div>
 
             {pedidoSelecionado && (
@@ -139,6 +140,7 @@ function Logistica({ pedidos, setPedidos }) {
                 />
             )}
 
+             
         </main>
     );
 }

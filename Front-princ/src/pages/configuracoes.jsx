@@ -170,7 +170,7 @@ function Configuracoes({ sair }) {
                     className={secao === "perfil" ? "ativo" : ""}
                     onClick={() => setSecao("perfil")}
                 >
-                    <span className="material-symbols-outlined">
+                    <span className="material-symbols-outlined figura">
                         person
                     </span>
                     Meu perfil
@@ -181,7 +181,7 @@ function Configuracoes({ sair }) {
                     className={secao === "seguranca" ? "ativo" : ""}
                     onClick={() => setSecao("seguranca")}
                 >
-                    <span className="material-symbols-outlined">
+                    <span className="material-symbols-outlined figura">
                         lock
                     </span>
                     Segurança
@@ -192,7 +192,7 @@ function Configuracoes({ sair }) {
                     className={secao === "preferencias" ? "ativo" : ""}
                     onClick={() => setSecao("preferencias")}
                 >
-                    <span className="material-symbols-outlined">
+                    <span className="material-symbols-outlined figura">
                         notifications
                     </span>
                     Preferências
@@ -203,7 +203,7 @@ function Configuracoes({ sair }) {
                     className={secao === "faq" ? "ativo" : ""}
                     onClick={() => setSecao("faq")}
                 >
-                    <span className="material-symbols-outlined">
+                    <span className="material-symbols-outlined figura">
                         help
                     </span>
                     FAQ
@@ -214,7 +214,7 @@ function Configuracoes({ sair }) {
                     className={secao === "termos" ? "ativo" : ""}
                     onClick={() => setSecao("termos")}
                 >
-                    <span className="material-symbols-outlined">
+                    <span className="material-symbols-outlined figura">
                         description
                     </span>
                     Termos de Uso
@@ -225,7 +225,7 @@ function Configuracoes({ sair }) {
                     className={secao === "sistema" ? "ativo" : ""}
                     onClick={() => setSecao("sistema")}
                 >
-                    <span className="material-symbols-outlined">
+                    <span className="material-symbols-outlined figura">
                         settings
                     </span>
                     Sobre
@@ -240,7 +240,7 @@ function Configuracoes({ sair }) {
                 <section className="config-card">
 
                     <div className="config-title">
-                        <span className="material-symbols-outlined">
+                        <span className="material-symbols-outlined figura">
                             account_circle
                         </span>
 
@@ -261,7 +261,7 @@ function Configuracoes({ sair }) {
                                 />
                             ) : (
                                 <div className="perfil-avatar">
-                                    <span className="material-symbols-outlined">
+                                    <span className="material-symbols-outlined figura">
                                         person
                                     </span>
                                 </div>
@@ -331,7 +331,7 @@ function Configuracoes({ sair }) {
 
                         <div className="config-actions">
                             <button type="submit">
-                                <span className="material-symbols-outlined">
+                                <span className="material-symbols-outlined figura">
                                     save
                                 </span>
                                 Salvar perfil
@@ -350,7 +350,7 @@ function Configuracoes({ sair }) {
                 <section className="config-card">
 
                     <div className="config-title">
-                        <span className="material-symbols-outlined">
+                        <span className="material-symbols-outlined figura">
                             security
                         </span>
 
@@ -416,7 +416,7 @@ function Configuracoes({ sair }) {
 
                         <div className="config-actions">
                             <button type="submit">
-                                <span className="material-symbols-outlined">
+                                <span className="material-symbols-outlined figura">
                                     lock_reset
                                 </span>
                                 Alterar senha
@@ -437,7 +437,7 @@ function Configuracoes({ sair }) {
                     <section className="config-card">
 
                         <div className="config-title">
-                            <span className="material-symbols-outlined">
+                            <span className="material-symbols-outlined figura">
                                 business
                             </span>
 
@@ -467,7 +467,7 @@ function Configuracoes({ sair }) {
                     <section className="config-card">
 
                         <div className="config-title">
-                            <span className="material-symbols-outlined">
+                            <span className="material-symbols-outlined figura">
                                 notifications
                             </span>
 
@@ -535,7 +535,7 @@ function Configuracoes({ sair }) {
 
                     <div className="config-actions">
                         <button type="submit">
-                            <span className="material-symbols-outlined">
+                            <span className="material-symbols-outlined figura">
                                 save
                             </span>
                             Salvar alterações
@@ -552,7 +552,7 @@ function Configuracoes({ sair }) {
                 <section className="config-card">
 
                     <div className="config-title">
-                        <span className="material-symbols-outlined">
+                        <span className="material-symbols-outlined figura">
                             help
                         </span>
 
@@ -570,7 +570,7 @@ function Configuracoes({ sair }) {
                                 <summary>
                                     {item.pergunta}
 
-                                    <span className="material-symbols-outlined">
+                                    <span className="material-symbols-outlined figura">
                                         expand_more
                                     </span>
                                 </summary>
@@ -592,7 +592,7 @@ function Configuracoes({ sair }) {
                 <section className="config-card">
 
                     <div className="config-title">
-                        <span className="material-symbols-outlined">
+                        <span className="material-symbols-outlined figura">
                             gavel
                         </span>
 
@@ -670,7 +670,7 @@ function Configuracoes({ sair }) {
                 <section className="config-card">
 
                     <div className="config-title">
-                        <span className="material-symbols-outlined">
+                        <span className="material-symbols-outlined figura">
                             info
                         </span>
 
@@ -705,7 +705,7 @@ function Configuracoes({ sair }) {
                 className="botao-sair"
                 onClick={sair}
             >
-                <span className="material-symbols-outlined">
+                <span className="material-symbols-outlined figura">
                     logout
                 </span>
                 Sair da conta

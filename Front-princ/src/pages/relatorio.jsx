@@ -57,14 +57,14 @@ function GraficoPizza({ titulo, dados, cores, unidade = "pedidos" }) {
                         outerRadius={110}
                         label={
                             dados.some(item => item.quantidade > 0)
-                                ? ({ x, y, name, percent, index, textAnchor }) => (
+                                ? ({ x, y, percent, index, textAnchor }) => (
                                     <text
                                         x={x}
                                         y={y}
                                         fill={cores[index % cores.length]}
                                         textAnchor={textAnchor}
                                         dominantBaseline="central"
-                                        fontSize={25}
+                                        fontSize={18}
                                     >
                                         {`${name} (${(percent * 100).toFixed(0)}%)`}
                                     </text>

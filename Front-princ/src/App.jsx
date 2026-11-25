@@ -18,6 +18,7 @@ function Sistema() {
   const [autenticado, setAutenticado] = useState(false);
 
 
+
   function sair() {
     setAutenticado(false);
     setPagina("Dashboard");
@@ -42,7 +43,7 @@ function Sistema() {
 
     if (!autenticado) {
       return <Login onLogin={verificarLogin} />;
-    } 
+    }
   }
 
 
@@ -51,12 +52,36 @@ function Sistema() {
   const [pagina, setPagina] = useState("Dashboard");
 
   const [pedidos, setPedidos] = useState(() => {
+
     const pedidosSalvos = localStorage.getItem("agreste_pedidos");
 
     return pedidosSalvos
       ? JSON.parse(pedidosSalvos)
       : [];
   });
+
+  const excluirPedido = (numero) => {
+    const confirmar = window.confirm(
+      "Tem certeza que deseja excluir este pedido?"
+    );
+
+    if (!confirmar) return;
+
+    const pedidosAtualizados = pedidos.filter(
+      (pedido) => String(pedido.numero) !== String(numero)
+    );
+
+    console.log("Número recebido:", numero);
+    console.log("Pedidos antes:", pedidos);
+    console.log("Pedidos depois:", pedidosAtualizados);
+
+    setPedidos(pedidosAtualizados);
+
+    localStorage.setItem(
+      "agreste_pedidos",
+      JSON.stringify(pedidosAtualizados)
+    );
+  };
 
   useEffect(() => {
     localStorage.setItem(
@@ -131,32 +156,32 @@ function Sistema() {
         <h2>Carcará tech</h2>
 
         <nav>
-          <button className={pagina==="Dashboard" ? "ativo":""} onClick={() => setPagina("Dashboard")}>
+          <button className={pagina === "Dashboard" ? "ativo" : ""} onClick={() => setPagina("Dashboard")}>
             <i className="lucide" data-lucide="layout-dashboard"></i>
             Dashboard
           </button>
 
-          <button className={pagina==="Pedidos" ? "ativo":""} onClick={() => setPagina("Pedidos")}>
+          <button className={pagina === "Pedidos" ? "ativo" : ""} onClick={() => setPagina("Pedidos")}>
             <i className="lucide" data-lucide="shopping-cart"></i>
             Pedidos
           </button>
 
-          <button className={pagina==="Producao" ? "ativo":""} onClick={() => setPagina("Producao")}>
+          <button className={pagina === "Producao" ? "ativo" : ""} onClick={() => setPagina("Producao")}>
             <i className="lucide" data-lucide="package"></i>
             Produção
           </button>
 
-          <button className={pagina==="Logistica" ? "ativo":""} onClick={() => setPagina("Logistica")}>
+          <button className={pagina === "Logistica" ? "ativo" : ""} onClick={() => setPagina("Logistica")}>
             <i className="lucide" data-lucide="truck"></i>
             Logística
           </button>
 
-          <button className={pagina==="Relatorio" ? "ativo":""} onClick={() => setPagina("Relatorio")}>
+          <button className={pagina === "Relatorio" ? "ativo" : ""} onClick={() => setPagina("Relatorio")}>
             <i className="lucide" data-lucide="bar-chart-3"></i>
             Relatórios
           </button>
 
-          <button className={pagina==="Estoque" ? "ativo":""} onClick={() => setPagina("Estoque")}>
+          <button className={pagina === "Estoque" ? "ativo" : ""} onClick={() => setPagina("Estoque")}>
             <i className="lucide" data-lucide="archive"></i>
             Estoque
           </button>
@@ -200,15 +225,7 @@ function Sistema() {
             {/* USUÁRIO */}
             <div className="usuario">
 
-              <img
-                src={`${import.meta.env.BASE_URL}perfil.jpeg`}
-                alt="Foto de perfil"
-                className="perfil"
-              />
 
-              <div className="usuario-info">
-                <h4>Gabriel</h4>
-              </div>
 
             </div>
 
@@ -228,6 +245,7 @@ function Sistema() {
           <Pedidos
             pedidos={pedidos}
             setPedidos={setPedidos}
+            excluirPedido={excluirPedido}
           />
         ) : pagina === "Producao" ? (
           <Producao pedidos={pedidos} />
@@ -285,4 +303,4 @@ function App() {
 }
 
 
-export default App;
+export default App
