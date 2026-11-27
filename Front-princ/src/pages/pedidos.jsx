@@ -12,16 +12,6 @@ const statusDisponiveis = [
   { valor: "enviado", nome: "Enviado" },
 ];
 
-const pedidosIniciais = [
-  { numero: "00121", cliente: "Loja A", quantidade: 500, prazo: "2026-09-20", status: "recebido" },
-  { numero: "00122", cliente: "Loja B", quantidade: 300, prazo: "2026-09-30", status: "corte" },
-  { numero: "00123", cliente: "Loja C", quantidade: 200, prazo: "2026-12-10", status: "pronto" },
-  { numero: "00124", cliente: "Loja D", quantidade: 700, prazo: "2026-09-18", status: "costura" },
-  { numero: "00125", cliente: "Loja E", quantidade: 450, prazo: "2026-09-10", status: "recebido" },
-  { numero: "00126", cliente: "Loja F", quantidade: 490, prazo: "2026-09-15", status: "recebido" },
-  { numero: "00127", cliente: "Loja G", quantidade: 690, prazo: "2026-09-25", status: "costura" },
-];
-
 function dataFormatada(data) {
   if (!data) return "—";
 
@@ -29,10 +19,13 @@ function dataFormatada(data) {
   return `${dia}/${mes}/${ano}`;
 }
 
-function Pedidos({ pedidos, setPedidos, setAnimar, excluirPedido }) {
-
-
-
+function Pedidos({
+  pedidos = [],
+  setPedidos,
+  setAnimar,
+  excluirPedido,
+  registrarHistoricoPedido
+}) {
   const [pesquisa, setPesquisa] = useState("");
   const [formularioAberto, setFormularioAberto] = useState(false);
 
@@ -44,13 +37,12 @@ function Pedidos({ pedidos, setPedidos, setAnimar, excluirPedido }) {
   });
 
   const [pedidoSelecionado, setPedidoSelecionado] = useState(null);
-
   const [modoEdicao, setModoEdicao] = useState(false);
 
   function atualizarCampo(evento) {
     const { name, value } = evento.target;
 
-    setFormulario((atual) => ({
+    setFormulario(atual => ({
       ...atual,
       [name]: value,
     }));
@@ -73,7 +65,6 @@ function Pedidos({ pedidos, setPedidos, setAnimar, excluirPedido }) {
     evento.preventDefault();
 
     const numeroOriginal = pedidoSelecionado.numero;
-
     const numeroNovo = formulario.numero.trim().padStart(5, "0");
 
     const numeroExiste = pedidos.some(
@@ -90,16 +81,25 @@ function Pedidos({ pedidos, setPedidos, setAnimar, excluirPedido }) {
     const pedidosAtualizados = pedidos.map(pedido =>
       pedido.numero === numeroOriginal
         ? {
-          ...pedido,
-          numero: numeroNovo,
-          cliente: formulario.cliente.trim(),
-          quantidade: Number(formulario.quantidade),
-          prazo: formulario.prazo,
-        }
+            ...pedido,
+            numero: numeroNovo,
+            cliente: formulario.cliente.trim(),
+            quantidade: Number(formulario.quantidade),
+            prazo: formulario.prazo,
+          }
         : pedido
     );
 
     setPedidos(pedidosAtualizados);
+
+    if (pedidoSelecionado.prazo !== formulario.prazo) {
+      registrarHistoricoPedido({
+        tipo: "alteracao_prazo",
+        numero: numeroOriginal,
+        prazoAnterior: pedidoSelecionado.prazo,
+        prazoNovo: formulario.prazo
+      });
+    }
 
     setFormulario({
       numero: "",
@@ -118,9 +118,7 @@ function Pedidos({ pedidos, setPedidos, setAnimar, excluirPedido }) {
 
     const numero = formulario.numero.trim().padStart(5, "0");
 
-    if (
-      pedidos.some((pedido) => pedido.numero === numero)
-    ) {
+    if (pedidos.some(pedido => pedido.numero === numero)) {
       alert("Já existe um pedido com esse número.");
       return;
     }
@@ -130,9 +128,16 @@ function Pedidos({ pedidos, setPedidos, setAnimar, excluirPedido }) {
       numero,
       quantidade: Number(formulario.quantidade),
       status: "recebido",
+      criadoEm: new Date().toISOString()
     };
 
-    setPedidos((atuais) => [novoPedido, ...atuais]);
+    setPedidos(atuais => [novoPedido, ...atuais]);
+
+    registrarHistoricoPedido({
+      tipo: "criacao",
+      numero: novoPedido.numero,
+      statusNovo: novoPedido.status
+    });
 
     setFormulario({
       numero: "",
@@ -145,17 +150,33 @@ function Pedidos({ pedidos, setPedidos, setAnimar, excluirPedido }) {
   }
 
   function modificarStatus(numero, novoStatus) {
-    setPedidos((atuais) =>
-      atuais.map((pedido) =>
+    const pedidoAtual = pedidos.find(
+      pedido => pedido.numero === numero
+    );
+
+    if (!pedidoAtual || pedidoAtual.status === novoStatus) {
+      return;
+    }
+
+    setPedidos(atuais =>
+      atuais.map(pedido =>
         pedido.numero === numero
           ? { ...pedido, status: novoStatus }
           : pedido
       )
     );
 
-    setAnimar((valor) => valor + 1);
+    registrarHistoricoPedido({
+      tipo: "alteracao_status",
+      numero,
+      statusAnterior: pedidoAtual.status,
+      statusNovo: novoStatus
+    });
+
+    setAnimar?.(animacao => animacao + 1);
   }
-  const pedidosFiltrados = pedidos.filter((pedido) => {
+
+  const pedidosFiltrados = pedidos.filter(pedido => {
     const termo = pesquisa.toLowerCase();
 
     return (
@@ -167,6 +188,7 @@ function Pedidos({ pedidos, setPedidos, setAnimar, excluirPedido }) {
 
   return (
     <section className="p-pedidos">
+
       <div className="cabecalho-pedidos">
         <div>
           <h1>Pedidos</h1>
@@ -187,7 +209,7 @@ function Pedidos({ pedidos, setPedidos, setAnimar, excluirPedido }) {
         type="search"
         placeholder="Procurar pedido..."
         value={pesquisa}
-        onChange={(evento) => setPesquisa(evento.target.value)}
+        onChange={evento => setPesquisa(evento.target.value)}
       />
 
       {formularioAberto && (
@@ -198,6 +220,7 @@ function Pedidos({ pedidos, setPedidos, setAnimar, excluirPedido }) {
           <h2>{modoEdicao ? "Editar pedido" : "Novo pedido"}</h2>
 
           <div className="campos-pedido">
+
             <div className="campo">
               <label htmlFor="numero">Número do pedido</label>
               <input
@@ -212,7 +235,7 @@ function Pedidos({ pedidos, setPedidos, setAnimar, excluirPedido }) {
                 required
               />
             </div>
-            0
+
             <div className="campo">
               <label htmlFor="cliente">Cliente</label>
               <input
@@ -251,10 +274,11 @@ function Pedidos({ pedidos, setPedidos, setAnimar, excluirPedido }) {
                 required
               />
             </div>
+
           </div>
 
           <button type="submit" className="botao-novo">
-            Registrar pedido
+            {modoEdicao ? "Salvar alterações" : "Registrar pedido"}
           </button>
         </form>
       )}
@@ -274,9 +298,9 @@ function Pedidos({ pedidos, setPedidos, setAnimar, excluirPedido }) {
 
           <tbody>
             {pedidosFiltrados.length > 0 ? (
-              pedidosFiltrados.map((pedido) => {
+              pedidosFiltrados.map(pedido => {
                 const statusAtual = statusDisponiveis.find(
-                  (status) => status.valor === pedido.status
+                  status => status.valor === pedido.status
                 );
 
                 return (
@@ -300,24 +324,25 @@ function Pedidos({ pedidos, setPedidos, setAnimar, excluirPedido }) {
                       <select
                         aria-label={`Alterar status do pedido ${pedido.numero}`}
                         value={pedido.status}
-                        onChange={(evento) =>
+                        onClick={evento => evento.stopPropagation()}
+                        onChange={evento =>
                           modificarStatus(pedido.numero, evento.target.value)
                         }
                       >
-                        {statusDisponiveis.map((status) => (
+                        {statusDisponiveis.map(status => (
                           <option key={status.valor} value={status.valor}>
                             {status.nome}
                           </option>
                         ))}
                       </select>
-                    </td>
 
-                    <td>
                       <button
+                        type="button"
                         className="botao-excluir"
-                        onClick={(evento) => {
+                        onClick={evento => {
                           evento.stopPropagation();
                           excluirPedido(pedido.numero);
+                          setPedidoSelecionado(null);
                         }}
                       >
                         <span className="material-symbols-outlined">
@@ -329,7 +354,7 @@ function Pedidos({ pedidos, setPedidos, setAnimar, excluirPedido }) {
                         type="button"
                         className="botao-editar"
                         title="Editar pedido"
-                        onClick={(evento) => {
+                        onClick={evento => {
                           evento.stopPropagation();
                           editarPedido(pedido);
                         }}
@@ -341,22 +366,22 @@ function Pedidos({ pedidos, setPedidos, setAnimar, excluirPedido }) {
                 );
               })
             ) : (
-              <>
-                <tr className="estado-vazio">
-                  <td colSpan={7}>Nenhum pedido encontrado.</td>
-                </tr>
-
-                {Array.from({ length: 4 }).map((_, index) => (
-                  <tr className="linha-vazia" key={index}>
-                    <td colSpan={6}></td>
-                  </tr>
-                ))}
-              </>
+              <tr className="estado-vazio">
+                <td colSpan={6}>Nenhum pedido encontrado.</td>
+              </tr>
             )}
           </tbody>
         </table>
       </div>
 
+      {/* Acompanhamento do pedido selecionado */}
+      {pedidoSelecionado && (
+        <Acompanhamento
+          pedido={pedidos.find(
+            pedido => pedido.numero === pedidoSelecionado.numero
+          ) || pedidoSelecionado}
+        />
+      )}
 
       <section className="painel-pedidos">
 
@@ -394,10 +419,8 @@ function Pedidos({ pedidos, setPedidos, setAnimar, excluirPedido }) {
 
       </section>
 
-
     </section>
   );
 }
 
 export default Pedidos;
-

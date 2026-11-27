@@ -69,6 +69,18 @@ function Sistema() {
 
     if (!confirmar) return;
 
+    const pedidoExcluido = pedidos.find(
+      pedido => String(pedido.numero) === String(numero)
+    );
+
+    if (pedidoExcluido) {
+      registrarHistoricoPedido({
+        tipo: "exclusao",
+        numero: pedidoExcluido.numero,
+        pedido: pedidoExcluido
+      });
+    }
+
     const pedidosAtualizados = pedidos.filter(
       (pedido) => String(pedido.numero) !== String(numero)
     );
@@ -91,6 +103,16 @@ function Sistema() {
       JSON.stringify(pedidos)
     );
   }, [pedidos]);
+
+  const [historicoPedidos, setHistoricoPedidos] = useState(() => {
+    const salvos = localStorage.getItem("agreste_historico_pedidos");
+    return salvos ? JSON.parse(salvos) : [];
+  });
+
+  const [historicoEstoque, setHistoricoEstoque] = useState(() => {
+    const salvos = localStorage.getItem("agreste_historico_estoque");
+    return salvos ? JSON.parse(salvos) : [];
+  });
 
 
   const [tecidos, setTecidos] = useState(() => {
@@ -125,6 +147,24 @@ function Sistema() {
   });
 
 
+
+  // Salvar histórico de pedidos
+  useEffect(() => {
+    localStorage.setItem(
+      "agreste_historico_pedidos",
+      JSON.stringify(historicoPedidos)
+    );
+  }, [historicoPedidos]);
+
+  // Salvar histórico de estoque
+  useEffect(() => {
+    localStorage.setItem(
+      "agreste_historico_estoque",
+      JSON.stringify(historicoEstoque)
+    );
+  }, [historicoEstoque]);
+
+  // Atualizar ícones
   useEffect(() => {
     const atualizarIcones = () => {
       if (window.lucide) {
@@ -137,8 +177,8 @@ function Sistema() {
     const temporizador = setTimeout(atualizarIcones, 100);
 
     return () => clearTimeout(temporizador);
-
   }, [pagina]);
+
   const [notificacoes, setNotificacoes] = useState(() => {
     const salvas = localStorage.getItem("agreste_notificacoes");
     return salvas ? JSON.parse(salvas) : [];
@@ -147,6 +187,32 @@ function Sistema() {
 
   if (!autenticado) {
     return <Login onLogin={verificarLogin} />;
+  }
+
+  function registrarHistoricoPedido(dados) {
+    const registro = {
+      id: Date.now(),
+      data: new Date().toISOString(),
+      ...dados
+    };
+
+    setHistoricoPedidos(atuais => [
+      registro,
+      ...atuais
+    ]);
+  }
+
+  function registrarHistoricoEstoque(dados) {
+    const registro = {
+      id: Date.now(),
+      data: new Date().toISOString(),
+      ...dados
+    };
+
+    setHistoricoEstoque(atuais => [
+      registro,
+      ...atuais
+    ]);
   }
 
 
@@ -246,12 +312,15 @@ function Sistema() {
             pedidos={pedidos}
             tecidos={tecidos}
             setPagina={setPagina}
+            historicoPedidos={historicoPedidos}
+            historicoEstoque={historicoEstoque}
           />
         ) : pagina === "Pedidos" ? (
           <Pedidos
             pedidos={pedidos}
             setPedidos={setPedidos}
             excluirPedido={excluirPedido}
+            registrarHistoricoPedido={registrarHistoricoPedido}
           />
         ) : pagina === "Producao" ? (
           <Producao pedidos={pedidos} />
@@ -259,11 +328,13 @@ function Sistema() {
           <Logistica
             pedidos={pedidos}
             setPedidos={setPedidos}
+            registrarHistoricoPedido={registrarHistoricoPedido}
           />
         ) : pagina === "Estoque" ? (
           <Estoque
             tecidos={tecidos}
             setTecidos={setTecidos}
+            registrarHistoricoEstoque={registrarHistoricoEstoque}
           />
         ) : pagina === "Relatorio" ? (
           <Relatorio

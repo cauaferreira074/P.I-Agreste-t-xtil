@@ -14,7 +14,11 @@ const etapasLogistica = [
 
 
 
-function Logistica({ pedidos, setPedidos }) {
+function Logistica({
+    pedidos,
+    setPedidos,
+    registrarHistoricoPedido
+}) {
     const [pesquisa, setPesquisa] = useState("");
 
     const [pedidoSelecionado, setPedidoSelecionado] = useState(null);
@@ -36,13 +40,35 @@ function Logistica({ pedidos, setPedidos }) {
 
     // Atualiza a etapa logística
     function modificarLogistica(numero, novoStatus) {
+
+        const pedidoAtual = pedidos.find(
+            pedido => String(pedido.numero) === String(numero)
+        );
+
+        if (
+            !pedidoAtual ||
+            (pedidoAtual.statusLogistica || "aguardando_expedicao") === novoStatus
+        ) {
+            return;
+        }
+
+        const statusAnterior =
+            pedidoAtual.statusLogistica || "aguardando_expedicao";
+
         setPedidos(atuais =>
             atuais.map(pedido =>
-                pedido.numero === numero
+                String(pedido.numero) === String(numero)
                     ? { ...pedido, statusLogistica: novoStatus }
                     : pedido
             )
         );
+
+        registrarHistoricoPedido({
+            tipo: "alteracao_logistica",
+            numero,
+            statusLogisticaAnterior: statusAnterior,
+            statusLogisticaNovo: novoStatus
+        });
     }
 
     return (

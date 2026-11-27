@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
-
-function Estoque({ tecidos, setTecidos }) {
+function Estoque({
+    tecidos,
+    setTecidos,
+    registrarHistoricoEstoque
+}) {
 
 
 
@@ -20,6 +23,32 @@ function Estoque({ tecidos, setTecidos }) {
     });
 
     const [editandoId, setEditandoId] = useState(null);
+
+    function cadastrarTecido(evento) {
+        evento.preventDefault();
+
+        if (!nome || !cor || !quantidade || Number(quantidade) <= 0) {
+            alert("Preencha todos os campos corretamente!");
+            return;
+        }
+
+        const novoTecido = {
+            id: Date.now(),
+            nome,
+            cor,
+            quantidade: Number(quantidade),
+            unidade: "metros"
+        };
+
+        setTecidos(atuais => [...atuais, novoTecido]);
+
+        setNome("");
+        setCor("");
+        setQuantidade("");
+    }
+
+
+
 
     function movimentarEstoque(evento) {
         evento.preventDefault();
@@ -45,6 +74,21 @@ function Estoque({ tecidos, setTecidos }) {
             return;
         }
 
+        // Calcula o saldo total antes da movimentação
+        const saldoAtual = tecidos.reduce(
+            (total, item) => total + Number(item.quantidade || 0),
+            0
+        );
+
+        // Calcula o novo saldo total
+        const variacao =
+            tipoMovimentacao === "entrada"
+                ? quantidadeMovimentada
+                : -quantidadeMovimentada;
+
+        const saldoTotal = saldoAtual + variacao;
+
+        // Atualiza o estoque
         setTecidos(atuais =>
             atuais.map(item => {
                 if (item.id === tecido.id) {
@@ -61,6 +105,7 @@ function Estoque({ tecidos, setTecidos }) {
             })
         );
 
+        // Mantém o histórico que já aparece na tela
         const novaMovimentacao = {
             id: Date.now(),
             tecido: tecido.nome,
@@ -72,38 +117,24 @@ function Estoque({ tecidos, setTecidos }) {
 
         setHistorico(atuais => [novaMovimentacao, ...atuais]);
 
+        // Registra os dados no histórico central do sistema
+        registrarHistoricoEstoque({
+            tipo: tipoMovimentacao,
+            tecido: tecido.nome,
+            cor: tecido.cor,
+            quantidade: quantidadeMovimentada,
+            saldoTotal,
+            unidade: tecido.unidade
+        });
+
         setQuantidadeMovimentacao("");
         setTecidoSelecionado("");
 
         alert("Movimentação realizada com sucesso!");
     }
 
-    function cadastrarTecido(evento) {
-        evento.preventDefault();
-
-        if (!nome || !cor || !quantidade || Number(quantidade) <= 0) {
-            alert("Preencha todos os campos corretamente!");
-            return;
-        }
-
-        const novoTecido = {
-            id: Date.now(),
-            estoqueMinimo: 20,
-            nome: nome,
-            cor: cor,
-            quantidade: Number(quantidade),
-            unidade: "metros"
-        };
-
-        setTecidos(atuais => [...atuais, novoTecido]);
-
-        setNome("");
-        setCor("");
-        setQuantidade("");
-    }
-
     const tecidosBaixos = tecidos.filter(
-        tecido => tecido.quantidade <= tecido.estoqueMinimo
+        tecido => Number(tecido.quantidade) <= 10
     );
 
 
