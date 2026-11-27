@@ -535,7 +535,7 @@ function Dashboard({
                         Visão geral dos pedidos
                     </h3>
 
-                    <div style={{ width: "100%", height: "600px" }}>
+                    <div style={{ width: "80%", height: "450px" }}>
                         <ResponsiveContainer width="100%" height="100%">
                             <BarChart
                                 data={dadosGrafico}
